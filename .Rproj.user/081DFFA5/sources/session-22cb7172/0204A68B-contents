@@ -1,0 +1,11 @@
+# Propensity score methods {#iptw-application}
+
+## Background
+
+The **Propensity Score** (PS) is used to replicate the randomization process, aiming to balance individual characteristics at the beginning of a study. Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is commonly estimated using multivariable logistic regression, where the exposure serves as the dependent variable and the baseline characteristics act as independent variables. Once the PS is calculated, it can be utilized in various approaches, including matching, stratification, **Inverse Probability of Treatment Weighting** (IPTW), and covariate adjustment.
+
+## Determine confounders
+
+Observed baseline characteristics incorporated in the logistic regression **must affect both treatment assignment and the outcome**, while not being part of the causal pathway connecting them. Other variable types, such as mediators or colliders, can also exist, but adjusting for these may introduce bias. We recommend using **Directed Acyclic Graphs** (DAGs) to visually represent causal relationships developed in collaboration with clinical experts. DAGs can be created using the **DAGitty** website and the R package.
+
+In our example, we identified age at index date, gender, Beck score and socioeconomic status as potential confounders of the association between treatment exposure and relapse.

@@ -1,0 +1,14 @@
+fig:unnamed-chunk-3
+introduction
+definition
+use-of-rwd-in-drug-development
+addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials
+motivating-example
+target-trial-emulation
+background
+specify-the-target-trial
+emulate-the-target-trial
+iptw-application
+background-1
+determine-confounders
+clone-censor-weight

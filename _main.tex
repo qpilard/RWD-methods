@@ -1,0 +1,220 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Methods for the analysis of Real World Data},
+  pdfauthor={Quentin Pilard},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Methods for the analysis of Real World Data}
+\author{Quentin Pilard}
+\date{2024-10-23}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Welcome}\label{welcome}
+
+This book provides a hands-on guide to analyzing Real World Data (RWD) using a motivating example and R code.
+
+In brief, I explain the Hernán et al.~framework, which offers well-formulated guidance for emulating Randomized Controlled Trials (RCTs) when they are not feasible, drawing interest from regulators such as the EMA and FDA. I also cover Propensity Score Methods to mimic randomization and reduce confounding in RWD, and describe the clone-censor-weight approach to address immortal time bias.
+
+This tutorial is based on my four years of experience working with RWD in collaboration with the pharmaceutical industry and academia
+
+\chapter{Introduction}\label{introduction}
+
+\section{Definition}\label{definition}
+
+As defined by the FDA, \textbf{Real World Data (RWD)} refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources \citep{commissioner_real-world_2024}. However, it often extends to any observational study, such as cohort studies, case-control studies or epidemiological registries. \textbf{Real World Evidence (RWE)} is the clinical evidence generated from RWD to inform decision-makers about the use of medical products.
+
+\section{Use of RWD in drug development}\label{use-of-rwd-in-drug-development}
+
+In drug development, RWD has traditionally been used in phase IV trials for post-market safety assessments. However, its potential applications extend throughout the entire drug lifecycle \citep{khosla_real_2018}. This includes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Discovery and Early Development:}
+
+  \emph{Purpose}: Identify diseases with a high burden on populations and unmet needs.
+
+  \emph{RWE Use}: Helps define the target product profile by analyzing disease burden and patient characteristics, guiding the selection of indications and prioritizing development.
+\item
+  \textbf{Phase 1--3 Clinical Trials:}
+
+  \emph{Purpose:} Design clinical trials and ensure they reflect real-world populations.
+
+  \emph{RWE Use}: Provides insights into real-world patient populations and treatment patterns, helping to refine inclusion/exclusion criteria and improve the external validity of trials.
+\item
+  \textbf{Regulatory Approval (Phase 3):}
+
+  \emph{Purpose:} Obtain marketing authorization for new drugs.
+
+  \emph{RWE Use}: Supports clinical trial data by providing additional evidence on real-world safety, efficacy, and patient outcomes, potentially accelerating approval processes.
+\item
+  \textbf{Post-Approval (Phase 4) and Market Access:}
+
+  \emph{Purpose:} Ensure broad access and reimbursement.
+
+  \emph{RWE Use:} Provides evidence on the real-world effectiveness, safety, and cost-effectiveness of the drug compared to standard care, supporting reimbursement decisions and market access strategies.
+\item
+  \textbf{Post-Market Surveillance and Lifecycle Management:}
+
+  \emph{Purpose:} Monitor long-term safety and maintain market access.
+
+  \emph{RWE Use:} Continuously tracks patient outcomes, adherence, and safety data in real-world settings, supporting the long-term value demonstration and label expansion into new populations or indications.
+\end{enumerate}
+
+\section{Addressing Challenges with RWD: External Control Arms and Emulation of Trials}\label{addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials}
+
+While \textbf{Randomized Clinical Trials (RCTs)} remain the \textbf{gold standard} for generating unbiased evidence due to their controlled and randomized nature, there are situations where a traditional control group is not available or feasible. In such cases, researchers can resort to two alternative approaches: \textbf{External Control Arm (ECA)} or the \textbf{Target Trial Emulation (TTE)} \citep{baumfeld_andre_trial_2020, hernan_using_2016}. These two methods are illustrated below:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{images/Présentation3} 
+
+}
+
+\caption{Main study designs using RWD}\label{fig:unnamed-chunk-1}
+\end{figure}
+
+The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a concurrent control group. Similarly, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.
+
+Common biases include: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups
+
+To minimize these biases and ensure that results are robust and reliable, Hernán et al.~have proposed a framework for TTE that has gained attention and is increasingly being considered for extension to the ECA design \citep{hernan_using_2016, polito_applying_2024}. Furthermore, various statistical methods are being employed to mitigate these issues. Propensity score techniques have become widely popular for controlling confounding variables \citep{austin_introduction_2011}, while the clone-censor-weights approach is gaining recognition for its effectiveness in reducing immortal time bias \citep{maringe_reflection_2020}.
+
+\chapter{Motivating example}\label{motivating-example}
+
+\section{Context}\label{context}
+
+This dataset, derived from Electronic Health Records (EHR), was simulated to assess the comparative effectiveness of two antidepressant therapies on time to relapse (i.e.~recurrence of depressive disorder), among individuals firstly diagnosed with Persistent Depressive Disorder (PDD). The study followed subjects for up to one year from their PDD diagnosis date, which serves as the index date.
+
+\section{Objective}\label{objective}
+
+The primary goal is to compare the time to relapse---measured from the initial PDD diagnosis to a subsequent relapse---between patients who received the two therapies. A relapse is deemed to have occurred if the patient was diagnosed with depressive disorder again at any point during the one-year follow-up period.
+
+\section{Treatment Protocol}\label{treatment-protocol}
+
+Two selective serotonin reuptake inhibitor (SSRI) therapies are compared: \textbf{Sertralex and Duloxyn.} Both therapies are initiated within a delay of up to 60 days following the index date.
+
+\section{Study Population}\label{study-population}
+
+The study includes 575 subjects aged 18 or older, newly diagnosed with PDD.
+
+The following variables are in the dataset (``EHR\_example.csv''):
+
+\begin{itemize}
+\item
+  \textbf{ID}: Unique patient identifier
+\item
+  \textbf{AGE}: Age at the time of diagnosis (in years)
+\item
+  \textbf{GENDER}: Sex of the patient {[}0 = Male; 1 = Female{]}
+\item
+  \textbf{BECK}: Beck Depression Inventory score at diagnosis, a clinical score assessing the severity of depressive symptoms (ranging from 0 to 54)
+\item
+  \textbf{SOCIO\_ECO}: Socioeconomic status, categorized on a scale from 1 to 5 {[}1 = Low, 5 = High{]}
+\item
+  \textbf{TREAT}: Type of antidepressant therapy prescribed {[}0 = Sertralex; 1 = Duloxyn{]}
+\item
+  \textbf{DELAY}: Number of days between the diagnosis date and the initiation of therapy (ranging from 0 for immediate initiation, up to 60 days)
+\item
+  \textbf{CENSOR}: Indicator of relapse {[}0 = No relapse; 1 = Relapse{]}
+\item
+  \textbf{TIME\_TO\_RELAPSE}: Time to relapse event (in days), calculated from the date of diagnosis to the date of relapse, end of follow-up at 1 year, or the patient's last recorded activity in the database
+\end{itemize}
+
+All these details are summarized in the below figure:
+
+\includegraphics{images/essai 2-01.jpg}
+
+\chapter{Parts}\label{parts}
+
+You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
+
+Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+
+Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+
+Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

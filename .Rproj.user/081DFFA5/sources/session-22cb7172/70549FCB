@@ -1,0 +1,32 @@
+{
+    "id": "70549FCB",
+    "path": "~/Methods for the analysis of Real World data/01-intro.Rmd",
+    "project_path": "01-intro.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1729066617330.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "42,389",
+        "scrollLine": "0",
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "4294:1673.5999755859375",
+        "ignored_words": "foundational\n"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1729889732,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1729889732947,
+    "read_only": false,
+    "read_only_alternatives": []
+}

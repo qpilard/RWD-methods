@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Emulating a target trial in case-control designs: an application to statins and colorectal cancer | Methods for the analysis of Real World Data</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Emulating a target trial in case-control designs: an application to statins and colorectal cancer | Methods for the analysis of Real World Data" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/images/logo.jpeg" />
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Emulating a target trial in case-control designs: an application to statins and colorectal cancer | Methods for the analysis of Real World Data" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="twitter:image" content="/images/logo.jpeg" />
+
+<meta name="author" content="Quentin Pilard" />
+
+
+<meta name="date" content="2024-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="target-trial-emulation.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<ul class="toc">
+  <li class="toc-logo">
+    <a href="./">
+      <img src="images/logo.jpeg" alt="Logo">
+    </a>
+  </li>
+  <li class="toc-text">
+    <a href="./">Real World Data methods</a>
+  </li>
+</ul>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#use-of-rwd-in-drug-development"><i class="fa fa-check"></i><b>1.2</b> Use of RWD in drug development</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials"><i class="fa fa-check"></i><b>1.3</b> Addressing Challenges with RWD: External Control Arms and Emulation of Trials</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="motivating-example.html"><a href="motivating-example.html"><i class="fa fa-check"></i><b>2</b> Motivating example</a></li>
+<li class="chapter" data-level="3" data-path="target-trial-emulation.html"><a href="target-trial-emulation.html"><i class="fa fa-check"></i><b>3</b> Target Trial Emulation using observational data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="target-trial-emulation.html"><a href="target-trial-emulation.html#background"><i class="fa fa-check"></i><b>3.1</b> Background</a></li>
+<li class="chapter" data-level="3.2" data-path="target-trial-emulation.html"><a href="target-trial-emulation.html#defining-the-target-trial-protocol"><i class="fa fa-check"></i><b>3.2</b> Defining the target trial protocol</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><i class="fa fa-check"></i><b>4</b> <strong>Emulating a target trial in case-control designs: an application to statins and colorectal cancer</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#emulation-of-the-target-trial-protocol"><i class="fa fa-check"></i><b>4.1</b> Emulation of the target trial protocol</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#eligibility-criteria"><i class="fa fa-check"></i><b>4.1.1</b> Eligibility criteria</a></li>
+<li class="chapter" data-level="4.1.2" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#treatment-strategies"><i class="fa fa-check"></i><b>4.1.2</b> Treatment strategies</a></li>
+<li class="chapter" data-level="4.1.3" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#assignment-procedures"><i class="fa fa-check"></i><b>4.1.3</b> Assignment procedures</a></li>
+<li class="chapter" data-level="4.1.4" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#follow-up-periods"><i class="fa fa-check"></i><b>4.1.4</b> Follow-up periods</a></li>
+<li class="chapter" data-level="4.1.5" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#outcomes"><i class="fa fa-check"></i><b>4.1.5</b> Outcomes</a></li>
+<li class="chapter" data-level="4.1.6" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#causal-contrast-of-interest"><i class="fa fa-check"></i><b>4.1.6</b> Causal contrast of interest</a></li>
+<li class="chapter" data-level="4.1.7" data-path="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html"><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#analysis-plan"><i class="fa fa-check"></i><b>4.1.7</b> Analysis plan</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Methods for the analysis of Real World Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> <strong>Emulating a target trial in case-control designs: an application to statins and colorectal cancer</strong><a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Protocol component</th>
+<th>Target trial emulation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Eligibility criteria</strong></td>
+<td>Individuals aged 18 or older, newly diagnosed with PDD.</td>
+</tr>
+<tr class="even">
+<td><strong>Treatment strategies</strong></td>
+<td>Individuals who initiated Sertralex or Duloxyn.</td>
+</tr>
+<tr class="odd">
+<td><strong>Assignment procedures</strong></td>
+<td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy (i.e., blinding)</td>
+</tr>
+<tr class="even">
+<td><strong>Follow-up period</strong></td>
+<td>Starts at randomization and ends at the first occurrence of a relapse event, loss to follow-up, or after one year of follow-up, whichever occurs first.</td>
+</tr>
+<tr class="odd">
+<td><strong>Outcome</strong></td>
+<td>Relapse (defined as a recurrence of depressive disorder) diagnosed by a clinician, identified through clinical assessment or documented diagnosis of depression during the follow-up period.</td>
+</tr>
+<tr class="even">
+<td><strong>Causal contrasts of interest</strong></td>
+<td><p>Intention-to-treat (ITT)</p>
+<p>Per Protocol (PP)</p></td>
+</tr>
+<tr class="odd">
+<td><strong>Analysis plan</strong></td>
+<td><p>In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn.</p>
+<p>In the PP analysis, individuals were censored at the time they switched from their initially assigned treatment to the alternative therapy. Additionally, inverse probability weighting was applied to adjust for post-baseline prognostic factors that may influence the switch.</p></td>
+</tr>
+</tbody>
+</table>
+<div id="emulation-of-the-target-trial-protocol" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Emulation of the target trial protocol<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#emulation-of-the-target-trial-protocol" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Next, we thoroughly examined each component and detailed how they can be derived using RWD.</p>
+<div id="eligibility-criteria" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Eligibility criteria<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#eligibility-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since the study dataset already includes individuals aged 18 or older who have been diagnosed with PDD, no further adjustments are necessary.</p>
+<p>However, in secondary studies, where the database is not specifically designed for the research question (e.g., EHR, registries, hospital discharge database, …), it is necessary to define the study population by applying several filters. Typically, we start by selecting individuals with their first diagnosis of PDD within a specified timeframe, referred to as the identification period. This is usually done using the relevant International Classification of Diseases (ICD) code, which for PDD is F34.1. Subsequently, we select individuals who are 18 years or older, while excluding those with a prior history of PDD (prevalent cases). Figure <a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#fig:study-design">4.1</a> illustrates a typical design for a secondary study applied to our example, highlighting the specific timeframes that need to be considered.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:study-design"></span>
+<img src="images/secondary_data_study_design.jpg" alt="Common secondary study design" width="80%" />
+<p class="caption">
+FIGURE 4.1: Common secondary study design
+</p>
+</div>
+<p>Moreover, misalignment in the start of follow-up, eligibility, and treatment assignment can lead to <strong>immortal time bias</strong>. This occurs when, during a period of follow-up, the outcome of interest cannot happen due to design constraints. In our example, we observe that treatment initiation and diagnosis date are not aligned (i.e., treatment initiation up to 60 days after diagnosis date), this misalignment may introduce immortal time bias because relapses cannot be attributed to one of the two therapies until it has been initiated. Suppose, we observe on average that 45 days elapse between the diagnosis date and the initiation of Sertralex, whereas only 15 days pass for Duloxyn. This consistent difference in treatment initiation timing between the two therapies would mean that relapse may occur 30 days earlier in the Duloxyn group. To deal with immortal bias, the <strong>Clone-Censor-Weight</strong> (CCW) method has been suggested. Further details on its application is provided.</p>
+</div>
+<div id="treatment-strategies" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Treatment strategies<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#treatment-strategies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To define treatment strategies, in our example, two drugs were assigned: either Sertralex or Duloxyn.</p>
+<p>In secondary studies, it would be also important to carefully consider if any other relevant drugs can be initiated in combination with these two because this may impact treatment effect.</p>
+<p>Moreover, it is crucial to define the <strong>estimand</strong> which refers to the effect of interest for a specific target population or subpopulation based on the research question. Below is a summary of possible estimands applied to our example: </p>
+<table style="width:99%;">
+<colgroup>
+<col width="28%" />
+<col width="13%" />
+<col width="57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Causal estimand</strong></td>
+<td><strong>Population</strong></td>
+<td><strong>Research question</strong></td>
+</tr>
+<tr class="even">
+<td>Average Treatment effect in the Treated (ATT)</td>
+<td>Sertralex individuals</td>
+<td>Does Sertralex effect differ from standard vaccination among individuals likely to receive Sertralex?</td>
+</tr>
+<tr class="odd">
+<td>Average Treatment effect in the Untreated (ATU)</td>
+<td>Duloxyn individuals</td>
+<td>Does Duloxyn effect differ from standard vaccination among individuals likely to receive Duloxyn?</td>
+</tr>
+<tr class="even">
+<td>Average Treatment Effect in the population (ATE)</td>
+<td>Full sample/population</td>
+<td>Does Sertralex effect differ from Duloxyn effect among all individuals?</td>
+</tr>
+</tbody>
+</table>
+<p>In our case, the research question was based on the ATE concept because we want to generalize to all individuals. If Sertralex had been our treatment of interest, we would have chosen the ATT because extend our estimate to individuals who are not likely to initiate Sertralex is not of interest.</p>
+<p>It should be noted that in RCTs, defining these causal estimand does not make sense as the randomization process ensures that all concepts converge toward the same estimation.</p>
+<p>When emulating a hypothetical trial, blind assignment cannot be replicated. Emulation process is more similar to a pragmatic trial, which compares treatment strategies in typical clinical practice, rather than a conventional double-blind, placebo-controlled trial. </p>
+</div>
+<div id="assignment-procedures" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Assignment procedures<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#assignment-procedures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the absence of randomization, like any observational data, it is necessary to adjust for confounding factors measured ideally before time zero (i.e., index date). Identifying these confounders should be guided by clinical experts rather than being data driven. The goal is to <strong>identify variables that influence both the treatment assignment and the outcome without being part of the causal pathway between them</strong>. Other variable types, such as <strong>mediators or colliders</strong>, exist; however, adjusting for these can introduce bias. In our example, we identified age at index date, gender, Beck score and socioeconomic status as potential confounders of the association between treatment exposure and relapse.</p>
+<p>Once identified, confounding factors can be addressed through several analytical approaches. Some methods, such as <strong>matching</strong>, <strong>inverse probability weighting (IPTW)</strong>, and <strong>stratification</strong>, are based on propensity scores, aiming to balance confounders across treatment groups.</p>
+<p>The <strong>CCW</strong> approach, on the other hand, tackles two key issues: it adjusts for <strong>immortal time bias</strong> by creating patient clones and appropriately weighting them (see <a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#eligibility-criteria">4.1.1</a>), and it also addresses <strong>confounding</strong> by ensuring that the comparison between treatment groups remains fair over time. This method is particularly useful in time-to-event analyses where treatment initiation can vary, as described in our example. Lastly, <strong>g-estimation</strong> method is a valuable alternative to CCW in the context of time-varying confounders.</p>
+</div>
+<div id="follow-up-periods" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Follow-up periods<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#follow-up-periods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The time zero, in our example, was the PDD diagnosis date. From this point, individuals were followed until the earliest of the following events: the first clinical relapse, loss of follow-up, or the maximum follow-up period of 365 days after time zero. </p>
+</div>
+<div id="outcomes" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Outcomes<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In our example, the outcome is the first relapse occurring after the index date, presumably diagnosed by a clinician, identified through clinical assessment, or documented as a diagnosis of depression during the follow-up period.</p>
+<p>In secondary studies, relapse identification may rely on capturing an ICD code, such as F32.9, which is associated with a major depressive episode. This may result in identifying only the most severe cases, unlike in RCTs, where follow-up is more thorough and detailed. Therefore, it is crucial to carefully specify ICD codes when defining the outcome, as this can significantly impact the final results. Additionally, when feasible, conducting sensitivity analyses to assess differences in findings is important. For example, we could compare our estimates with potential proxies for major depressive episodes.</p>
+</div>
+<div id="causal-contrast-of-interest" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> Causal contrast of interest<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#causal-contrast-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In clinical trials, two causal effects are typically of interest: the intention-to-treat (ITT) effect and the per-protocol effect.</p>
+<p>In our example, as treatment initiation may vary up to 60 days following diagnosis, we chose to focus on the per-protocol effect. This approach allows for a more accurate assessment of the treatments effectiveness while accounting for variation in treatment adherence.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><strong>ICH E9 (addendum) on estimand vs estimand in causal inference</strong></p>
+<p>It is important to note that the causal contrast of interest has recently been debated, resulting in the release of a new EMA guideline, ICH E9 (addendum). This guideline introduces the concept of the estimand, which differs from the one described in <a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#treatment-strategies">4.1.2</a>, as a replacement for the traditional ITT and per-protocol effects. The estimand concept specifically addresses how to handle intercurrent events, shifting the focus beyond the conventional intention-to-treat and per-protocol frameworks. Future RCTs will need to incorporate this concept into their protocol development.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="analysis-plan" class="section level3 hasAnchor" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> Analysis plan<a href="emulating-a-target-trial-in-case-control-designs-an-application-to-statins-and-colorectal-cancer.html#analysis-plan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In our case, we modelled the effectiveness difference between the high dose and standard dose using a log-binomial model. This model determined the relative reduction, weighted by IPTW-ATT weights, and adjusted for variables with residual confounding, employing a doubly robust approach. </p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="target-trial-emulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-trial-emulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

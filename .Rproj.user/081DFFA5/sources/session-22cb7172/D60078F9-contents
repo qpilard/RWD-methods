@@ -1,0 +1,29 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+.toc {
+    display: flex; /* Utilise le modèle flexbox pour aligner les éléments */
+    align-items: center; /* Aligne verticalement les éléments au centre */
+    padding: 0; /* Supprime le padding par défaut de la liste */
+    margin: 0; /* Supprime la marge par défaut de la liste */
+}
+
+.toc-logo {
+    margin-right: 0px; /* Ajoute un espace entre le logo et le texte */
+}
+
+.toc img {
+    max-height: 50px; /* Ajuste la hauteur du logo si nécessaire */
+}
