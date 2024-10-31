@@ -1,9 +1,0 @@
-delete_merged_file: true
-output_dir: "docs"
-language:
-  label:
-    fig: "FIGURE "
-    tab: "TABLE "
-  ui:
-    chapter_name: "Chapter "
-rmd_files: ["index.Rmd", "author.Rmd", "01-intro.Rmd", "02-motivating-example.Rmd","03-trial-emulation.Rmd","04-iptw-application.Rmd","05-clone-censor-weight.Rmd","appendix.Rmd","references.Rmd"]

@@ -1,10 +1,10 @@
 # Motivating example {#motivating-example}
 
-Persistent Depressive Disorder (PDD) is a chronic mood disorder marked by a persistently low mood lasting at least two years, significantly affecting patients' quality of life. Antidepressants are the mainstay of treatment for PDD, helping to manage symptoms and reduce relapse risk. Among these medications, Sertralex and Duloxyn are commonly prescribed, each with different mechanisms of action.
+Persistent Depressive Disorder (PDD) is a chronic mood disorder characterized by a consistently low mood that lasts for at least two years, significantly impacting patients' quality of life. Antidepressants serve as the primary treatment for PDD, aiding in symptom management and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.
 
-In this context, clinicians seek to compare the effectiveness of Sertralex and Duloxyn in delaying relapse over a maximum follow-up period of one year, which is regarded as the maximum time attributable to treatment for patients newly diagnosed with PDD. Moreover, because we are in the context of RWD, treatment switch is likely to occur in-between these drugs.
+In this context, clinicians aim to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, which is considered the maximum duration of treatment for patients newly diagnosed with PDD. Given the RWD setting, treatment switches are likely to occur; therefore, switches were evaluated at the six-week mark to determine whether individuals transitioned from Sertralex to Duloxyn or vice versa.
 
-To address this, two types of analyses were proposed: one that assesses the overall treatment effect while ignoring any potential changes in therapy during the follow-up period, and another that examines the treatment effect while accounting for switches by censoring at the point of change.
+To address this, two types of analyses were proposed: one that evaluates the overall treatment effect without considering any changes in therapy during the follow-up period, and another that assesses the treatment effect while accounting for switches identified at the six-week follow-up by censoring at the point of change.
 
 Here is the list of variables included in the dataset:
 
@@ -20,10 +20,10 @@ Here is the list of variables included in the dataset:
 
 -   **EVENT**: Relapse indicator [0 = No relapse; 1 = Relapse]
 
--   **FOLLOW_UP_TIME**: Time from diagnosis to relapse, censoring, or end of one-year follow-up
+-   **TIME_TO_EVENT**: Time from diagnosis to event of interest or censoring
 
 -   **TREAT**: Therapy initiated at diagnosis [0 = Sertralex; 1 = Duloxyn].
 
 -   **SWITCH**: Indicates if the patient switched to the alternate therapy [0 = No switch; 1 = Switched].
 
--   **TIME_TO_SWITCH**: Time from diagnosis to the treatment switch, for patients who switched.
+Further information on the simulation process to generate these data are described in \@ref(r-code-simu).

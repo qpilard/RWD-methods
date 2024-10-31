@@ -1,4 +1,4 @@
-fig:unnamed-chunk-3
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
 introduction
 definition
 use-of-rwd-in-drug-development
@@ -10,5 +10,8 @@ specify-the-target-trial
 emulate-the-target-trial
 iptw-application
 background-1
-determine-confounders
+identify-confounders
+iptw-implementation
+balance-diagnostics
+outcome-analysis
 clone-censor-weight
