@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data</title>
+  <title>Appendix 3: ICH E9 (R1) addendum | Methods for the analysis of Real World Data</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data" />
+  <meta property="og:title" content="Appendix 3: ICH E9 (R1) addendum | Methods for the analysis of Real World Data" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/logo.jpeg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data" />
+  <meta name="twitter:title" content="Appendix 3: ICH E9 (R1) addendum | Methods for the analysis of Real World Data" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="motivating-example.html"/>
-<link rel="next" href="iptw-application.html"/>
+<link rel="prev" href="dag.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -226,82 +226,24 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="target-trial-emulation" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Target Trial Emulation using observational data<a href="target-trial-emulation.html#target-trial-emulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="background" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Background<a href="target-trial-emulation.html#background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In 2016, Hernán and Rubins presented a framework to emulate a clinical trial using observational data when no clinical trial exists <span class="citation">(<a href="references.html#ref-hernan_using_2016">Hernán and Robins 2016</a>)</span>.The latter is a 2-step process: (1) <strong>Specifying the target trial</strong> (i.e., which is the hypothetical trial that could have been performed to answer the research question). This includes these elements eligibility criteria, treatment strategies, assignment procedures, follow-up period, outcome, causal contrast of interest and analysis plan, and (2) <strong>Emulating each element</strong> from the target trial.</p>
-<p>Let us illustrate the TTE framework using our motivating example.</p>
-</div>
-<div id="specify-the-target-trial" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Specify the target trial<a href="target-trial-emulation.html#specify-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As suggested, we specified the target trial as below:</p>
-<table>
-<colgroup>
-<col width="11%" />
-<col width="88%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Protocol component</th>
-<th>Target trial emulation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Eligibility criteria</strong></td>
-<td>Individuals aged 18 or older, newly diagnosed with PDD.</td>
-</tr>
-<tr class="even">
-<td><strong>Treatment strategies</strong></td>
-<td>Individuals who initiated Sertralex or Duloxyn.</td>
-</tr>
-<tr class="odd">
-<td><strong>Assignment procedures</strong></td>
-<td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy (i.e., blinding)</td>
-</tr>
-<tr class="even">
-<td><strong>Follow-up period</strong></td>
-<td>Starts at randomization and ends at the first occurrence of a relapse event, loss to follow-up, or after one year of follow-up, whichever occurs first.</td>
-</tr>
-<tr class="odd">
-<td><strong>Outcome</strong></td>
-<td>Relapse (defined as a recurrence of depressive disorder) diagnosed by a clinician, identified through clinical assessment or documented diagnosis of depression during the follow-up period.</td>
-</tr>
-<tr class="even">
-<td><strong>Causal contrasts of interest</strong></td>
-<td><p>Intention-to-treat (ITT)</p>
-<p>Per Protocol (PP)</p>
-<p><em>(see appendix for causal contrasts of interest defined as suggested in the ICH E9 (R1) addendum)</em></p></td>
-</tr>
-<tr class="odd">
-<td><strong>Analysis plan</strong></td>
-<td><p>In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn.</p>
-<p>In the PP analysis, individuals were censored at the time they switched from their initially assigned treatment to the alternative therapy. Additionally, inverse probability weighting was applied to adjust for post-baseline prognostic factors that may influence the switch.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="emulate-the-target-trial" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Emulate the target trial<a href="target-trial-emulation.html#emulate-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, we examined each component and detailed how they can be derived using RWD.</p>
-<p><strong>Eligibility criteria</strong>: We included individuals aged 18 or older who were diagnosed with PDD, so no additional adjustments were necessary.</p>
-<p><strong>Treatment strategies</strong>: We defined two treatment strategies: either Sertralex or Duloxyn as the first prescription following a PDD diagnosis.</p>
-<p><strong>Assignment procedures</strong>: We assumed these two groups were exchangeable at index date conditionally on baseline covariates: Age at index date, gender, Beck score and socioeconomic status.</p>
-<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up, 365 days after time zero, or time of treatment switch (for PP analysis only). </p>
-<p><strong>Outcomes</strong>: We assumed the outcome as the first relapse occurring after time zero.</p>
-<p><strong>Causal contrast of interest</strong>: We considered observational analogues of the ITT and PP effect.</p>
-<p><strong>Analysis plan</strong>: For the ITT analysis, we used inverse probability weights (see chapter <a href="iptw-application.html#iptw-application">4</a> for further details) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models. For the PP analysis, we implemented the Clone-Censor-Weight method (see chapter for further details) for further detailto address both confounding and immortal time bias introduced by accounting for treatment switching in the analysis.</p>
+<div id="ich-estimand" class="section level1 unnumbered hasAnchor">
+<h1><strong>Appendix 3:</strong> ICH E9 (R1) addendum<a href="ich-estimand.html#ich-estimand" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses <span class="citation">(<a href="references.html#ref-noauthor_ich_1998"><span>“ICH E9 R1 Addendum”</span> 2020</a>)</span>.</p>
+<p>An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches <span class="citation">(<a href="references.html#ref-lawrance_what_2020">Lawrance et al. 2020</a>)</span>.</p>
+<p>In our example, we reformulate the ITT and PP questions as suggested in the framework:</p>
+<ul>
+<li><p>ITT: “In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?” (treatment policy approach)</p></li>
+<li><p>PP: “In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs, irrespective of study treatment discontinuation?” (composite approach)</p></li>
+</ul>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="motivating-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="iptw-application.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dag.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -332,7 +274,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-trial-emulation.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/appendix3.Rmd",
 "text": "Edit"
 },
 "history": {

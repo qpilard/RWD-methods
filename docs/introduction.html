@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-10-31" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -196,10 +196,15 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="iptw-application.html"><a href="iptw-application.html"><i class="fa fa-check"></i><b>4</b> Propensity score methods</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="iptw-application.html"><a href="iptw-application.html#background-1"><i class="fa fa-check"></i><b>4.1</b> Background</a></li>
-<li class="chapter" data-level="4.2" data-path="iptw-application.html"><a href="iptw-application.html#determine-confounders"><i class="fa fa-check"></i><b>4.2</b> Determine confounders</a></li>
+<li class="chapter" data-level="4.2" data-path="iptw-application.html"><a href="iptw-application.html#identify-confounders"><i class="fa fa-check"></i><b>4.2</b> Identify confounders</a></li>
+<li class="chapter" data-level="4.3" data-path="iptw-application.html"><a href="iptw-application.html#iptw-implementation"><i class="fa fa-check"></i><b>4.3</b> IPTW implementation</a></li>
+<li class="chapter" data-level="4.4" data-path="iptw-application.html"><a href="iptw-application.html#balance-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Balance Diagnostics</a></li>
+<li class="chapter" data-level="4.5" data-path="iptw-application.html"><a href="iptw-application.html#outcome-analysis"><i class="fa fa-check"></i><b>4.5</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a></li>
-<li class="chapter" data-level="" data-path="r-code-simu.html"><a href="r-code-simu.html"><i class="fa fa-check"></i><strong>Appendix 1:</strong> R code and DAG of the motivating example</a></li>
+<li class="chapter" data-level="" data-path="r-code-simu.html"><a href="r-code-simu.html"><i class="fa fa-check"></i><strong>Appendix 1:</strong> R code of the simulated dataset</a></li>
+<li class="chapter" data-level="" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><strong>Appendix 2:</strong> DAG</a></li>
+<li class="chapter" data-level="" data-path="ich-estimand.html"><a href="ich-estimand.html"><i class="fa fa-check"></i><strong>Appendix 3:</strong> ICH E9 (R1) addendum</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -225,7 +230,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="definition" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Definition<a href="introduction.html#definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As defined by the FDA, <strong>RWD</strong> refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources <span class="citation">(<a href="references.html#ref-commissioner_real-world_2024">Commissioner 2024</a>)</span>. However, it often extends to any observational study, such as cohort studies, case-control studies or epidemiological registries. <strong>Real World Evidence (RWE)</strong> is the clinical evidence generated from RWD to inform decision-makers about the use of medical products.</p>
+<p>As defined by the FDA, <strong>RWD</strong> refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources. <strong>Real World Evidence (RWE)</strong> is the clinical evidence generated from RWD to inform decision-makers about the use of medical products <span class="citation">(<a href="references.html#ref-commissioner_real-world_2024">Commissioner 2024</a>)</span>.</p>
 </div>
 <div id="use-of-rwd-in-drug-development" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Use of RWD in drug development<a href="introduction.html#use-of-rwd-in-drug-development" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -257,7 +262,7 @@ div.csl-indent {
 FIGURE 1.1: Main study designs using RWD
 </p>
 </div>
-<p>The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a concurrent control group. Similarly, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.</p>
+<p>The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a control group. Alternatively, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.</p>
 <p>Common biases include: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups.</p>
 
 </div>
@@ -322,6 +327,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

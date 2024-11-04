@@ -1,0 +1,5 @@
+# **Appendix 4:** Causal estimand {#causal-estimand .unnumbered}
+
+A causal estimand is a description of the quantity that is to be estimated. In the context of RWD, methods such as matching or weighting imply the selection of an estimand. Among these, two estimands are typically of interest: the average treatment effect in the treated (ATT) and the average treatment effect in the population (ATE).
+
+The ATT is considered when assessing the effect of a treatment among individuals who are likely to receive it (e.g., when comparing a new drug to a placebo or standard of care). In our example, the research question would be framed as: what is the treatment effect among patients likely to receive Duloxyn? This includes individuals with characteristics similar to those receiving Sertralex, while individuals with characteristics unique to Duloxyn would be excluded from the analysis. This estimator typically involves pair matching statistical methods [@greifer_choosing_2023; @heiss_demystifying_nodate].

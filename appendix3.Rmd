@@ -1,0 +1,11 @@
+# **Appendix 3:** ICH E9 (R1) addendum {#ich-estimand .unnumbered}
+
+Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses [@noauthor_ich_1998].
+
+An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches [@lawrance_what_2020].
+
+In our example, we reformulate the ITT and PP questions as suggested in the framework:
+
+-   ITT: "In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?" (treatment policy approach)
+
+-   PP: "In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs, irrespective of study treatment discontinuation?" (composite approach)

@@ -29,14 +29,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-10-31" />
+<meta name="date" content="2024-11-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r-code-simu.html"/>
+<link rel="prev" href="ich-estimand.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -196,10 +196,15 @@ div.csl-indent {
 <li class="chapter" data-level="4" data-path="iptw-application.html"><a href="iptw-application.html"><i class="fa fa-check"></i><b>4</b> Propensity score methods</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="iptw-application.html"><a href="iptw-application.html#background-1"><i class="fa fa-check"></i><b>4.1</b> Background</a></li>
-<li class="chapter" data-level="4.2" data-path="iptw-application.html"><a href="iptw-application.html#determine-confounders"><i class="fa fa-check"></i><b>4.2</b> Determine confounders</a></li>
+<li class="chapter" data-level="4.2" data-path="iptw-application.html"><a href="iptw-application.html#identify-confounders"><i class="fa fa-check"></i><b>4.2</b> Identify confounders</a></li>
+<li class="chapter" data-level="4.3" data-path="iptw-application.html"><a href="iptw-application.html#iptw-implementation"><i class="fa fa-check"></i><b>4.3</b> IPTW implementation</a></li>
+<li class="chapter" data-level="4.4" data-path="iptw-application.html"><a href="iptw-application.html#balance-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Balance Diagnostics</a></li>
+<li class="chapter" data-level="4.5" data-path="iptw-application.html"><a href="iptw-application.html#outcome-analysis"><i class="fa fa-check"></i><b>4.5</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a></li>
-<li class="chapter" data-level="" data-path="r-code-simu.html"><a href="r-code-simu.html"><i class="fa fa-check"></i><strong>Appendix 1:</strong> R code and DAG of the motivating example</a></li>
+<li class="chapter" data-level="" data-path="r-code-simu.html"><a href="r-code-simu.html"><i class="fa fa-check"></i><strong>Appendix 1:</strong> R code of the simulated dataset</a></li>
+<li class="chapter" data-level="" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><strong>Appendix 2:</strong> DAG</a></li>
+<li class="chapter" data-level="" data-path="ich-estimand.html"><a href="ich-estimand.html"><i class="fa fa-check"></i><strong>Appendix 3:</strong> ICH E9 (R1) addendum</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -225,17 +230,38 @@ div.csl-indent {
 <h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-austin_introduction_2011" class="csl-entry">
+Austin, Peter C. 2011. <span>“An Introduction to Propensity Score Methods for Reducing the Effects of Confounding in Observational Studies.”</span> <em>Multivariate Behavioral Research</em> 46 (3): 399. <a href="https://doi.org/10.1080/00273171.2011.568786">https://doi.org/10.1080/00273171.2011.568786</a>.
+</div>
+<div id="ref-austin_moving_2015" class="csl-entry">
+Austin, Peter C., and Elizabeth A. Stuart. 2015. <span>“Moving Towards Best Practice When Using Inverse Probability of Treatment Weighting (<span>IPTW</span>) Using the Propensity Score to Estimate Causal Treatment Effects in Observational Studies.”</span> <em>Statistics in Medicine</em> 34 (28): 3661–79. <a href="https://doi.org/10.1002/sim.6607">https://doi.org/10.1002/sim.6607</a>.
+</div>
 <div id="ref-baumfeld_andre_trial_2020" class="csl-entry">
 Baumfeld Andre, Elodie, Robert Reynolds, Patrick Caubel, Laurent Azoulay, and Nancy A. Dreyer. 2020. <span>“Trial Designs Using Real-World Data: The Changing Landscape of the Regulatory Approval Process.”</span> <em>Pharmacoepidemiology and Drug Safety</em> 29 (10): 1201–12. <a href="https://doi.org/10.1002/pds.4932">https://doi.org/10.1002/pds.4932</a>.
 </div>
 <div id="ref-commissioner_real-world_2024" class="csl-entry">
 Commissioner, Office of the. 2024. <span>“Real-World Evidence. <span>FDA</span>.”</span> September 19, 2024. <a href="https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence">https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence</a>.
 </div>
+<div id="ref-hernan_causal_nodate" class="csl-entry">
+Hernan, Miguel A, and James M Robins. 2024. <span>“Causal Inference: What If,”</span> January.
+</div>
 <div id="ref-hernan_using_2016" class="csl-entry">
 Hernán, Miguel A., and James M. Robins. 2016. <span>“Using Big Data to Emulate a Target Trial When a Randomized Trial Is Not Available.”</span> <em>American Journal of Epidemiology</em> 183 (8): 758–64. <a href="https://doi.org/10.1093/aje/kwv254">https://doi.org/10.1093/aje/kwv254</a>.
 </div>
+<div id="ref-noauthor_ich_1998" class="csl-entry">
+<span>“ICH E9 R1 Addendum.”</span> 2020. July 30, 2020. <a href="https://www.ema.europa.eu/en/ich-e9-statistical-principles-clinical-trials-scientific-guideline">https://www.ema.europa.eu/en/ich-e9-statistical-principles-clinical-trials-scientific-guideline</a>.
+</div>
 <div id="ref-khosla_real_2018" class="csl-entry">
 Khosla, Sajan, Robert White, Jesús Medina, Mario Ouwens, Cathy Emmas, Tim Koder, Gary Male, and Sandra Leonard. 2018. <span>“Real World Evidence (<span>RWE</span>) – a Disruptive Innovation or the Quiet Evolution of Medical Evidence Generation?”</span> <em>F1000Research</em> 7 (August): 111. <a href="https://doi.org/10.12688/f1000research.13585.2">https://doi.org/10.12688/f1000research.13585.2</a>.
+</div>
+<div id="ref-lawrance_what_2020" class="csl-entry">
+Lawrance, Rachael, Evgeny Degtyarev, Philip Griffiths, Peter Trask, Helen Lau, Denise D’Alessio, Ingolf Griebsch, Gudrun Wallenstein, Kim Cocks, and Kaspar Rufibach. 2020. <span>“What Is an Estimand &amp; How Does It Relate to Quantifying the Effect of Treatment on Patient-Reported Quality of Life Outcomes in Clinical Trials?”</span> <em>Journal of Patient-Reported Outcomes</em> 4 (1): 68. <a href="https://doi.org/10.1186/s41687-020-00218-5">https://doi.org/10.1186/s41687-020-00218-5</a>.
+</div>
+<div id="ref-mackinnon_unification_2021" class="csl-entry">
+MacKinnon, David P., and Sophia J. Lamp. 2021. <span>“A Unification of Mediator, Confounder, and Collider Effects.”</span> <em>Prevention Science : The Official Journal of the Society for Prevention Research</em> 22 (8): 1185. <a href="https://doi.org/10.1007/s11121-021-01268-x">https://doi.org/10.1007/s11121-021-01268-x</a>.
+</div>
+<div id="ref-tennant_use_2021" class="csl-entry">
+Tennant, Peter W G, Eleanor J Murray, Kellyn F Arnold, Laurie Berrie, Matthew P Fox, Sarah C Gadd, Wendy J Harrison, et al. 2021. <span>“Use of Directed Acyclic Graphs (<span>DAGs</span>) to Identify Confounders in Applied Health Research: Review and Recommendations.”</span> <em>International Journal of Epidemiology</em> 50 (2): 620–32. <a href="https://doi.org/10.1093/ije/dyaa213">https://doi.org/10.1093/ije/dyaa213</a>.
 </div>
 </div>
 </div>
@@ -244,7 +270,7 @@ Khosla, Sajan, Robert White, Jesús Medina, Mario Ouwens, Cathy Emmas, Tim Koder
           </div>
         </div>
       </div>
-<a href="r-code-simu.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ich-estimand.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -299,6 +325,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

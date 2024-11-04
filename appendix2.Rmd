@@ -1,0 +1,59 @@
+# **Appendix 2:** DAG {.unnumbered #dag}
+
+This is the DAG associated with the simulation process:
+
+```{r package, include=FALSE}
+#Install and load packages
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE, repos = "https://cloud.r-project.org")
+  sapply(pkg, require, character.only = TRUE)
+}
+list.of.packages <- c("dagitty",
+                      "ggdag",
+                      "ggplot2")
+ipak(list.of.packages)
+```
+
+```{r dag, echo=FALSE, message=FALSE}
+library(dagitty)
+library(ggdag)
+library(ggplot2)
+
+# Define the DAG structure in Dagitty
+dag_data <- dagitty("dag {
+  BECK6 [exposure]
+  RELAPSE [outcome]
+  SWITCH
+  TREAT0 [exposure]
+  Z
+  BECK6 -> RELAPSE
+  BECK6 -> SWITCH
+  SWITCH -> RELAPSE
+  TREAT0 -> BECK6
+  TREAT0 -> RELAPSE
+  TREAT0 -> SWITCH
+  Z -> BECK6
+  Z -> RELAPSE
+  Z -> SWITCH
+  Z -> TREAT0
+}")
+
+# Define coordinates for the DAG layout
+coords <- list(
+  x = c(BECK6 = 0.893, RELAPSE = 5.507, SWITCH = 0.893, TREAT0 = -3.720, Z = -3.720),
+  y = c(BECK6 = -2.734, RELAPSE = 0.377, SWITCH = 2.933, TREAT0 = 2.933, Z = -2.734)
+)
+
+coord_df <- coords2df(coords)
+coordinates(dag_data) <- coords2list(coord_df)
+
+# Plot the DAG using ggdag
+ggdag_status(dag_data, 
+             text_size = 2.5)+
+  theme_dag()
+
+```
+
+For simplicity, Z represents the confounders measured at baseline, which include age, gender, socioeconomic status, and the Beck score. The Beck score measured at week 6 is included as it serves as a prognostic variable for determining both the switch and relapse.

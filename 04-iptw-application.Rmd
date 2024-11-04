@@ -2,21 +2,31 @@
 
 ## Background
 
-The **Propensity Score** (PS) is used to replicate the randomization process, aiming to balance individual characteristics at the beginning of a study. Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is commonly estimated using multivariable logistic regression, where the exposure serves as the dependent variable and the baseline characteristics act as independent variables.
+The **Propensity Score** (PS) is used to mimic the randomization process, aiming to balance individual characteristics at the beginning of a study. Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables [@austin_introduction_2011; @austin_moving_2015].
 
-Once the PS is calculated, it can be utilized in various approaches, including matching, stratification, **Inverse Probability of Treatment Weighting** (IPTW), and covariate adjustment.
+Once calculated, it can be employed in various approaches, including matching, stratification, **Inverse Probability of Treatment Weighting** (IPTW), and covariate adjustment.
 
-The ITT analysis described in the \@ref(specify-the-target-trial) will be applied to illustrate the application of IPTW.
+The ITT analysis discussed in the \@ref(specify-the-target-trial) will be applied to illustrate the application of IPTW.
 
 ## Identify confounders
 
-Observed baseline characteristics incorporated in the logistic regression must be defined as **confounder**s, which are **variables that affect both treatment assignment and the outcome** without being part of the causal pathway between them. Other variable types, such as mediators or colliders, may also be present; however, adjusting for these can introduce bias.
+The baseline characteristics incorporated in the logistic regression must be defined as **confounders - variables that influence both treatment assignment and the outcome without being part on the causal pathway**. Other types of variables, such as **mediators or colliders**, may also be present; however, adjusting for these can introduce bias [@mackinnon_unification_2021].
 
-We recommend using Directed Acyclic Graphs (DAGs) to visually represent causal relationships, and communicate with clinical experts. DAGs can be created using the DAGitty website or dagitty R package.
+Directed Acyclic Graphs (DAGs) are usually recommended to depict causal relationships, ideally, clinical experts should be involved in their development as they more likely to know involved clinical pathways, interacting with the disease of interest [@hernan_causal_nodate; @tennant_use_2021]. DAGs can be created using the DAGitty [website](https://www.dagitty.net/) or dagitty R [package](https://github.com/jtextor/dagitty).
 
-In our example, we identified age at diagnosis, gender, Beck score and socioeconomic status as potential confounders of the association between treatment exposure and relapse.
+In our example, we identified age at diagnosis, gender, Beck score and socioeconomic status as potential confounders of the association between treatment exposure and relapse. The associated DAG is represented in Appendix \@ref(dag).
 
 ## IPTW implementation
+
+This code implements the IPTW approach using the Average Treatment Effect (ATE) estimand, detailed in the following equation:
+
+$$
+IPTW_{ATE} =\frac{t}{p({x})}+\frac{1-t}{1-p({x})} 
+$$
+
+Here, the PS is defined as $p({x}) = \Pr ({T}=1|{X}={x})$ and $T$ and $X$ are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES level, and Beck score), respectively.
+
+This models the treatment effect accross the entire population likely to receive either Sertralex or Duloxyn. Additional details on the causal estimand are provided in Appendix \@ref(r-code-simu).
 
 ```{r package2, include=FALSE, message=FALSE}
 #Install and load packages
@@ -210,8 +220,6 @@ data$TREAT0 <- as.factor(data$TREAT0)
 data$SWITCH <- as.factor(data$SWITCH)
 ```
 
-This code implements the IPTW approach using the Average Treatment Effect (ATE) estimand:
-
 ```{r iptw, message=FALSE}
 library(WeightIt)
 library(gtsummary)
@@ -231,7 +239,7 @@ data$ps <- W$ps
 
 ## Balance Diagnostics
 
-To evaluate balance after weighting, visual assessment is usually done. First, PS distributions are represented to assess the degree of overlap between the Setralex and Duloxyn individuals The objective is to have a large enough common support to ensure that it exists a population in-between these two.
+To evaluate balance after weighting, visual assessment is usually done. First, PS distributions are represented to assess the degree of overlap between the Sertralex and Duloxyn individuals The objective is to have a large enough common support to ensure that it exists a population in-between these two groups.
 
 ```{r ps}
 #Display PS
@@ -261,7 +269,7 @@ plot2<-ggplot2::ggplot(data, mapping = aes(x = ps, weight = weights))+
 ggarrange(plot1,plot2,common.legend = T)
 ```
 
-We observed that after weighting the two distributions curves overlaid and therefore this indicates that the dataset is correctly balance in average. Then, we usually assess balance for each variable.
+We observed that after weighting the two distributions curves align, indicating the dataset is correctly balance on average. We also evaluate balance for each variable.
 
 ```{r love_plot}
 love.plot(W, 
@@ -270,9 +278,9 @@ love.plot(W,
           sample.names = c("Before weighting", "After weighting"))
 ```
 
-We observe that after weighting the BECK score remains above the recommended threeshold. That is why, we suggest adjusting on it (i.e. doubly robust approach) when the outcome is investigated.
+After weighting the BECK score remains above the recommended threeshold. That is why, we suggest adjusting on it (i.e. doubly robust approach) when the final outcome is investigated.
 
-A summary descriptive table before and after weighting is represented below stratifed on treatment status.
+To summarize, a table before and after weighting is represented according to treatment status.
 
 ```{r table_weighting, warning=FALSE}
 #Before weighting
@@ -282,7 +290,7 @@ t1 <- data %>%
               statistic = list(all_continuous() ~ "{mean} ({sd})"),
               label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
-                           SOCIO_ECO ~ "Socioeconomic status (1-5)",
+                           SOCIO_ECO ~ "SES level (1-5)",
                            BECK0 ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
   add_overall() %>%
@@ -302,7 +310,7 @@ t2 <- data_svy %>%
                  statistic = list(all_continuous() ~ "{mean} ({sd})"),
                  label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
-                           SOCIO_ECO ~ "Socioeconomic status (1-5)",
+                           SOCIO_ECO ~ "SES level (1-5)",
                            BECK0 ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
   add_overall() %>% 
@@ -328,13 +336,35 @@ tbl_merge(tbls = list(t1, t2),
 
 ## Outcome analysis
 
-We compare below the unweighted and weighted Kaplan-Meir curves stratified on treatment group.
+This section details the outcome analyis. First, unweighted and weighted Kaplan-Meir curves stratified on treatment group are compared.
 
 ```{r km, warning=FALSE}
 library(survminer)
+
+#Implement unadjusted model
 unadjusted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT0, data = data)
+
+#Implement adjusted model
 adjusted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT0, data = data, weights = weights)
+
+#Combine both
 fit<-list(unadjusted,adjusted)
+
+# Function to format survival probabilities at a given time point
+format_survival_prob <- function(surv_object, time_point, treatment_index) {
+  surv_prob <- sprintf("%.2f", round(summary(surv_object, times = time_point)$surv[treatment_index], 2))
+  lower_ci <- sprintf("%.2f", round(summary(surv_object, times = time_point)$lower[treatment_index], 2))
+  upper_ci <- sprintf("%.2f", round(summary(surv_object, times = time_point)$upper[treatment_index], 2))
+  
+  return(paste0(surv_prob, " [", lower_ci, "; ", upper_ci, "]"))
+}
+
+# Usage for unadjusted and adjusted survival probabilities at week 26
+unadjusted_treatment_0 <- format_survival_prob(unadjusted, 26, 1)
+unadjusted_treatment_1 <- format_survival_prob(unadjusted, 26, 2)
+adjusted_treatment_0 <- format_survival_prob(adjusted, 26, 1)
+adjusted_treatment_1 <- format_survival_prob(adjusted, 26, 2)
+
 ggsurvplot_combine(fit, 
                    data = data,
                    legend.title = "",
@@ -348,17 +378,45 @@ ggsurvplot_combine(fit,
                    ggtheme = theme_bw())
 ```
 
-Then, we implement Cox models
+As outlined, differences in time to relapse vary depending on the analysis and treatment group considered. In the unadjusted analysis, we observed a survival probability of `r unadjusted_treatment_0` for Sertralex, compared to `r unadjusted_treatment_1` for Duloxyn. In the adjusted analysis, these differences were reduced, with survival probabilities of `r adjusted_treatment_0` for Sertralex and `r adjusted_treatment_1` for Duloxyn.
+
+Second, unweighted and weighted Cox models are displayed.
 
 ```{r cox}
-unweighted <- coxph(Surv(TIME_TO_EVENT, EVENT)~TREAT0, data = data) %>%
-  tbl_regression(
-    exponentiate = TRUE,
-    label = list(TREAT0 ~ "Treatment (unweighted)"))
-weighted <- coxph(Surv(TIME_TO_EVENT, EVENT)~TREAT0+BECK0, weights = weights, data = data)  %>%
-  tbl_regression(
-    exponentiate = TRUE,
-    label = list(TREAT0 ~ "Treatment (weighted)",
-                 BECK0 ~ "Beck (to adjust remaining imbalance)"))
-tbl_stack(list(unweighted, weighted))
+library(gtsummary)
+library(dplyr)
+
+# Fit the Cox models
+unweighted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT0, data = data)
+weighted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT0 + BECK0, weights = weights, data = data)
+
+# Create regression tables
+unweighted_table <- unweighted %>% 
+  tbl_regression(exponentiate = TRUE,
+                 label = list(TREAT0 ~ "Treatment (unweighted)"))
+
+weighted_table <- weighted %>% 
+  tbl_regression(exponentiate = TRUE,
+                 label = list(TREAT0 ~ "Treatment (weighted)"))%>%
+  modify_table_body(
+    ~ .x %>% dplyr::filter(variable != "BECK0")
+  )
+
+# Function to extract HR and CI for a specific variable
+extract_hr_ci <- function(model) {
+  conf <- confint(model)
+  hr <- sprintf("%.2f", exp(model$coefficients)[1])
+  ci_lower <- sprintf("%.2f", exp(conf)[1,1])
+  ci_upper <- sprintf("%.2f", exp(conf)[1,2])
+  return(paste0("HR = ", hr, " [", ci_lower, "; ", ci_upper, "]"))
+}
+
+# Extract and format HR and CI for TREAT0
+unweighted_hr_ci <- extract_hr_ci(unweighted)
+weighted_hr_ci <- extract_hr_ci(weighted)
+
+# Stack the regression tables
+tbl_stack(list(unweighted_table, weighted_table))
 ```
+
+As shown, the treatment effect varies depending on the analysis and treatment group considered. In the unadjusted analysis, the Hazard Ratio (HR) was `r unweighted_hr_ci`, suggesting that Duloxyn significantly increases the risk of relapse. Conversely, the adjusted analysis yielded an `r weighted_hr_ci`, indicating a trend toward Duloxyn having a protective effect by prolonging the time to relapse, although this result was not statistically significant.

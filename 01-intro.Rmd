@@ -2,7 +2,7 @@
 
 ## Definition
 
-As defined by the FDA, **RWD** refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources [@commissioner_real-world_2024]. However, it often extends to any observational study, such as cohort studies, case-control studies or epidemiological registries. **Real World Evidence (RWE)** is the clinical evidence generated from RWD to inform decision-makers about the use of medical products.
+As defined by the FDA, **RWD** refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources. **Real World Evidence (RWE)** is the clinical evidence generated from RWD to inform decision-makers about the use of medical products [@commissioner_real-world_2024].
 
 ## Use of RWD in drug development
 
@@ -46,6 +46,6 @@ While **RCTs** remain the **gold standard** for generating unbiased evidence due
 knitr::include_graphics("images/Présentation3.jpg")
 ```
 
-The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a concurrent control group. Similarly, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.
+The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a control group. Alternatively, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.
 
 Common biases include: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups.
