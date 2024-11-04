@@ -26,4 +26,4 @@ Here is the list of variables included in the dataset:
 
 -   **SWITCH**: Indicates if the patient switched to the alternate therapy [0 = No switch; 1 = Switched].
 
-Further information on the simulation process to generate these data are described in \@ref(r-code-simu).
+Further information on the simulation process to generate these data are described in Appendix \@ref(r-code).

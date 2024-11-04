@@ -15,6 +15,11 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
+```{r setup, include=FALSE}
+source("setup.R")
+source("simulation.R")
+```
+
 # Welcome {.unnumbered}
 This book provides a hands-on guide to analyzing Real World Data (RWD) using a motivating example and R code.
 

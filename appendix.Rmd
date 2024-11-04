@@ -1,4 +1,6 @@
-# **Appendix 1:** R code of the simulated dataset {.unnumbered #r-code-simu}
+# (APPENDIX) Appendix {-}
+
+# R code of the simulated dataset {#r-code}
 
 This is the R code to reproduce the motivating example:
 
@@ -174,3 +176,76 @@ data$TREAT0 <- as.factor(data$TREAT0)
 data$SWITCH <- as.factor(data$SWITCH)
 ```
 
+# ICH E9 (R1) addendum {#ich}
+
+Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses [@noauthor_ich_1998].
+
+An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches [@lawrance_what_2020].
+
+In our example, we reformulate the ITT and PP questions as suggested in the framework:
+
+-   ITT: "In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?" (treatment policy approach)
+
+-   PP: "In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs until week 6, irrespective of study treatment discontinuation?" (composite approach)
+
+# DAG of the simulated dataset {#dag}
+
+This is the DAG associated with the simulation process:
+
+```{r package, include=FALSE}
+#Install and load packages
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE, repos = "https://cloud.r-project.org")
+  sapply(pkg, require, character.only = TRUE)
+}
+list.of.packages <- c("dagitty",
+                      "ggdag",
+                      "ggplot2")
+ipak(list.of.packages)
+```
+
+```{r dag, echo=FALSE, message=FALSE}
+# Define the DAG structure in Dagitty
+dag_data <- dagitty("dag {
+  BECK6 [exposure]
+  RELAPSE [outcome]
+  SWITCH
+  TREAT0 [exposure]
+  Z
+  BECK6 -> RELAPSE
+  BECK6 -> SWITCH
+  SWITCH -> RELAPSE
+  TREAT0 -> BECK6
+  TREAT0 -> RELAPSE
+  TREAT0 -> SWITCH
+  Z -> BECK6
+  Z -> RELAPSE
+  Z -> SWITCH
+  Z -> TREAT0
+}")
+
+# Define coordinates for the DAG layout
+coords <- list(
+  x = c(BECK6 = 0.893, RELAPSE = 5.507, SWITCH = 0.893, TREAT0 = -3.720, Z = -3.720),
+  y = c(BECK6 = -2.734, RELAPSE = 0.377, SWITCH = 2.933, TREAT0 = 2.933, Z = -2.734)
+)
+
+coord_df <- coords2df(coords)
+coordinates(dag_data) <- coords2list(coord_df)
+
+# Plot the DAG using ggdag
+ggdag_status(dag_data, 
+             text_size = 2.5)+
+  theme_dag()
+
+```
+
+For simplicity, Z represents the confounders measured at baseline, which include age, gender, socioeconomic status, and the Beck score. The Beck score measured at week 6 is included as it serves as a prognostic variable for determining both the switch and relapse.
+
+# Causal inference estimand {#causal}
+
+A causal estimand is a description of the quantity that is to be estimated. In the context of RWD, methods such as matching or weighting imply the selection of an estimand. Among these, two estimands are typically of interest: the average treatment effect in the treated (ATT) and the average treatment effect in the population (ATE).
+
+The ATT is considered when assessing the effect of a treatment among individuals who are likely to receive it (e.g., when comparing a new drug to a placebo or standard of care). In our example, the research question would be framed as: what is the treatment effect among patients likely to receive Duloxyn? This includes individuals with characteristics similar to those receiving Sertralex, while individuals with characteristics unique to Duloxyn would be excluded from the analysis. This estimator typically involves pair matching statistical methods [@greifer_choosing_2023; @heiss_demystifying_nodate].

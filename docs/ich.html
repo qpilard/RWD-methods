@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Methods for the analysis of Real World Data</title>
+  <title>Appendix B ICH E9 (R1) addendum | Methods for the analysis of Real World Data</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Methods for the analysis of Real World Data" />
+  <meta property="og:title" content="Appendix B ICH E9 (R1) addendum | Methods for the analysis of Real World Data" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/logo.jpeg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Methods for the analysis of Real World Data" />
+  <meta name="twitter:title" content="Appendix B ICH E9 (R1) addendum | Methods for the analysis of Real World Data" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="clone-censor-weight.html"/>
-<link rel="next" href="r-code.html"/>
+<link rel="prev" href="r-code.html"/>
+<link rel="next" href="dag.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -228,61 +228,23 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered hasAnchor">
-<h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-austin_introduction_2011" class="csl-entry">
-Austin, Peter C. 2011. <span>“An Introduction to Propensity Score Methods for Reducing the Effects of Confounding in Observational Studies.”</span> <em>Multivariate Behavioral Research</em> 46 (3): 399. <a href="https://doi.org/10.1080/00273171.2011.568786">https://doi.org/10.1080/00273171.2011.568786</a>.
+<div id="ich" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Appendix B</span> ICH E9 (R1) addendum<a href="ich.html#ich" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses <span class="citation">(<a href="references.html#ref-noauthor_ich_1998"><span>“ICH E9 R1 Addendum”</span> 2020</a>)</span>.</p>
+<p>An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches <span class="citation">(<a href="references.html#ref-lawrance_what_2020">Lawrance et al. 2020</a>)</span>.</p>
+<p>In our example, we reformulate the ITT and PP questions as suggested in the framework:</p>
+<ul>
+<li><p>ITT: “In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?” (treatment policy approach)</p></li>
+<li><p>PP: “In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs until week 6, irrespective of study treatment discontinuation?” (composite approach)</p></li>
+</ul>
 </div>
-<div id="ref-austin_moving_2015" class="csl-entry">
-Austin, Peter C., and Elizabeth A. Stuart. 2015. <span>“Moving Towards Best Practice When Using Inverse Probability of Treatment Weighting (<span>IPTW</span>) Using the Propensity Score to Estimate Causal Treatment Effects in Observational Studies.”</span> <em>Statistics in Medicine</em> 34 (28): 3661–79. <a href="https://doi.org/10.1002/sim.6607">https://doi.org/10.1002/sim.6607</a>.
-</div>
-<div id="ref-baumfeld_andre_trial_2020" class="csl-entry">
-Baumfeld Andre, Elodie, Robert Reynolds, Patrick Caubel, Laurent Azoulay, and Nancy A. Dreyer. 2020. <span>“Trial Designs Using Real-World Data: The Changing Landscape of the Regulatory Approval Process.”</span> <em>Pharmacoepidemiology and Drug Safety</em> 29 (10): 1201–12. <a href="https://doi.org/10.1002/pds.4932">https://doi.org/10.1002/pds.4932</a>.
-</div>
-<div id="ref-commissioner_real-world_2024" class="csl-entry">
-Commissioner, Office of the. 2024. <span>“Real-World Evidence. <span>FDA</span>.”</span> September 19, 2024. <a href="https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence">https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence</a>.
-</div>
-<div id="ref-greifer_choosing_2023" class="csl-entry">
-Greifer, Noah, and Elizabeth A. Stuart. 2023. <span>“Choosing the Causal Estimand for Propensity Score Analysis of Observational Studies.”</span> <span>arXiv</span>. <a href="https://doi.org/10.48550/arXiv.2106.10577">https://doi.org/10.48550/arXiv.2106.10577</a>.
-</div>
-<div id="ref-heiss_demystifying_nodate" class="csl-entry">
-Heiss, Andrew. n.d. <span>“Demystifying Causal Inference Estimands: <span>ATE</span>, <span>ATT</span>, and <span>ATU</span>. Andrew Heiss.”</span> Accessed November 4, 2024. <a href="https://www.andrewheiss.com/blog/2024/03/21/demystifying-ate-att-atu/">https://www.andrewheiss.com/blog/2024/03/21/demystifying-ate-att-atu/</a>.
-</div>
-<div id="ref-hernan_causal_nodate" class="csl-entry">
-Hernan, Miguel A, and James M Robins. 2024. <span>“Causal Inference: What If,”</span> January.
-</div>
-<div id="ref-hernan_using_2016" class="csl-entry">
-Hernán, Miguel A., and James M. Robins. 2016. <span>“Using Big Data to Emulate a Target Trial When a Randomized Trial Is Not Available.”</span> <em>American Journal of Epidemiology</em> 183 (8): 758–64. <a href="https://doi.org/10.1093/aje/kwv254">https://doi.org/10.1093/aje/kwv254</a>.
-</div>
-<div id="ref-noauthor_ich_1998" class="csl-entry">
-<span>“ICH E9 R1 Addendum.”</span> 2020. July 30, 2020. <a href="https://www.ema.europa.eu/en/ich-e9-statistical-principles-clinical-trials-scientific-guideline">https://www.ema.europa.eu/en/ich-e9-statistical-principles-clinical-trials-scientific-guideline</a>.
-</div>
-<div id="ref-khosla_real_2018" class="csl-entry">
-Khosla, Sajan, Robert White, Jesús Medina, Mario Ouwens, Cathy Emmas, Tim Koder, Gary Male, and Sandra Leonard. 2018. <span>“Real World Evidence (<span>RWE</span>) – a Disruptive Innovation or the Quiet Evolution of Medical Evidence Generation?”</span> <em>F1000Research</em> 7 (August): 111. <a href="https://doi.org/10.12688/f1000research.13585.2">https://doi.org/10.12688/f1000research.13585.2</a>.
-</div>
-<div id="ref-lawrance_what_2020" class="csl-entry">
-Lawrance, Rachael, Evgeny Degtyarev, Philip Griffiths, Peter Trask, Helen Lau, Denise D’Alessio, Ingolf Griebsch, Gudrun Wallenstein, Kim Cocks, and Kaspar Rufibach. 2020. <span>“What Is an Estimand &amp; How Does It Relate to Quantifying the Effect of Treatment on Patient-Reported Quality of Life Outcomes in Clinical Trials?”</span> <em>Journal of Patient-Reported Outcomes</em> 4 (1): 68. <a href="https://doi.org/10.1186/s41687-020-00218-5">https://doi.org/10.1186/s41687-020-00218-5</a>.
-</div>
-<div id="ref-mackinnon_unification_2021" class="csl-entry">
-MacKinnon, David P., and Sophia J. Lamp. 2021. <span>“A Unification of Mediator, Confounder, and Collider Effects.”</span> <em>Prevention Science : The Official Journal of the Society for Prevention Research</em> 22 (8): 1185. <a href="https://doi.org/10.1007/s11121-021-01268-x">https://doi.org/10.1007/s11121-021-01268-x</a>.
-</div>
-<div id="ref-tennant_use_2021" class="csl-entry">
-Tennant, Peter W G, Eleanor J Murray, Kellyn F Arnold, Laurie Berrie, Matthew P Fox, Sarah C Gadd, Wendy J Harrison, et al. 2021. <span>“Use of Directed Acyclic Graphs (<span>DAGs</span>) to Identify Confounders in Applied Health Research: Review and Recommendations.”</span> <em>International Journal of Epidemiology</em> 50 (2): 620–32. <a href="https://doi.org/10.1093/ije/dyaa213">https://doi.org/10.1093/ije/dyaa213</a>.
-</div>
-</div>
-
-</div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="clone-censor-weight.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-code.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dag.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -313,7 +275,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/qpilard/RWD-methods/edit/master/references.Rmd",
+"link": "https://github.com/qpilard/RWD-methods/edit/master/appendix.Rmd",
 "text": "Edit"
 },
 "history": {

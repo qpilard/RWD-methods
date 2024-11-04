@@ -202,10 +202,12 @@ div.csl-indent {
 <li class="chapter" data-level="4.5" data-path="iptw-application.html"><a href="iptw-application.html#outcome-analysis"><i class="fa fa-check"></i><b>4.5</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a></li>
-<li class="chapter" data-level="" data-path="r-code-simu.html"><a href="r-code-simu.html"><i class="fa fa-check"></i><strong>Appendix 1:</strong> R code of the simulated dataset</a></li>
-<li class="chapter" data-level="" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><strong>Appendix 2:</strong> DAG</a></li>
-<li class="chapter" data-level="" data-path="ich-estimand.html"><a href="ich-estimand.html"><i class="fa fa-check"></i><strong>Appendix 3:</strong> ICH E9 (R1) addendum</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>A</b> R code of the simulated dataset</a></li>
+<li class="chapter" data-level="B" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>B</b> ICH E9 (R1) addendum</a></li>
+<li class="chapter" data-level="C" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>C</b> DAG of the simulated dataset</a></li>
+<li class="chapter" data-level="D" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>D</b> Causal inference estimand</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -272,7 +274,7 @@ div.csl-indent {
 <td><strong>Causal contrasts of interest</strong></td>
 <td><p>Intention-to-treat (ITT)</p>
 <p>Per Protocol (PP)</p>
-<p><em>(see appendix for causal contrasts of interest defined as suggested in the ICH E9 (R1) addendum)</em></p></td>
+<p>(see Appendix <a href="ich.html#ich">B</a> for causal contrasts of interest defined as suggested in the ICH E9 (R1) addendum) |</p></td>
 </tr>
 <tr class="odd">
 <td><strong>Analysis plan</strong></td>
@@ -288,10 +290,10 @@ div.csl-indent {
 <p><strong>Eligibility criteria</strong>: We included individuals aged 18 or older who were diagnosed with PDD, so no additional adjustments were necessary.</p>
 <p><strong>Treatment strategies</strong>: We defined two treatment strategies: either Sertralex or Duloxyn as the first prescription following a PDD diagnosis.</p>
 <p><strong>Assignment procedures</strong>: We assumed these two groups were exchangeable at index date conditionally on baseline covariates: Age at index date, gender, Beck score and socioeconomic status.</p>
-<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up, 365 days after time zero, or time of treatment switch (for PP analysis only). </p>
+<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up, 365 days after time zero, or time of treatment switch (for PP analysis only).</p>
 <p><strong>Outcomes</strong>: We assumed the outcome as the first relapse occurring after time zero.</p>
 <p><strong>Causal contrast of interest</strong>: We considered observational analogues of the ITT and PP effect.</p>
-<p><strong>Analysis plan</strong>: For the ITT analysis, we used inverse probability weights (see chapter <a href="iptw-application.html#iptw-application">4</a> for further details) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models. For the PP analysis, we implemented the Clone-Censor-Weight method (see chapter for further details) for further detailto address both confounding and immortal time bias introduced by accounting for treatment switching in the analysis.</p>
+<p><strong>Analysis plan</strong>: For the ITT analysis, we used inverse probability weights (see Chapter <a href="iptw-application.html#iptw-application">4</a> for further details) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models. For the PP analysis, we implemented the Clone-Censor-Weight method (see Chapter <a href="clone-censor-weight.html#clone-censor-weight">5</a> for further details) to address both confounding and immortal time bias introduced by accounting for treatment switching in the analysis.</p>
 
 </div>
 </div>
@@ -318,7 +320,7 @@ gitbook.start({
 "sharing": {
 "github": true,
 "facebook": false,
-"twitter": true,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
@@ -332,7 +334,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-trial-emulation.Rmd",
+"link": "https://github.com/qpilard/RWD-methods/edit/master/03-trial-emulation.Rmd",
 "text": "Edit"
 },
 "history": {

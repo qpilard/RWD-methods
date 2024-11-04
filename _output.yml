@@ -16,9 +16,10 @@ bookdown::gitbook:
         </ul>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    edit: https://github.com/qpilard/RWD-methods/edit/master/%s
     download: ["pdf", "epub"]
     sharing:
       github: yes
       facebook: no
+      twitter: no
     
