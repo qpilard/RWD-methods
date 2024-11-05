@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-04" />
+<meta name="date" content="2024-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,7 +201,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.4" data-path="iptw-application.html"><a href="iptw-application.html#balance-diagnostics"><i class="fa fa-check"></i><b>4.4</b> Balance Diagnostics</a></li>
 <li class="chapter" data-level="4.5" data-path="iptw-application.html"><a href="iptw-application.html#outcome-analysis"><i class="fa fa-check"></i><b>4.5</b> Outcome analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a></li>
+<li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#background-2"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
+<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#implement-ccw"><i class="fa fa-check"></i><b>5.2</b> Implement CCW</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>A</b> R code of the simulated dataset</a></li>
@@ -230,7 +234,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="ich" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Appendix B</span> ICH E9 (R1) addendum<a href="ich.html#ich" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses <span class="citation">(<a href="references.html#ref-noauthor_ich_1998"><span>“ICH E9 R1 Addendum”</span> 2020</a>)</span>.</p>
+<p>In 2020, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses <span class="citation">(<a href="references.html#ref-noauthor_ich_1998"><span>“ICH E9 R1 Addendum”</span> 2020</a>)</span>.</p>
 <p>An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches <span class="citation">(<a href="references.html#ref-lawrance_what_2020">Lawrance et al. 2020</a>)</span>.</p>
 <p>In our example, we reformulate the ITT and PP questions as suggested in the framework:</p>
 <ul>
@@ -275,8 +279,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/qpilard/RWD-methods/appendix.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,

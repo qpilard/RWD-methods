@@ -178,7 +178,7 @@ data$SWITCH <- as.factor(data$SWITCH)
 
 # ICH E9 (R1) addendum {#ich}
 
-Recently, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses [@noauthor_ich_1998].
+In 2020, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses [@noauthor_ich_1998].
 
 An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches [@lawrance_what_2020].
 

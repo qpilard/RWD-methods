@@ -721,6 +721,387 @@
             "volume": "50"
         },
         {
+            "DOI": "10.1002/sim.2618",
+            "ISSN": "0277-6715",
+            "PMID": "16783757",
+            "abstract": "Propensity score methods are increasingly being used to estimate causal treatment effects in the medical literature. Conditioning on the propensity score results in unbiased estimation of the expected difference in observed responses to two treatments. The degree to which conditioning on the propensity score introduces bias into the estimation of the conditional odds ratio or conditional hazard ratio, which are frequently used as measures of treatment effect in observational studies, has not been extensively studied. We conducted Monte Carlo simulations to determine the degree to which propensity score matching, stratification on the quintiles of the propensity score, and covariate adjustment using the propensity score result in biased estimation of conditional odds ratios, hazard ratios, and rate ratios. We found that conditioning on the propensity score resulted in biased estimation of the true conditional odds ratio and the true conditional hazard ratio. In all scenarios examined, treatment effects were biased towards the null treatment effect. However, conditioning on the propensity score did not result in biased estimation of the true conditional rate ratio. In contrast, conventional regression methods allowed unbiased estimation of the true conditional treatment effect when all variables associated with the outcome were included in the regression model. The observed bias in propensity score methods is due to the fact that regression models allow one to estimate conditional treatment effects, whereas propensity score methods allow one to estimate marginal treatment effects. In several settings with non-linear treatment effects, marginal and conditional treatment effects do not coincide.",
+            "author": [
+                {
+                    "family": "Austin",
+                    "given": "Peter C."
+                },
+                {
+                    "family": "Grootendorst",
+                    "given": "Paul"
+                },
+                {
+                    "family": "Normand",
+                    "given": "Sharon-Lise T."
+                },
+                {
+                    "family": "Anderson",
+                    "given": "Geoffrey M."
+                }
+            ],
+            "container-title": "Statistics in Medicine",
+            "container-title-short": "Stat Med",
+            "id": "austin_conditioning_2007",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007,
+                        2,
+                        20
+                    ]
+                ]
+            },
+            "keyword": "Bias, Computer Simulation, Data Interpretation, Statistical, Humans, Monte Carlo Method, Treatment Outcome",
+            "page": "754-768",
+            "title": "Conditioning on the propensity score can result in biased estimation of common measures of treatment effect: A monte carlo study",
+            "title-short": "Conditioning on the propensity score can result in biased estimation of common measures of treatment effect",
+            "type": "article-journal",
+            "volume": "26"
+        },
+        {
+            "DOI": "10.1016/j.cmpb.2003.10.004",
+            "ISSN": "0169-2607",
+            "PMID": "15158046",
+            "abstract": "Kaplan-Meier survival curves and the associated nonparametric log rank test statistic are methods of choice for unadjusted survival analyses, while the semiparametric Cox proportional hazards regression model is used ubiquitously as a method for covariate adjustment. The Cox model extends naturally to include covariates, but there is no generally accepted method to graphically depict adjusted survival curves. The authors describe a method and provide a simple worked example using inverse probability weights (IPW) to create adjusted survival curves. When the weights are non-parametrically estimated, this method is equivalent to direct standardization of the survival curves to the combined study population.",
+            "author": [
+                {
+                    "family": "Cole",
+                    "given": "Stephen R."
+                },
+                {
+                    "family": "Hernán",
+                    "given": "Miguel A."
+                }
+            ],
+            "container-title": "Computer Methods and Programs in Biomedicine",
+            "container-title-short": "Comput Methods Programs Biomed",
+            "id": "cole_adjusted_2004",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004,
+                        7
+                    ]
+                ]
+            },
+            "keyword": "Humans, Probability, Proportional Hazards Models, Survival Analysis, United States",
+            "page": "45-49",
+            "title": "Adjusted survival curves with inverse probability weights",
+            "type": "article-journal",
+            "volume": "75"
+        },
+        {
+            "DOI": "10.1002/sim.3697",
+            "PMID": "19757444",
+            "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3472075/",
+            "abstract": "The propensity score is a subject’s probability of treatment, conditional on observed baseline covariates. Conditional on the true propensity score, treated and untreated subjects have similar distributions of observed baseline covariates. ...",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        11,
+                        5
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Austin",
+                    "given": "Peter C."
+                }
+            ],
+            "container-title": "Statistics in Medicine",
+            "id": "austin_balance_2009",
+            "issue": "25",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009,
+                        9,
+                        15
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "3083",
+            "title": "Balance diagnostics for comparing the distribution of baseline covariates between treatment groups in propensity-score matched samples",
+            "type": "article-journal",
+            "volume": "28"
+        },
+        {
+            "DOI": "10.1016/s0895-4356(00)00321-8",
+            "ISSN": "0895-4356",
+            "PMID": "11297888",
+            "abstract": "We determined whether adherence to recommendations for coronary angiography more than 12 h after symptom onset but prior to hospital discharge after acute myocardial infarction (AMI) resulted in better survival. Using propensity scores, we created a matched retrospective sample of 19,568 Medicare patients hospitalized with AMI during 1994-1995 in the United States. Twenty-nine percent, 36%, and 34% of patients were judged necessary, appropriate, or uncertain, respectively, for angiography while 60% of those judged necessary received the procedure during the hospitalization. The 3-year survival benefit was largest for patients rated necessary [mean survival difference (95% CI): 17.6% (15.1, 20.1)] and smallest for those rated uncertain [8.8% (6.8, 10.7)]. Angiography recommendations appear to select patients who are likely to benefit from the procedure and the consequent interventions. Because of the magnitude of the benefit and of the number of patients involved, steps should be taken to replicate these findings.",
+            "author": [
+                {
+                    "family": "Normand",
+                    "given": "S. T."
+                },
+                {
+                    "family": "Landrum",
+                    "given": "M. B."
+                },
+                {
+                    "family": "Guadagnoli",
+                    "given": "E."
+                },
+                {
+                    "family": "Ayanian",
+                    "given": "J. Z."
+                },
+                {
+                    "family": "Ryan",
+                    "given": "T. J."
+                },
+                {
+                    "family": "Cleary",
+                    "given": "P. D."
+                },
+                {
+                    "family": "McNeil",
+                    "given": "B. J."
+                }
+            ],
+            "container-title": "Journal of Clinical Epidemiology",
+            "container-title-short": "J Clin Epidemiol",
+            "id": "normand_validating_2001",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001,
+                        4
+                    ]
+                ]
+            },
+            "keyword": "Aged, Aged, 80 and over, Algorithms, Coronary Angiography, Female, Guideline Adherence, Humans, Logistic Models, Male, Matched-Pair Analysis, Medicare, Myocardial Infarction, Patient Selection, Practice Guidelines as Topic, Quality Indicators, Health Care, Retrospective Studies, Survival Analysis, Time Factors, Treatment Outcome, United States",
+            "page": "387-398",
+            "title": "Validating recommendations for coronary angiography following acute myocardial infarction in the elderly: A matched analysis using propensity scores",
+            "title-short": "Validating recommendations for coronary angiography following acute myocardial infarction in the elderly",
+            "type": "article-journal",
+            "volume": "54"
+        },
+        {
+            "DOI": "10.1093/aje/kwq439",
+            "PMID": "21385832",
+            "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3070495/",
+            "abstract": "Doubly robust estimation combines a form of outcome regression with a model for the exposure (i.e., the propensity score) to estimate the causal effect of an exposure on an outcome. When used individually to estimate a causal effect, both outcome ...",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        11,
+                        5
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Funk",
+                    "given": "Michele Jonsson"
+                },
+                {
+                    "family": "Westreich",
+                    "given": "Daniel"
+                },
+                {
+                    "family": "Wiesen",
+                    "given": "Chris"
+                },
+                {
+                    "family": "Stürmer",
+                    "given": "Til"
+                },
+                {
+                    "family": "Brookhart",
+                    "given": "M. Alan"
+                },
+                {
+                    "family": "Davidian",
+                    "given": "Marie"
+                }
+            ],
+            "container-title": "American Journal of Epidemiology",
+            "id": "funk_doubly_2011",
+            "issue": "7",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        3,
+                        8
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "761",
+            "title": "Doubly robust estimation of causal effects",
+            "type": "article-journal",
+            "volume": "173"
+        },
+        {
+            "DOI": "10.1016/j.jclinepi.2016.04.014",
+            "ISSN": "1878-5921",
+            "PMCID": "PMC5124536",
+            "PMID": "27237061",
+            "abstract": "Many analyses of observational data are attempts to emulate a target trial. The emulation of the target trial may fail when researchers deviate from simple principles that guide the design and analysis of randomized experiments. We review a framework to describe and prevent biases, including immortal time bias, that result from a failure to align start of follow-up, specification of eligibility, and treatment assignment. We review some analytic approaches to avoid these problems in comparative effectiveness or safety research.",
+            "author": [
+                {
+                    "family": "Hernán",
+                    "given": "Miguel A."
+                },
+                {
+                    "family": "Sauer",
+                    "given": "Brian C."
+                },
+                {
+                    "family": "Hernández-Díaz",
+                    "given": "Sonia"
+                },
+                {
+                    "family": "Platt",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Shrier",
+                    "given": "Ian"
+                }
+            ],
+            "container-title": "Journal of Clinical Epidemiology",
+            "container-title-short": "J Clin Epidemiol",
+            "id": "hernan_specifying_2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016,
+                        11
+                    ]
+                ]
+            },
+            "keyword": "Bias, Comparative effectiveness research, Comparative Effectiveness Research, Epidemiologic Research Design, Humans, Immortal time bias, Observational, Observational Studies as Topic, Selection bias, Selection Bias, studies, Target trial, Time Factors, Time zero",
+            "page": "70-75",
+            "title": "Specifying a target trial prevents immortal time bias and other self-inflicted injuries in observational analyses",
+            "type": "article-journal",
+            "volume": "79"
+        },
+        {
+            "DOI": "10.1093/ije/dyaa057",
+            "PMID": "32386426",
+            "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7823243/",
+            "abstract": "Acquiring real-world evidence is crucial to support health policy, but observational studies are prone to serious biases. An approach was recently proposed to overcome confounding and immortal-time biases within the emulated trial framework. This ...",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        10,
+                        18
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Maringe",
+                    "given": "Camille"
+                },
+                {
+                    "family": "Majano",
+                    "given": "Sara Benitez"
+                },
+                {
+                    "family": "Exarchakou",
+                    "given": "Aimilia"
+                },
+                {
+                    "family": "Smith",
+                    "given": "Matthew"
+                },
+                {
+                    "family": "Rachet",
+                    "given": "Bernard"
+                },
+                {
+                    "family": "Belot",
+                    "given": "Aurélien"
+                },
+                {
+                    "family": "Leyrat",
+                    "given": "Clémence"
+                }
+            ],
+            "container-title": "International Journal of Epidemiology",
+            "id": "maringe_reflection_2020",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020,
+                        5,
+                        9
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "1719",
+            "title": "Reflection on modern methods: Trial emulation in the presence of immortal-time bias. Assessing the benefit of major surgery for elderly lung cancer patients using observational data",
+            "title-short": "Reflection on modern methods",
+            "type": "article-journal",
+            "volume": "49"
+        },
+        {
+            "DOI": "10.1093/ije/dyaa223",
+            "ISSN": "0300-5771",
+            "URL": "https://doi.org/10.1093/ije/dyaa223",
+            "abstract": "We welcome the tutorial by Maringe and colleagues on the clone-censor-weight approach to target trial emulation for observational comparative effectiveness research (CER).1 The authors used a motivating example (effect of surgery within 6 months of diagnosis on lung cancer survival) to demonstrate its application for immortal time bias. We would like to expand on the versatility of the clone-censor-weight approach by bringing other applications to the readers’ attention (see Table 1 for a non-exhaustive overview). In all cases, cloning overcomes assignment ambiguity at follow-up time zero that can occur both in dynamic treatment strategies (that change according to evolving patient characteristics) or static treatment strategies (that do not). We propose three main categories (and combinations thereof) relating to: grace periods, static time-related strategies and dynamic strategies.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        11,
+                        5
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Zhao",
+                    "given": "Sizheng Steven"
+                },
+                {
+                    "family": "Lyu",
+                    "given": "Houchen"
+                },
+                {
+                    "family": "Yoshida",
+                    "given": "Kazuki"
+                }
+            ],
+            "container-title": "International Journal of Epidemiology",
+            "container-title-short": "International Journal of Epidemiology",
+            "id": "zhao_versatility_2021",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        4,
+                        1
+                    ]
+                ]
+            },
+            "page": "694-695",
+            "title": "Versatility of the clone-censor-weight approach: Response to “trial emulation in the presence of immortal-time bias”",
+            "title-short": "Versatility of the clone-censor-weight approach",
+            "type": "article-journal",
+            "volume": "50"
+        },
+        {
             "URL": "https://www.R-project.org/",
             "author": [
                 {

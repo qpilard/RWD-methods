@@ -165,7 +165,7 @@ TIME_TO_EVENT <- ifelse(SWITCH == 1 & TIME_TO_EVENT < 6, TIME_TO_EVENT + 6, TIME
 # Organize data in a data frame
 data <- data.frame(ID, AGE, GENDER, SOCIO_ECO, BECK0, BECK6, TREAT0, SWITCH, EVENT, TIME_TO_EVENT)
 
-data$GENDER <- as.factor(data$GENDER)
-data$SOCIO_ECO <- as.factor(data$SOCIO_ECO)
-data$TREAT0 <- as.factor(data$TREAT0)
+data$GENDER <- factor(data$GENDER, levels = c(0, 1), labels = c("Male", "Female"))
+data$SOCIO_ECO <- factor(data$SOCIO_ECO, levels = c(1, 2, 3, 4, 5), labels = c("Very low", "Low", "Moderate", "High", "Very high"))
+data$TREAT0 <- factor(data$TREAT0, levels = c(0, 1), labels = c("Sertralex","Duloxyn"))
 data$SWITCH <- as.factor(data$SWITCH)

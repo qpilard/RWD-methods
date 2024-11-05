@@ -1,6 +1,12 @@
 # Motivating example {#motivating-example}
 
-Persistent Depressive Disorder (PDD) is a chronic mood disorder characterized by a consistently low mood that lasts for at least two years, significantly impacting patients' quality of life. Antidepressants serve as the primary treatment for PDD, aiding in symptom management and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.
+Persistent Depressive Disorder (PDD) is a chronic mood disorder characterized by a consistently low mood that lasts for at least two years, significantly impacting patients' quality of life.
+
+```{r, echo=FALSE, fig.align='center', out.width='50%'}
+knitr::include_graphics("images/PDD.jpg")
+```
+
+Antidepressants serve as the primary treatment for PDD, aiding in symptom management and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.
 
 In this context, clinicians aim to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, which is considered the maximum duration of treatment for patients newly diagnosed with PDD. Given the RWD setting, treatment switches are likely to occur; therefore, switches were evaluated at the six-week mark to determine whether individuals transitioned from Sertralex to Duloxyn or vice versa.
 
@@ -12,18 +18,18 @@ Here is the list of variables included in the dataset:
 
 -   **AGE**: Age at diagnosis (years)
 
--   **GENDER**: Sex of the patient [0 = Male; 1 = Female]
+-   **GENDER**: Gender of the patient [Male; Female]
 
--   **BECK**: Beck Depression Inventory score at diagnosis
+-   **BECK**: Beck Depression Inventory score at diagnosis [0-63 (worst prognosis)]
 
--   **SOCIO_ECO**: Socioeconomic status (scale 1-5)
+-   **SOCIO_ECO**: Socioeconomic status [Very low; Low; Moderate; High; Very high]
 
--   **EVENT**: Relapse indicator [0 = No relapse; 1 = Relapse]
+-   **EVENT**: Relapse indicator [No relapse; Relapse]
 
 -   **TIME_TO_EVENT**: Time from diagnosis to event of interest or censoring
 
--   **TREAT**: Therapy initiated at diagnosis [0 = Sertralex; 1 = Duloxyn].
+-   **TREAT**: Therapy initiated at diagnosis [Sertralex; Duloxyn].
 
--   **SWITCH**: Indicates if the patient switched to the alternate therapy [0 = No switch; 1 = Switched].
+-   **SWITCH**: Indicates if the patient switched to the alternate therapy [No switch; Switched].
 
 Further information on the simulation process to generate these data are described in Appendix \@ref(r-code).
