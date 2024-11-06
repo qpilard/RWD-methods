@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,8 +244,8 @@ div.csl-indent {
 <p>As suggested, we specified the target trial as below:</p>
 <table>
 <colgroup>
-<col width="11%" />
-<col width="88%" />
+<col width="15%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -264,11 +264,11 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td><strong>Assignment procedures</strong></td>
-<td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy (i.e., blinding)</td>
+<td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy</td>
 </tr>
 <tr class="even">
 <td><strong>Follow-up period</strong></td>
-<td>Starts at randomization and ends at the first occurrence of a relapse event, loss to follow-up, or after one year of follow-up, whichever occurs first.</td>
+<td>Starts at randomization and ends at the first occurrence of a relapse event, death, or after one year of follow-up, whichever occurs first.</td>
 </tr>
 <tr class="odd">
 <td><strong>Outcome</strong></td>
@@ -276,14 +276,14 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td><strong>Causal contrasts of interest</strong></td>
-<td><p>Intention-to-treat (ITT)</p>
-<p>Per Protocol (PP)</p>
-<p>(see Appendix <a href="ich.html#ich">B</a> for causal contrasts of interest defined as suggested in the ICH E9 (R1) addendum)</p></td>
+<td><p>Intention-to-treat (ITT): Effect of being assigned to treatment strategies at randomization, regardless of whether individuals adhere to them during follow-up.</p>
+<p>Per Protocol (PP): Individuals who discontinued treatment during follow-up were right censored at the first occurence.</p>
+<p>(see Appendix <a href="ich.html#ich">B</a> for causal contrasts of interest defined as formulated in the ICH E9 (R1) addendum)</p></td>
 </tr>
 <tr class="odd">
 <td><strong>Analysis plan</strong></td>
-<td><p>In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn.</p>
-<p>In the PP analysis, individuals were censored at the time they switched from their initially assigned treatment to the alternative therapy. Additionally, inverse probability weighting was applied to adjust for post-baseline prognostic factors that may influence the switch.</p></td>
+<td><p>In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn</p>
+<p>To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted(IPCW) methods <span class="citation">(<a href="references.html#ref-robins_correcting_2000">Robins and Finkelstein 2000</a>)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -291,13 +291,13 @@ div.csl-indent {
 <div id="emulate-the-target-trial" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Emulate the target trial<a href="target-trial-emulation.html#emulate-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next, we examined each component and detailed how they can be derived using RWD.</p>
-<p><strong>Eligibility criteria</strong>: We included individuals aged 18 or older who were diagnosed with PDD, so no additional adjustments were necessary.</p>
-<p><strong>Treatment strategies</strong>: We defined two treatment strategies: either Sertralex or Duloxyn as the first prescription following a PDD diagnosis.</p>
-<p><strong>Assignment procedures</strong>: We assumed these two groups were exchangeable at index date conditionally on baseline covariates: Age at index date, gender, Beck score and socioeconomic status.</p>
-<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up, 365 days after time zero, or time of treatment switch (for PP analysis only).</p>
+<p><strong>Eligibility criteria</strong>: We included individuals aged 18 or older who were firstly diagnosed with PDD.</p>
+<p><strong>Treatment strategies</strong>: We defined two treatment strategies: either Sertralex or Duloxyn as the first prescription following a PDD diagnosis. In scenario 1 (see Chapter <a href="motivating-example.html#motivating-example">2</a>), this is considered as immediate, while in scenario 2, we allowed a period of up to 30 days to record the first initiation.</p>
+<p><strong>Assignment procedures</strong>: We assumed these two groups were exchangeable at the date of PDD diagnosis (or up to 30 days following PDD diagnosis for scenario 2), conditionally on baseline covariates: Age, gender, Beck score and socioeconomic status.</p>
+<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up (corresponds to the last activity record in the database), 365 days after time zero.</p>
 <p><strong>Outcomes</strong>: We assumed the outcome as the first relapse occurring after time zero.</p>
-<p><strong>Causal contrast of interest</strong>: We considered observational analogues of the ITT and PP effect.</p>
-<p><strong>Analysis plan</strong>: For the ITT analysis, we used inverse probability weights (see Chapter <a href="iptw-application.html#iptw-application">4</a> for further details) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models. For the PP analysis, we implemented the Clone-Censor-Weight method (see Chapter <a href="clone-censor-weight.html#clone-censor-weight">5</a> for further details) to address both confounding and immortal time bias introduced by accounting for treatment switching in the analysis.</p>
+<p><strong>Causal contrast of interest</strong>: We considered observational analogues of the ITT and PP effect. However, the ITT effect in the emulated trial is closer to a PP effect, as we lack information on treatment discontinuation, and thus assumed full adherence throughout the study.</p>
+<p><strong>Analysis plan</strong>: In scenario 1, we used Inverse Probability Treatment Weights (IPTW) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models (see Chapter <a href="iptw-application.html#iptw-application">4</a> for further details). In scenario 2, we implemented the Clone-Censor-Weight method (CCW) to address both confounding and immortal time bias due to the permitted delay between PDD diagnosis and treatment initiation (see Chapter <a href="clone-censor-weight.html#clone-censor-weight">5</a> for further details).</p>
 
 </div>
 </div>

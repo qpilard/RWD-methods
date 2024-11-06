@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,8 +237,12 @@ div.csl-indent {
 <p>Persistent Depressive Disorder (PDD) is a chronic mood disorder characterized by a consistently low mood that lasts for at least two years, significantly impacting patients’ quality of life.</p>
 <p><img src="images/PDD.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <p>Antidepressants serve as the primary treatment for PDD, aiding in symptom management and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.</p>
-<p>In this context, clinicians aim to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, which is considered the maximum duration of treatment for patients newly diagnosed with PDD. Given the RWD setting, treatment switches are likely to occur; therefore, switches were evaluated at the six-week mark to determine whether individuals transitioned from Sertralex to Duloxyn or vice versa.</p>
-<p>To address this, two types of analyses were proposed: one that evaluates the overall treatment effect without considering any changes in therapy during the follow-up period, and another that assesses the treatment effect while accounting for switches identified at the six-week follow-up by censoring at the point of change.</p>
+<p>This study aims to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, representing the typical treatment duration for patients newly diagnosed with PDD.</p>
+<p>To capture different clinical settings, we consider two scenarios:</p>
+<ul>
+<li><p><strong>Scenario 1:</strong> In this simplified setup, treatment with Sertralex or Duloxyn begins immediately following the PDD diagnosis.</p></li>
+<li><p><strong>Scenario 2:</strong> In a more realistic setup, a 30-day “grace period” is introduced—a period following PDD diagnosis during which treatment initiation can occur. This grace period reflects common clinical practice, as clinicians may not always recommend immediate drug therapy after diagnosis.</p></li>
+</ul>
 <p>Here is the list of variables included in the dataset:</p>
 <ul>
 <li><p><strong>ID</strong>: Patient identifier</p></li>
@@ -249,7 +253,7 @@ div.csl-indent {
 <li><p><strong>EVENT</strong>: Relapse indicator [No relapse; Relapse]</p></li>
 <li><p><strong>TIME_TO_EVENT</strong>: Time from diagnosis to event of interest or censoring</p></li>
 <li><p><strong>TREAT</strong>: Therapy initiated at diagnosis [Sertralex; Duloxyn].</p></li>
-<li><p><strong>SWITCH</strong>: Indicates if the patient switched to the alternate therapy [No switch; Switched].</p></li>
+<li><p><strong>TIME_TO_TREAT</strong>: Time from diagnosis to treatment (for scenario 2 only).</p></li>
 </ul>
 <p>Further information on the simulation process to generate these data are described in Appendix <a href="r-code.html#r-code">A</a>.</p>
 

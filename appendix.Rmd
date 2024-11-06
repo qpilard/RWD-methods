@@ -1,11 +1,12 @@
-# (APPENDIX) Appendix {-}
+# (APPENDIX) Appendix {.unnumbered}
 
 # R code of the simulated dataset {#r-code}
 
 This is the R code to reproduce the motivating example:
 
 ```{r simulation}
-set.seed(42)  # Ensure reproducibility
+# Ensure reproducibility
+set.seed(42)  
 
 # Number of patients
 N <- 600
@@ -21,9 +22,7 @@ SOCIO_ECO_2 <- as.numeric(SOCIO_ECO == 2)
 SOCIO_ECO_3 <- as.numeric(SOCIO_ECO == 3)
 SOCIO_ECO_4 <- as.numeric(SOCIO_ECO == 4)
 SOCIO_ECO_5 <- as.numeric(SOCIO_ECO == 5)
-
-# Generation of BECK score at diagnosis (BECK0)
-BECK0 <- pmax(pmin(round(rnorm(N, mean = 30, sd = 9.33)), 63), 0)
+BECK <- pmax(pmin(round(rnorm(N, mean = 30, sd = 9.33)), 63), 0)
 
 # Utility function to generate binary variables based on a logistic model
 logit_prob <- function(eta) {
@@ -32,204 +31,121 @@ logit_prob <- function(eta) {
 
 # Coefficients for predictors
 coefficients <- list(
-  intercept = -5,      
+  intercept = -1.5,      
   age = -0.04,          
   gender = -0.3,        
-  beck0 = 0.2,         
-  socio_eco_2 = -0.2,
-  socio_eco_3 = -0.1,
-  socio_eco_4 = 0.1,
-  socio_eco_5 = 0.3)
+  beck = 0.1,         
+  socio_eco_2 = -0.10,
+  socio_eco_3 = -0.12,
+  socio_eco_4 = -0.18,
+  socio_eco_5 = -0.25
+)
 
-# Generation of initial treatment (TREAT0)
-eta_treat0 <- coefficients$intercept + 
+# Generation of initial treatment (TREAT)
+eta_treat <- coefficients$intercept + 
   coefficients$age * AGE + 
   coefficients$gender * GENDER +
-  coefficients$beck0 * BECK0 + 
+  coefficients$beck * BECK + 
   coefficients$socio_eco_2 * SOCIO_ECO_2 +
   coefficients$socio_eco_3 * SOCIO_ECO_3 + 
   coefficients$socio_eco_4 * SOCIO_ECO_4 +
   coefficients$socio_eco_5 * SOCIO_ECO_5
 
-TREAT0 <- rbinom(N, 1, logit_prob(eta_treat0 + rnorm(N)))
+TREAT <- rbinom(N, 1, logit_prob(eta_treat + rnorm(N)))
 
-# Generation of BECK score after six weeks (BECK6)
-coefficients <- list(
-  intercept = -7,          
-  age = -0.05,             
-  gender = -0.1,           
-  socio_eco_2 = -0.2,      
-  socio_eco_3 = -0.1,      
-  socio_eco_4 = 0.1,       
-  socio_eco_5 = 0.3,       
-  beck0 = 0.25,            
-  treat0 = -3              
-)
-
-eta_beck6 <- coefficients$intercept + 
-  coefficients$age * AGE +
-  coefficients$gender * GENDER +
-  coefficients$socio_eco_2 * SOCIO_ECO_2 +
-  coefficients$socio_eco_3 * SOCIO_ECO_3 + 
-  coefficients$socio_eco_4 * SOCIO_ECO_4 +
-  coefficients$socio_eco_5 * SOCIO_ECO_5 +
-  coefficients$beck0 * BECK0 +
-  coefficients$treat0 * TREAT0
-
-BECK6 <- pmax(pmin(round(rnorm(N, mean = BECK0 + eta_beck6 + rnorm(N), sd = 9.33)), 63), 0)
-
-# Generation of change indicator (CHANGE_BECK) and switch at 6 weeks (SWITCH)
-CLINICAL_CHANGE_BECK <- ifelse(((BECK6 - BECK0)/(BECK0)*100) > -20, 1, 0)
-
-# Generation of the switch variable with condition
-coefficients <- list(
-  intercept = -3,              
-  age = -0.01,                 
-  gender = -0.05,              
-  socio_eco_2 = -0.05,         
-  socio_eco_3 = -0.02,         
-  socio_eco_4 = 0.02,          
-  socio_eco_5 = 0.05,          
-  treat0 = -0.5,               
-  clinical_change_beck = 2     
-)
-
-# Define eta_switch based on achieving the clinical change
-eta_switch <- coefficients$intercept + 
-  coefficients$age * AGE + 
-  coefficients$gender * GENDER +
-  coefficients$treat0 * TREAT0 + 
-  coefficients$clinical_change_beck * (1 - CLINICAL_CHANGE_BECK) + 
-  coefficients$socio_eco_2 * SOCIO_ECO_2 +
-  coefficients$socio_eco_3 * SOCIO_ECO_3 + 
-  coefficients$socio_eco_4 * SOCIO_ECO_4 +
-  coefficients$socio_eco_5 * SOCIO_ECO_5 +
-  rnorm(N)
-
-# Generate the switch variable ensuring it cannot switch before week 6
-SWITCH <- ifelse(CLINICAL_CHANGE_BECK == 1, rbinom(N, 1, logit_prob(eta_switch)), 0)
+# Generation of time to treat (scenario 2 only)
+TIME_TO_TREAT <- numeric(N)
+for (i in 1:N) {
+  TIME_TO_TREAT[i] <- ifelse(TREAT[i] == 1,
+                             pmax(pmin(round(rnorm(N, mean = 10, sd = 3)), 30), 0),
+                             pmax(pmin(round(rnorm(N, mean = 14, sd = 5)), 30), 0))
+}
 
 # Generation of relapse (EVENT) and time until relapse (TIME_TO_EVENT)
-base_hazard <- 0.0005
+base_hazard <- 0.005
 EVENT <- numeric(N)
 TIME_TO_EVENT <- numeric(N)
 max_follow_up <- 52  # Maximum follow-up duration in weeks
-
 coefficients <- list(
   intercept = -4,                 
-  age = 0.01,                     
-  gender = 0.1,                   
-  socio_eco_2 = 0.05,             
-  socio_eco_3 = 0.02,             
-  socio_eco_4 = -0.03,            
-  socio_eco_5 = -0.08,            
-  beck0 = 0.2,                    
-  treat0 = -0.5,                  
-  clinical_change_beck = -1.5,    
-  switch = 0.3                    
+  age = -0.01, #Younger individuals are more likely to experience PDD                      
+  gender = 0.1, #Women are more likely to experience PDD                   
+  socio_eco_2 = -0.05, #Lower SES level is more likely to experience PDD             
+  socio_eco_3 = -0.10,             
+  socio_eco_4 = -0.15,            
+  socio_eco_5 = -0.20,            
+  beck = 0.2, #Higher Beck score is more likely to experience PDD                    
+  treat = -0.5 #Protective effect of Duloxyn                
 )
 
 for (i in 1:N) {
   eta_event <- coefficients$intercept + 
     coefficients$age * AGE[i] + 
     coefficients$gender * GENDER[i] +
-    coefficients$beck0 * BECK0[i] + 
+    coefficients$beck * BECK[i] + 
     coefficients$socio_eco_2 * SOCIO_ECO_2[i] +
     coefficients$socio_eco_3 * SOCIO_ECO_3[i] + 
     coefficients$socio_eco_4 * SOCIO_ECO_4[i] +
     coefficients$socio_eco_5 * SOCIO_ECO_5[i] + 
-    coefficients$treat0 * TREAT0[i] +
-    coefficients$clinical_change_beck * CLINICAL_CHANGE_BECK[i] + 
-    coefficients$switch * SWITCH[i] + rnorm(1)
+    coefficients$treat * TREAT[i]
   
   adjusted_hazard <- base_hazard * exp(eta_event)
   
-  # Generate time to event after week 6
-  TIME_TO_EVENT[i] <- ifelse(SWITCH[i] == 1, 
-                             round(rexp(1, rate = adjusted_hazard), 0) + 6, 
-                             round(rexp(1, rate = adjusted_hazard), 0) + 1)
+  # Generate time to event
+  TIME_TO_EVENT[i] <- round(rexp(1, rate = adjusted_hazard), 0) + TIME_TO_TREAT[i]
   
-  # Ensure EVENT only occurs after week 6
-  EVENT[i] <- as.integer(TIME_TO_EVENT[i] <= max_follow_up & TIME_TO_EVENT[i] > 6)
+  # Ensure EVENT only occurs within 52 weeks
+  EVENT[i] <- as.integer(TIME_TO_EVENT[i] < max_follow_up)
   
   # Set TIME_TO_EVENT to max_follow_up if EVENT does not occur
-  TIME_TO_EVENT[i] <- ifelse(EVENT[i] == 1, TIME_TO_EVENT[i], max_follow_up)
+  if (EVENT[i] == 0 && runif(1) < 0.10) {
+    TIME_TO_EVENT[i] <- sample(1:52, 1)  # Assign random time between 1 and 52 weeks
+    EVENT[i] <- 0  # Confirm no event despite dropout time assignment
+  }
+  
+  # Ensure TIME_TO_EVENT doesn't exceed the maximum follow-up period (52 weeks)
+  TIME_TO_EVENT[i]<-min(TIME_TO_EVENT[i], max_follow_up)
 }
 
-# Censoring management
-censoring_rate <- 0.05  # Censoring rate
-CENSORING_TIME <- round(rexp(N, rate = -log(1 - censoring_rate)), 0) + 1  # Censoring time
-CENSORING_TIME[CENSORING_TIME > max_follow_up] <- max_follow_up  # Limit to maximum
-
-# Adjust TIME_TO_EVENT based on censored data
-TIME_TO_EVENT <- pmin(TIME_TO_EVENT, CENSORING_TIME)
-
-# Verify that SWITCH is consistent with TIME_TO_EVENT
-TIME_TO_EVENT <- ifelse(SWITCH == 1 & TIME_TO_EVENT < 6, TIME_TO_EVENT + 6, TIME_TO_EVENT)
-
 # Organize data in a data frame
-data <- data.frame(ID, AGE, GENDER, SOCIO_ECO, BECK0, BECK6, TREAT0, SWITCH, EVENT, TIME_TO_EVENT)
+data <- data.frame(ID, AGE, GENDER, SOCIO_ECO, BECK, TREAT, EVENT, TIME_TO_EVENT, TIME_TO_TREAT)
 
-data$GENDER <- as.factor(data$GENDER)
-data$SOCIO_ECO <- as.factor(data$SOCIO_ECO)
-data$TREAT0 <- as.factor(data$TREAT0)
-data$SWITCH <- as.factor(data$SWITCH)
+data$GENDER <- factor(data$GENDER, levels = c(0, 1), labels = c("Male", "Female"))
+data$SOCIO_ECO <- factor(data$SOCIO_ECO, levels = c(1, 2, 3, 4, 5), labels = c("Very low", "Low", "Moderate", "High", "Very high"))
+data$TREAT <- factor(data$TREAT, levels = c(0, 1), labels = c("Sertralex","Duloxyn"))
 ```
 
 # ICH E9 (R1) addendum {#ich}
 
 In 2020, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses [@noauthor_ich_1998].
 
-An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches [@lawrance_what_2020].
+An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Five strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, composite approaches, and principal stratum strategy [@lawrance_what_2020; @roca_2024].
 
 In our example, we reformulate the ITT and PP questions as suggested in the framework:
 
--   ITT: "In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?" (treatment policy approach)
+-   ITT: "In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from the date of diagnosis, over a one-year follow-up period or until death (whichever occurs first), regardless of study treatment discontinuation?" (this follows the treatment policy approach to handle treatment discontinuation).
 
--   PP: "In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs until week 6, irrespective of study treatment discontinuation?" (composite approach)
+-   PP: "In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from the date of diagnosis, over a one-year follow-up period or until death, or treatment discontinuation (whichever occurs first)?" (this follows the principal stratum strategy to handle treatment discontinuation).
 
 # DAG of the simulated dataset {#dag}
 
 This is the DAG associated with the simulation process:
 
-```{r package, include=FALSE}
-#Install and load packages
-ipak <- function(pkg){
-  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg)) 
-    install.packages(new.pkg, dependencies = TRUE, repos = "https://cloud.r-project.org")
-  sapply(pkg, require, character.only = TRUE)
-}
-list.of.packages <- c("dagitty",
-                      "ggdag",
-                      "ggplot2")
-ipak(list.of.packages)
-```
-
 ```{r dag, echo=FALSE, message=FALSE}
 # Define the DAG structure in Dagitty
 dag_data <- dagitty("dag {
-  BECK6 [exposure]
   RELAPSE [outcome]
-  SWITCH
-  TREAT0 [exposure]
+  TREAT [exposure]
   Z
-  BECK6 -> RELAPSE
-  BECK6 -> SWITCH
-  SWITCH -> RELAPSE
-  TREAT0 -> BECK6
-  TREAT0 -> RELAPSE
-  TREAT0 -> SWITCH
-  Z -> BECK6
+  TREAT -> RELAPSE
   Z -> RELAPSE
-  Z -> SWITCH
-  Z -> TREAT0
+  Z -> TREAT
 }")
 
 # Define coordinates for the DAG layout
 coords <- list(
-  x = c(BECK6 = 0.893, RELAPSE = 5.507, SWITCH = 0.893, TREAT0 = -3.720, Z = -3.720),
-  y = c(BECK6 = -2.734, RELAPSE = 0.377, SWITCH = 2.933, TREAT0 = 2.933, Z = -2.734)
+  x = c(RELAPSE = 5.507, TREAT = -3.720, Z = -3.720),
+  y = c(RELAPSE = 0.377, TREAT = 2.933, Z = -2.734)
 )
 
 coord_df <- coords2df(coords)
@@ -242,7 +158,7 @@ ggdag_status(dag_data,
 
 ```
 
-For simplicity, Z represents the confounders measured at baseline, which include age, gender, socioeconomic status, and the Beck score. The Beck score measured at week 6 is included as it serves as a prognostic variable for determining both the switch and relapse.
+For simplicity, Z represents the confounders measured at baseline, which include age, gender, socioeconomic status, and the Beck score.
 
 # Causal inference estimand {#causal}
 

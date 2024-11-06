@@ -1102,6 +1102,145 @@
             "volume": "50"
         },
         {
+            "DOI": "10.1111/j.0006-341x.2000.00779.x",
+            "ISSN": "0006-341X",
+            "PMID": "10985216",
+            "abstract": "AIDS Clinical Trial Group (ACTG) randomized trial 021 compared the effect of bactrim versus aerosolized pentamidine (AP) as prophylaxis therapy for pneumocystis pneumonia (PCP) in AIDS patients. Although patients randomized to the bactrim arm experienced a significant delay in time to PCP, the survival experience in the two arms was not significantly different (p = .32). In this paper, we present evidence that bactrim therapy improves survival but that the standard intent-to-treat comparison failed to detect this survival advantage because a large fraction of the subjects either crossed over to the other therapy or stopped therapy altogether. We obtain our evidence of a beneficial bactrim effect on survival by artificially regarding the subjects as dependently censored at the first time the subject either stops or switches therapy; we then analyze the data with the inverse probability of censoring weighted Kaplan-Meier and Cox partial likelihood estimators of Robins (1993, Proceedings of the Biopharmaceutical Section, American Statistical Association, pp. 24-33) that adjust for dependent censoring by utilizing data collected on time-dependent prognostic factors.",
+            "author": [
+                {
+                    "family": "Robins",
+                    "given": "J. M."
+                },
+                {
+                    "family": "Finkelstein",
+                    "given": "D. M."
+                }
+            ],
+            "container-title": "Biometrics",
+            "container-title-short": "Biometrics",
+            "id": "robins_correcting_2000",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2000,
+                        9
+                    ]
+                ]
+            },
+            "keyword": "Acquired Immunodeficiency Syndrome, Aerosols, AIDS-Related Opportunistic Infections, Algorithms, Anti-Infective Agents, Biometry, Humans, Models, Statistical, Multicenter Studies as Topic, Pentamidine, Pneumonia, Pneumocystis, Probability, Randomized Controlled Trials as Topic, Reproducibility of Results, Survival Rate, Treatment Refusal, Trimethoprim, Sulfamethoxazole Drug Combination",
+            "page": "779-788",
+            "title": "Correcting for noncompliance and dependent censoring in an AIDS clinical trial with inverse probability of censoring weighted (IPCW) log-rank tests",
+            "type": "article-journal",
+            "volume": "56"
+        },
+        {
+            "DOI": "10.1016/j.jeph.2024.202447",
+            "ISSN": "2950-4333",
+            "URL": "https://www.sciencedirect.com/science/article/pii/S295043332400257X",
+            "abstract": "Introduction Depuis 2020, l’addendum ICH E9 (R1) « estimands and sensitivity analysis » introduit la notion de l’estimand au niveau réglementaire pour les essais thérapeutiques. Afin de se conformer à ce qui est désormais attendu par les autorités réglementaires, nous décrivons ici l’approche de l’estimand dans la rédaction d’essais en oncologie. Méthodes L’ICH E9 (R1) présente un cadre structuré renforçant la formulation des objectifs des essais cliniques, tant dans sa conception que dans son analyse. La construction de l’\"estimand\" permet d’aborder les différentes gestions des événements intercurrents (ICE) survenant après le début du traitement et interférant avec l’observation des critères de jugement ou affectant leur interprétation. Résultats L’estimand est une étape conceptuelle entre l’objectif et le design de l’étude, traduisant chaque objectif via les cinq attributs des estimands : traitements, population, critère de jugement, mesure statistique du critère et gestion des évènements intercurrents. Alors que l’approche classique définit des populations d’analyse, l’estimand définit la population d’analyse pertinente pour l’objectif, faisant apparaitre pour cet objectif des règles qui lui sont propres pour une meilleure précision de réponse. Cinq « estimands » standards ont été construits, apportant des approches différentes : l’estimand « treatment policy », similaire à une ITT classique, où l’ICE conjoint au traitement peut être considéré comme cliniquement intéressant. L’ICE n’est alors pas pris en considération sur la mesure, et seules les données manquantes du critère sont imputées et remplacées selon une approche conservatrice. A l’inverse, l’estimand « composite strategy » n’imputera pas ces données manquantes car l’ICE sera pris en compte dans le critère de jugement, formant ainsi un critère composite informatif pour l’effet d’intérêt. L’estimand « hypothetical strategy » envisage un scénario dans lequel l’ICE ne se produirait pas et n’impacterait pas la mesure du critère, car considéré comme indépendant du traitement. Pour l’estimand « While on Treatment Strategy », la mesure du critère est celle lors de l’ICE, les résultats post ICE ne sont pas considérés comme pertinents. Afin l’estimand « Principal Stratum Strategy » ne retient dans l’analyse qu’une partie de la population en fonction de la présence ou non d’ICE. Dans le cas où l’exclusion de l’analyse des patients est due aux ICE, l’analyse s’apparentera ainsi à une per protocole classique, survenus après la randomisation rendant les résultats discutables. Afin d’implémenter ce nouveau concept au sein des protocoles, de nouvelles guidelines ont été éditées en 2022, l’ICH M11 Template. Une définition claire des résultats est toujours nécessaire, mais l’accent mis sur les résultats n’est plus adapté et s’étend désormais aux objectifs et aux estimands. Conclusion Bien que l’estimand n’apporte aucune modification réelle en terme statistique, la compliance à son principe induit de nombreux changements dans la rédaction des documents de l’étude (protocole, PAS, RAS, article). On retiendra et décrira donc systématiquement les deux estimands principaux « treatment policy » i.e. ITT et « Principal Stratum Strategy » i.e. PP. La précocité de cette réflexion permet une adéquation entre le design de l’essai et les questions d’intérêt clinique ainsi qu’une meilleure anticipation, transparence et standardisation dans un contexte d’études dont les analyses seront réalisées à plusieurs années de leur conception.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        11,
+                        6
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Roca",
+                    "given": "L."
+                },
+                {
+                    "family": "Gourgou",
+                    "given": "S."
+                }
+            ],
+            "collection-title": "EPICLIN 2024, 18ème conférence francophone d’épidémiologie clinique, 31èmes journées des statisticiens des centres de lutte contre le cancer, dijon, 15-17 mai 2024",
+            "container-title": "Journal of Epidemiology and Population Health",
+            "container-title-short": "Journal of Epidemiology and Population Health",
+            "id": "roca_2024",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024,
+                        5,
+                        1
+                    ]
+                ]
+            },
+            "keyword": "Estimand, ICH E9 (R1), Objectif, Protocole",
+            "page": "202447",
+            "title": "P07- mise à jour règlementaire : Intérêt et mise en œuvre de l’estimand dans les essais cliniques en oncologie",
+            "title-short": "P07- mise à jour règlementaire",
+            "type": "article-journal",
+            "volume": "72"
+        },
+        {
+            "DOI": "10.1111/1475-6773.12182",
+            "PMID": "24779867",
+            "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4213057/",
+            "abstract": "To model the steps involved in preparing for and carrying out propensity score analyses by providing step-by-step guidance and Stata code applied to an empirical dataset. Guidance, Stata code, and empirical examples are given to illustrate (1) the ...",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        11,
+                        6
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Garrido",
+                    "given": "Melissa M."
+                },
+                {
+                    "family": "Kelley",
+                    "given": "Amy S."
+                },
+                {
+                    "family": "Paris",
+                    "given": "Julia"
+                },
+                {
+                    "family": "Roza",
+                    "given": "Katherine"
+                },
+                {
+                    "family": "Meier",
+                    "given": "Diane E."
+                },
+                {
+                    "family": "Morrison",
+                    "given": "R. Sean"
+                },
+                {
+                    "family": "Aldridge",
+                    "given": "Melissa D."
+                }
+            ],
+            "container-title": "Health Services Research",
+            "id": "garrido_methods_2014",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014,
+                        4,
+                        30
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "page": "1701",
+            "title": "Methods for constructing and assessing propensity scores",
+            "type": "article-journal",
+            "volume": "49"
+        },
+        {
             "URL": "https://www.R-project.org/",
             "author": [
                 {

@@ -4,6 +4,6 @@
 
 In addition to the confounding often present in RWD, another challenge is immortal time bias, which typically arises when there is a delay between the start of follow-up (time zero) and the initiation of treatment. To address both confounding and immortal time bias, the Clone-Censor-Weight (CCW) approach was introduced [@hernan_specifying_2016; @maringe_reflection_2020]. Zhao et al. further categorized three common scenarios where CCW is applicable: grace periods, static time-related strategies, and dynamic strategies [@zhao_versatility_2021].
 
-The PP analysis discussed in Chapter \@ref(target-trial-emulation) will be applied to illustrate the application of CCW approach. This will involve examining treatment exposure during two distinct periods: before and after week 6, where treatment switches are documented.
+The scenario 2 discussed in Chapter \@ref(motivating-example) will be applied to illustrate the application of CCW .
 
 ## Implement CCW

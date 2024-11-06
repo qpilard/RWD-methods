@@ -6,7 +6,7 @@ The **Propensity Score (PS)** is utilized to emulate the randomization process, 
 
 Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, **Inverse Probability of Treatment Weighting** (IPTW), and covariate adjustment [@austin_introduction_2011].
 
-The ITT analysis discussed in Chapter \@ref(target-trial-emulation) will be applied to illustrate the application of IPTW.
+The scenario 1 discussed in Chapter \@ref(motivating-example) will be applied to illustrate the application of IPTW.
 
 ## Identify confounders
 
@@ -30,7 +30,7 @@ This models the treatment effect across the entire population likely to receive 
 
 ```{r iptw, message=FALSE}
 #Perform weighting
-W <- weightit(TREAT0 ~ AGE + GENDER + SOCIO_ECO + BECK0,
+W <- weightit(TREAT ~ AGE + GENDER + SOCIO_ECO + BECK,
                             data = data,
                             method = "glm",
                             estimand = "ATE",
@@ -56,13 +56,13 @@ To summarize, a table before and after weighting is also represented according t
 ```{r table_weighting, warning=FALSE}
 #Before weighting
 t1 <- data %>%
-  select(AGE, GENDER, SOCIO_ECO, BECK0, TREAT0) %>%
-  tbl_summary(by = TREAT0, 
+  select(AGE, GENDER, SOCIO_ECO, BECK, TREAT) %>%
+  tbl_summary(by = TREAT, 
               statistic = list(all_continuous() ~ "{mean} ({sd})"),
               label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
                            SOCIO_ECO ~ "SES level (1-5)",
-                           BECK0 ~ "Beck score (0-63)")) %>%
+                           BECK ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
   add_overall() %>%
   modify_header(label ~ "**Variable**", 
@@ -72,17 +72,17 @@ t1 <- data %>%
                 stat_2 ~ "**Duloxyn**")
 
 data_selected <- data %>%
-  select(AGE, GENDER, SOCIO_ECO, BECK0, TREAT0)
+  select(AGE, GENDER, SOCIO_ECO, BECK, TREAT)
 
 #After weighting
 data_svy <- svydesign(ids = ~1, data = data_selected, weights = ~W$weights)
 t2 <- data_svy %>%
-  tbl_svysummary(by = TREAT0, 
+  tbl_svysummary(by = TREAT, 
                  statistic = list(all_continuous() ~ "{mean} ({sd})"),
                  label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
                            SOCIO_ECO ~ "SES level (1-5)",
-                           BECK0 ~ "Beck score (0-63)")) %>%
+                           BECK ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
   add_overall() %>% 
   modify_header(label ~ "**Variable**", 
@@ -105,7 +105,7 @@ tbl_merge(tbls = list(t1, t2),
   modify_table_body(~ .x %>% select(-conf.low_1, -conf.low_2))
 ```
 
-After weighting the Beck score remains above the recommended threshold. That is why, we suggest adjusting on it (i.e., doubly robust approach) when the final outcome is modeled [@funk_doubly_2011].
+After weighting, observed confunders were above the recommended threshold. If, after weighting, the observed confounders exceed the recommended threshold, the model can be respecified (e.g. making a continuous variable categorical or dichotomous, including higher order terms or splines of variables, ...). Otherwise, variables with remaining imbalance should ideally be adjusted for when modeling the final outcome, using a doubly robust approach (i.e., adjusting for confounders in both the treatment and outcome models) [@funk_doubly_2011; @garrido_methods_2014].
 
 Next, to ensure that the positivity assumption is met, we plotted the propensity score distributions to assess the degree of overlap between individuals receiving Sertralex and Duloxyn. Our goal is to establish sufficient common support, meaning all subjects have a non-zero probability of receiving either treatment.
 
@@ -113,7 +113,7 @@ Next, to ensure that the positivity assumption is met, we plotted the propensity
 #Display PS
 plot1<-ggplot2::ggplot(data, mapping = aes(x = ps))+
   ggplot2::geom_density(colour="red")+
-  ggplot2::geom_density(mapping=aes(group = TREAT0, fill = TREAT0),alpha=0.4)+
+  ggplot2::geom_density(mapping=aes(group = TREAT, fill = TREAT),alpha=0.4)+
   ggtitle("Raw")+
   scale_fill_manual(name="Treatment",labels=c("Sertralex","Duloxyn"),values=c("#FFDB6D","#00AFBB"))+
   xlab("Propensity Score (PS)")+
@@ -125,7 +125,7 @@ plot1<-ggplot2::ggplot(data, mapping = aes(x = ps))+
 #After weighting
 plot2<-ggplot2::ggplot(data, mapping = aes(x = ps, weight = weights))+
   ggplot2::geom_density(colour="red")+
-  ggplot2::geom_density(mapping=aes(group = TREAT0, fill = TREAT0),alpha=0.4)+
+  ggplot2::geom_density(mapping=aes(group = TREAT, fill = TREAT),alpha=0.4)+
   ggtitle("Weighted")+
   scale_fill_manual(name="Treatment",labels=c("Sertralex","Duloxyn"),values=c("#FFDB6D","#00AFBB"))+
   xlab("Propensity Score (PS)")+
@@ -145,10 +145,10 @@ This section details the outcome analyis. First, unadjusted and weighted Kaplan-
 
 ```{r km, warning=FALSE}
 #Implement unadjusted model
-unadjusted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT0, data = data)
+unadjusted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT, data = data)
 
 #Implement IPTW adjusted model
-weighted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT0, data = data, weights = weights)
+weighted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT, data = data, weights = weights)
 
 #Combine both
 fit<-list(unadjusted,weighted)
@@ -187,27 +187,27 @@ Second, unadjusted, multivariable, and weighted Cox are displayed.
 
 ```{r cox}
 # Fit the Cox models
-unadjusted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT0, data = data)
-multivariable <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT0 + AGE + GENDER + SOCIO_ECO + BECK0, data = data)
-weighted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT0 + BECK0, weights = weights, data = data)
+unadjusted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT, data = data)
+multivariable <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT + AGE + GENDER + SOCIO_ECO + BECK, data = data)
+weighted <- coxph(Surv(TIME_TO_EVENT, EVENT) ~ TREAT, weights = weights, data = data)
 
 # Create regression tables
 unadjusted_table <- unadjusted %>% 
   tbl_regression(exponentiate = TRUE,
-                 label = list(TREAT0 ~ "Treatment (unadjusted)"))
+                 label = list(TREAT ~ "Treatment (unadjusted)"))
 
 multivariable_table <- multivariable %>% 
   tbl_regression(exponentiate = TRUE,
-                 label = list(TREAT0 ~ "Treatment (multivariable regression)"))%>%
+                 label = list(TREAT ~ "Treatment (multivariable regression)"))%>%
   modify_table_body(
-    ~ .x %>% dplyr::filter(variable == "TREAT0")
+    ~ .x %>% dplyr::filter(variable == "TREAT")
   )
 
 weighted_table <- weighted %>% 
   tbl_regression(exponentiate = TRUE,
-                 label = list(TREAT0 ~ "Treatment (weighted)"))%>%
+                 label = list(TREAT ~ "Treatment (weighted)"))%>%
   modify_table_body(
-    ~ .x %>% dplyr::filter(variable == "TREAT0")
+    ~ .x %>% dplyr::filter(variable == "TREAT")
   )
 
 # Function to extract HR and CI for a specific variable
@@ -219,7 +219,7 @@ extract_hr_ci <- function(model) {
   return(paste0("HR = ", hr, " [", ci_lower, "; ", ci_upper, "]"))
 }
 
-# Extract and format HR and CI for TREAT0
+# Extract and format HR and CI for TREAT
 unadjusted_hr_ci <- extract_hr_ci(unadjusted)
 multivariable_hr_ci <- extract_hr_ci(multivariable)
 weighted_hr_ci <- extract_hr_ci(weighted)

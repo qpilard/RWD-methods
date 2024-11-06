@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,7 +238,7 @@ div.csl-indent {
 <h2><span class="header-section-number">4.1</span> Background<a href="iptw-application.html#background-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <strong>Propensity Score (PS)</strong> is utilized to emulate the randomization process, with the goal of balancing the population’s characteristics across the groups of interest. Unlike multivariable regression, which focuses on estimating the effect at the individual level (<em>subject-specific effect</em>), the PS method estimates the effect at the population level (<em>population-average effect</em>). In the context of models with a non-linear link (typically when Odds Ratio [OR] or Hazard Ratio [HR] are reported), these two effects differ <span class="citation">(<a href="references.html#ref-austin_conditioning_2007">Austin et al. 2007</a>)</span>.</p>
 <p>Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, <strong>Inverse Probability of Treatment Weighting</strong> (IPTW), and covariate adjustment <span class="citation">(<a href="references.html#ref-austin_introduction_2011">Austin 2011</a>)</span>.</p>
-<p>The ITT analysis discussed in Chapter <a href="target-trial-emulation.html#target-trial-emulation">3</a> will be applied to illustrate the application of IPTW.</p>
+<p>The scenario 1 discussed in Chapter <a href="motivating-example.html#motivating-example">2</a> will be applied to illustrate the application of IPTW.</p>
 </div>
 <div id="identify-confounders" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Identify confounders<a href="iptw-application.html#identify-confounders" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -255,7 +255,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <p>Here, the PS is defined as <span class="math inline">\(e = \Pr ({X}=1|{Z}={z})\)</span> and <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES level, and Beck score), respectively.</p>
 <p>This models the treatment effect across the entire population likely to receive either Sertralex or Duloxyn. Additional details on causal estimands (ATE/ATT) are provided in Appendix <a href="causal.html#causal">D</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="iptw-application.html#cb1-1" tabindex="-1"></a><span class="co">#Perform weighting</span></span>
-<span id="cb1-2"><a href="iptw-application.html#cb1-2" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">weightit</span>(TREAT0 <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO <span class="sc">+</span> BECK0,</span>
+<span id="cb1-2"><a href="iptw-application.html#cb1-2" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">weightit</span>(TREAT <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO <span class="sc">+</span> BECK,</span>
 <span id="cb1-3"><a href="iptw-application.html#cb1-3" tabindex="-1"></a>                            <span class="at">data =</span> data,</span>
 <span id="cb1-4"><a href="iptw-application.html#cb1-4" tabindex="-1"></a>                            <span class="at">method =</span> <span class="st">&quot;glm&quot;</span>,</span>
 <span id="cb1-5"><a href="iptw-application.html#cb1-5" tabindex="-1"></a>                            <span class="at">estimand =</span> <span class="st">&quot;ATE&quot;</span>,</span>
@@ -275,13 +275,13 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <p>To summarize, a table before and after weighting is also represented according to treatment status.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="iptw-application.html#cb3-1" tabindex="-1"></a><span class="co">#Before weighting</span></span>
 <span id="cb3-2"><a href="iptw-application.html#cb3-2" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="iptw-application.html#cb3-3" tabindex="-1"></a>  <span class="fu">select</span>(AGE, GENDER, SOCIO_ECO, BECK0, TREAT0) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="iptw-application.html#cb3-4" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> TREAT0, </span>
+<span id="cb3-3"><a href="iptw-application.html#cb3-3" tabindex="-1"></a>  <span class="fu">select</span>(AGE, GENDER, SOCIO_ECO, BECK, TREAT) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="iptw-application.html#cb3-4" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> TREAT, </span>
 <span id="cb3-5"><a href="iptw-application.html#cb3-5" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>),</span>
 <span id="cb3-6"><a href="iptw-application.html#cb3-6" tabindex="-1"></a>              <span class="at">label =</span> <span class="fu">list</span>(AGE <span class="sc">~</span> <span class="st">&quot;Age (at diagnosis)&quot;</span>,</span>
 <span id="cb3-7"><a href="iptw-application.html#cb3-7" tabindex="-1"></a>                           GENDER <span class="sc">~</span> <span class="st">&quot;Gender&quot;</span>,</span>
 <span id="cb3-8"><a href="iptw-application.html#cb3-8" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES level (1-5)&quot;</span>,</span>
-<span id="cb3-9"><a href="iptw-application.html#cb3-9" tabindex="-1"></a>                           BECK0 <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="iptw-application.html#cb3-9" tabindex="-1"></a>                           BECK <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-10"><a href="iptw-application.html#cb3-10" tabindex="-1"></a>  <span class="fu">add_difference</span>(<span class="at">test =</span> <span class="fu">everything</span>() <span class="sc">~</span> <span class="st">&quot;smd&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-11"><a href="iptw-application.html#cb3-11" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb3-12"><a href="iptw-application.html#cb3-12" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>, </span>
@@ -291,17 +291,17 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb3-16"><a href="iptw-application.html#cb3-16" tabindex="-1"></a>                stat_2 <span class="sc">~</span> <span class="st">&quot;**Duloxyn**&quot;</span>)</span>
 <span id="cb3-17"><a href="iptw-application.html#cb3-17" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="iptw-application.html#cb3-18" tabindex="-1"></a>data_selected <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb3-19"><a href="iptw-application.html#cb3-19" tabindex="-1"></a>  <span class="fu">select</span>(AGE, GENDER, SOCIO_ECO, BECK0, TREAT0)</span>
+<span id="cb3-19"><a href="iptw-application.html#cb3-19" tabindex="-1"></a>  <span class="fu">select</span>(AGE, GENDER, SOCIO_ECO, BECK, TREAT)</span>
 <span id="cb3-20"><a href="iptw-application.html#cb3-20" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="iptw-application.html#cb3-21" tabindex="-1"></a><span class="co">#After weighting</span></span>
 <span id="cb3-22"><a href="iptw-application.html#cb3-22" tabindex="-1"></a>data_svy <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> data_selected, <span class="at">weights =</span> <span class="sc">~</span>W<span class="sc">$</span>weights)</span>
 <span id="cb3-23"><a href="iptw-application.html#cb3-23" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> data_svy <span class="sc">%&gt;%</span></span>
-<span id="cb3-24"><a href="iptw-application.html#cb3-24" tabindex="-1"></a>  <span class="fu">tbl_svysummary</span>(<span class="at">by =</span> TREAT0, </span>
+<span id="cb3-24"><a href="iptw-application.html#cb3-24" tabindex="-1"></a>  <span class="fu">tbl_svysummary</span>(<span class="at">by =</span> TREAT, </span>
 <span id="cb3-25"><a href="iptw-application.html#cb3-25" tabindex="-1"></a>                 <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>),</span>
 <span id="cb3-26"><a href="iptw-application.html#cb3-26" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(AGE <span class="sc">~</span> <span class="st">&quot;Age (at diagnosis)&quot;</span>,</span>
 <span id="cb3-27"><a href="iptw-application.html#cb3-27" tabindex="-1"></a>                           GENDER <span class="sc">~</span> <span class="st">&quot;Gender&quot;</span>,</span>
 <span id="cb3-28"><a href="iptw-application.html#cb3-28" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES level (1-5)&quot;</span>,</span>
-<span id="cb3-29"><a href="iptw-application.html#cb3-29" tabindex="-1"></a>                           BECK0 <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-29"><a href="iptw-application.html#cb3-29" tabindex="-1"></a>                           BECK <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-30"><a href="iptw-application.html#cb3-30" tabindex="-1"></a>  <span class="fu">add_difference</span>(<span class="at">test =</span> <span class="fu">everything</span>() <span class="sc">~</span> <span class="st">&quot;smd&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-31"><a href="iptw-application.html#cb3-31" tabindex="-1"></a>  <span class="fu">add_overall</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb3-32"><a href="iptw-application.html#cb3-32" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">&quot;**Variable**&quot;</span>, </span>
@@ -322,23 +322,23 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb3-47"><a href="iptw-application.html#cb3-47" tabindex="-1"></a>            )</span>
 <span id="cb3-48"><a href="iptw-application.html#cb3-48" tabindex="-1"></a>          )<span class="sc">%&gt;%</span></span>
 <span id="cb3-49"><a href="iptw-application.html#cb3-49" tabindex="-1"></a>  <span class="fu">modify_table_body</span>(<span class="sc">~</span> .x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>conf.low_1, <span class="sc">-</span>conf.low_2))</span></code></pre></div>
-<div id="serzlunqcl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#serzlunqcl table {
+<div id="ondfnumcmi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ondfnumcmi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#serzlunqcl thead, #serzlunqcl tbody, #serzlunqcl tfoot, #serzlunqcl tr, #serzlunqcl td, #serzlunqcl th {
+#ondfnumcmi thead, #ondfnumcmi tbody, #ondfnumcmi tfoot, #ondfnumcmi tr, #ondfnumcmi td, #ondfnumcmi th {
   border-style: none;
 }
 
-#serzlunqcl p {
+#ondfnumcmi p {
   margin: 0;
   padding: 0;
 }
 
-#serzlunqcl .gt_table {
+#ondfnumcmi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -364,12 +364,12 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-left-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_caption {
+#ondfnumcmi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#serzlunqcl .gt_title {
+#ondfnumcmi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -381,7 +381,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-width: 0;
 }
 
-#serzlunqcl .gt_subtitle {
+#ondfnumcmi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -393,7 +393,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-top-width: 0;
 }
 
-#serzlunqcl .gt_heading {
+#ondfnumcmi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -405,13 +405,13 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_bottom_border {
+#ondfnumcmi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_col_headings {
+#ondfnumcmi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -426,7 +426,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_col_heading {
+#ondfnumcmi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -446,7 +446,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   overflow-x: hidden;
 }
 
-#serzlunqcl .gt_column_spanner_outer {
+#ondfnumcmi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -458,15 +458,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 4px;
 }
 
-#serzlunqcl .gt_column_spanner_outer:first-child {
+#ondfnumcmi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#serzlunqcl .gt_column_spanner_outer:last-child {
+#ondfnumcmi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#serzlunqcl .gt_column_spanner {
+#ondfnumcmi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -478,11 +478,11 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   width: 100%;
 }
 
-#serzlunqcl .gt_spanner_row {
+#ondfnumcmi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#serzlunqcl .gt_group_heading {
+#ondfnumcmi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -508,7 +508,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   text-align: left;
 }
 
-#serzlunqcl .gt_empty_group_heading {
+#ondfnumcmi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -523,15 +523,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   vertical-align: middle;
 }
 
-#serzlunqcl .gt_from_md > :first-child {
+#ondfnumcmi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#serzlunqcl .gt_from_md > :last-child {
+#ondfnumcmi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#serzlunqcl .gt_row {
+#ondfnumcmi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -550,7 +550,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   overflow-x: hidden;
 }
 
-#serzlunqcl .gt_stub {
+#ondfnumcmi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -563,7 +563,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#serzlunqcl .gt_stub_row_group {
+#ondfnumcmi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -577,15 +577,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   vertical-align: top;
 }
 
-#serzlunqcl .gt_row_group_first td {
+#ondfnumcmi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#serzlunqcl .gt_row_group_first th {
+#ondfnumcmi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#serzlunqcl .gt_summary_row {
+#ondfnumcmi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -595,16 +595,16 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#serzlunqcl .gt_first_summary_row {
+#ondfnumcmi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_first_summary_row.thick {
+#ondfnumcmi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#serzlunqcl .gt_last_summary_row {
+#ondfnumcmi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -614,7 +614,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_grand_summary_row {
+#ondfnumcmi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -624,7 +624,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#serzlunqcl .gt_first_grand_summary_row {
+#ondfnumcmi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -634,7 +634,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-top-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_last_grand_summary_row_top {
+#ondfnumcmi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -644,11 +644,11 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_striped {
+#ondfnumcmi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#serzlunqcl .gt_table_body {
+#ondfnumcmi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -657,7 +657,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_footnotes {
+#ondfnumcmi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -671,7 +671,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_footnote {
+#ondfnumcmi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -680,7 +680,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#serzlunqcl .gt_sourcenotes {
+#ondfnumcmi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -694,7 +694,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#serzlunqcl .gt_sourcenote {
+#ondfnumcmi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -702,72 +702,72 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#serzlunqcl .gt_left {
+#ondfnumcmi .gt_left {
   text-align: left;
 }
 
-#serzlunqcl .gt_center {
+#ondfnumcmi .gt_center {
   text-align: center;
 }
 
-#serzlunqcl .gt_right {
+#ondfnumcmi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#serzlunqcl .gt_font_normal {
+#ondfnumcmi .gt_font_normal {
   font-weight: normal;
 }
 
-#serzlunqcl .gt_font_bold {
+#ondfnumcmi .gt_font_bold {
   font-weight: bold;
 }
 
-#serzlunqcl .gt_font_italic {
+#ondfnumcmi .gt_font_italic {
   font-style: italic;
 }
 
-#serzlunqcl .gt_super {
+#ondfnumcmi .gt_super {
   font-size: 65%;
 }
 
-#serzlunqcl .gt_footnote_marks {
+#ondfnumcmi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#serzlunqcl .gt_asterisk {
+#ondfnumcmi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#serzlunqcl .gt_indent_1 {
+#ondfnumcmi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#serzlunqcl .gt_indent_2 {
+#ondfnumcmi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#serzlunqcl .gt_indent_3 {
+#ondfnumcmi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#serzlunqcl .gt_indent_4 {
+#ondfnumcmi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#serzlunqcl .gt_indent_5 {
+#ondfnumcmi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#serzlunqcl .katex-display {
+#ondfnumcmi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#serzlunqcl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ondfnumcmi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -778,8 +778,8 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" scope="colgroup" id="**Raw (N=600)**">
         <div class="gt_column_spanner"><span class='gt_from_md'><strong>Raw (N=600)</strong></span></div>
       </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" scope="colgroup" id="**Weighted (ESS=324)**">
-        <div class="gt_column_spanner"><span class='gt_from_md'><strong>Weighted (ESS=324)</strong></span></div>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4" scope="colgroup" id="**Weighted (ESS=494)**">
+        <div class="gt_column_spanner"><span class='gt_from_md'><strong>Weighted (ESS=494)</strong></span></div>
       </th>
     </tr>
     <tr class="gt_col_headings">
@@ -796,103 +796,103 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Age (at diagnosis)</td>
 <td headers="stat_0_1" class="gt_row gt_center">31.9 (6.1)</td>
-<td headers="stat_1_1" class="gt_row gt_center">32.3 (5.8)</td>
-<td headers="stat_2_1" class="gt_row gt_center">31.5 (6.3)</td>
-<td headers="estimate_1" class="gt_row gt_center">0.13</td>
-<td headers="stat_2_2" class="gt_row gt_center">31.4 (6.2)</td>
-<td headers="stat_0_2" class="gt_row gt_center">31.5 (6.2)</td>
-<td headers="stat_1_2" class="gt_row gt_center">31.6 (6.1)</td>
+<td headers="stat_1_1" class="gt_row gt_center">32.2 (5.8)</td>
+<td headers="stat_2_1" class="gt_row gt_center">31.6 (6.2)</td>
+<td headers="estimate_1" class="gt_row gt_center">0.10</td>
+<td headers="stat_2_2" class="gt_row gt_center">31.9 (5.9)</td>
+<td headers="stat_0_2" class="gt_row gt_center">31.9 (6.1)</td>
+<td headers="stat_1_2" class="gt_row gt_center">32.0 (6.1)</td>
 <td headers="estimate_2" class="gt_row gt_center">-0.02</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Gender</td>
 <td headers="stat_0_1" class="gt_row gt_center"><br /></td>
 <td headers="stat_1_1" class="gt_row gt_center"><br /></td>
 <td headers="stat_2_1" class="gt_row gt_center"><br /></td>
-<td headers="estimate_1" class="gt_row gt_center">0.32</td>
+<td headers="estimate_1" class="gt_row gt_center">0.25</td>
 <td headers="stat_2_2" class="gt_row gt_center"><br /></td>
 <td headers="stat_0_2" class="gt_row gt_center"><br /></td>
 <td headers="stat_1_2" class="gt_row gt_center"><br /></td>
-<td headers="estimate_2" class="gt_row gt_center">0.01</td></tr>
+<td headers="estimate_2" class="gt_row gt_center">0.00</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Male</td>
 <td headers="stat_0_1" class="gt_row gt_center">303 (51%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">131 (43%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">172 (59%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">118 (44%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">185 (56%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">146 (49%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">288 (49%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">142 (49%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">132 (50%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">299 (50%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">167 (50%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Female</td>
 <td headers="stat_0_1" class="gt_row gt_center">297 (50%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">175 (57%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">122 (41%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">152 (56%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">145 (44%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">152 (51%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">298 (51%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">146 (51%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">134 (50%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">304 (50%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">170 (50%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">SES level (1-5)</td>
 <td headers="stat_0_1" class="gt_row gt_center"><br /></td>
 <td headers="stat_1_1" class="gt_row gt_center"><br /></td>
 <td headers="stat_2_1" class="gt_row gt_center"><br /></td>
-<td headers="estimate_1" class="gt_row gt_center">0.20</td>
+<td headers="estimate_1" class="gt_row gt_center">0.23</td>
 <td headers="stat_2_2" class="gt_row gt_center"><br /></td>
 <td headers="stat_0_2" class="gt_row gt_center"><br /></td>
 <td headers="stat_1_2" class="gt_row gt_center"><br /></td>
-<td headers="estimate_2" class="gt_row gt_center">0.10</td></tr>
+<td headers="estimate_2" class="gt_row gt_center">0.03</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Very low</td>
 <td headers="stat_0_1" class="gt_row gt_center">111 (19%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">52 (17%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">59 (20%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">46 (17%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">65 (20%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">57 (19%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">105 (18%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">48 (17%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">49 (18%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">109 (18%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">60 (18%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Low</td>
 <td headers="stat_0_1" class="gt_row gt_center">108 (18%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">60 (20%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">48 (16%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">53 (20%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">55 (17%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">48 (16%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">102 (17%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">54 (19%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">51 (19%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">118 (20%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">67 (20%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Moderate</td>
 <td headers="stat_0_1" class="gt_row gt_center">136 (23%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">66 (22%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">70 (24%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">56 (21%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">80 (24%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">74 (25%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">139 (24%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">64 (22%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">59 (22%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">133 (22%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">74 (22%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    High</td>
 <td headers="stat_0_1" class="gt_row gt_center">126 (21%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">58 (19%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">68 (23%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">50 (19%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">76 (23%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">65 (22%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">132 (23%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">68 (24%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">56 (21%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">126 (21%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">69 (21%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Very high</td>
 <td headers="stat_0_1" class="gt_row gt_center">119 (20%)</td>
-<td headers="stat_1_1" class="gt_row gt_center">70 (23%)</td>
-<td headers="stat_2_1" class="gt_row gt_center">49 (17%)</td>
+<td headers="stat_1_1" class="gt_row gt_center">65 (24%)</td>
+<td headers="stat_2_1" class="gt_row gt_center">54 (16%)</td>
 <td headers="estimate_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2_2" class="gt_row gt_center">54 (18%)</td>
-<td headers="stat_0_2" class="gt_row gt_center">108 (18%)</td>
-<td headers="stat_1_2" class="gt_row gt_center">54 (19%)</td>
+<td headers="stat_2_2" class="gt_row gt_center">51 (19%)</td>
+<td headers="stat_0_2" class="gt_row gt_center">118 (20%)</td>
+<td headers="stat_1_2" class="gt_row gt_center">66 (20%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">Beck score (0-63)</td>
 <td headers="stat_0_1" class="gt_row gt_center">31 (9)</td>
-<td headers="stat_1_1" class="gt_row gt_center">25 (8)</td>
-<td headers="stat_2_1" class="gt_row gt_center">36 (8)</td>
-<td headers="estimate_1" class="gt_row gt_center">-1.4</td>
+<td headers="stat_1_1" class="gt_row gt_center">27 (9)</td>
+<td headers="stat_2_1" class="gt_row gt_center">33 (9)</td>
+<td headers="estimate_1" class="gt_row gt_center">-0.70</td>
 <td headers="stat_2_2" class="gt_row gt_center">30 (9)</td>
-<td headers="stat_0_2" class="gt_row gt_center">31 (9)</td>
-<td headers="stat_1_2" class="gt_row gt_center">31 (9)</td>
-<td headers="estimate_2" class="gt_row gt_center">-0.16</td></tr>
+<td headers="stat_0_2" class="gt_row gt_center">30 (9)</td>
+<td headers="stat_1_2" class="gt_row gt_center">30 (10)</td>
+<td headers="estimate_2" class="gt_row gt_center">0.02</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -905,12 +905,12 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   </tfoot>
 </table>
 </div>
-<p>After weighting the Beck score remains above the recommended threshold. That is why, we suggest adjusting on it (i.e., doubly robust approach) when the final outcome is modeled <span class="citation">(<a href="references.html#ref-funk_doubly_2011">Funk et al. 2011</a>)</span>.</p>
+<p>After weighting, observed confunders were above the recommended threshold. If, after weighting, the observed confounders exceed the recommended threshold, the model can be respecified (e.g. making a continuous variable categorical or dichotomous, including higher order terms or splines of variables, …). Otherwise, variables with remaining imbalance should ideally be adjusted for when modeling the final outcome, using a doubly robust approach (i.e., adjusting for confounders in both the treatment and outcome models) <span class="citation">(<a href="references.html#ref-funk_doubly_2011">Funk et al. 2011</a>; <a href="references.html#ref-garrido_methods_2014">Garrido et al. 2014</a>)</span>.</p>
 <p>Next, to ensure that the positivity assumption is met, we plotted the propensity score distributions to assess the degree of overlap between individuals receiving Sertralex and Duloxyn. Our goal is to establish sufficient common support, meaning all subjects have a non-zero probability of receiving either treatment.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="iptw-application.html#cb4-1" tabindex="-1"></a><span class="co">#Display PS</span></span>
 <span id="cb4-2"><a href="iptw-application.html#cb4-2" tabindex="-1"></a>plot1<span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ps))<span class="sc">+</span></span>
 <span id="cb4-3"><a href="iptw-application.html#cb4-3" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb4-4"><a href="iptw-application.html#cb4-4" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">group =</span> TREAT0, <span class="at">fill =</span> TREAT0),<span class="at">alpha=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="iptw-application.html#cb4-4" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">group =</span> TREAT, <span class="at">fill =</span> TREAT),<span class="at">alpha=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
 <span id="cb4-5"><a href="iptw-application.html#cb4-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Raw&quot;</span>)<span class="sc">+</span></span>
 <span id="cb4-6"><a href="iptw-application.html#cb4-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span><span class="st">&quot;Treatment&quot;</span>,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Sertralex&quot;</span>,<span class="st">&quot;Duloxyn&quot;</span>),<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FFDB6D&quot;</span>,<span class="st">&quot;#00AFBB&quot;</span>))<span class="sc">+</span></span>
 <span id="cb4-7"><a href="iptw-application.html#cb4-7" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Propensity Score (PS)&quot;</span>)<span class="sc">+</span></span>
@@ -922,7 +922,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb4-13"><a href="iptw-application.html#cb4-13" tabindex="-1"></a><span class="co">#After weighting</span></span>
 <span id="cb4-14"><a href="iptw-application.html#cb4-14" tabindex="-1"></a>plot2<span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">weight =</span> weights))<span class="sc">+</span></span>
 <span id="cb4-15"><a href="iptw-application.html#cb4-15" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">colour=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb4-16"><a href="iptw-application.html#cb4-16" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">group =</span> TREAT0, <span class="at">fill =</span> TREAT0),<span class="at">alpha=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
+<span id="cb4-16"><a href="iptw-application.html#cb4-16" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_density</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">group =</span> TREAT, <span class="at">fill =</span> TREAT),<span class="at">alpha=</span><span class="fl">0.4</span>)<span class="sc">+</span></span>
 <span id="cb4-17"><a href="iptw-application.html#cb4-17" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Weighted&quot;</span>)<span class="sc">+</span></span>
 <span id="cb4-18"><a href="iptw-application.html#cb4-18" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name=</span><span class="st">&quot;Treatment&quot;</span>,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Sertralex&quot;</span>,<span class="st">&quot;Duloxyn&quot;</span>),<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#FFDB6D&quot;</span>,<span class="st">&quot;#00AFBB&quot;</span>))<span class="sc">+</span></span>
 <span id="cb4-19"><a href="iptw-application.html#cb4-19" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Propensity Score (PS)&quot;</span>)<span class="sc">+</span></span>
@@ -939,10 +939,10 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <h2><span class="header-section-number">4.5</span> Outcome analysis<a href="iptw-application.html#outcome-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This section details the outcome analyis. First, unadjusted and weighted Kaplan-Meier curves <span class="citation">(<a href="references.html#ref-cole_adjusted_2004">Cole and Hernán 2004</a>)</span>, stratified on treatment group, are compared.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="iptw-application.html#cb5-1" tabindex="-1"></a><span class="co">#Implement unadjusted model</span></span>
-<span id="cb5-2"><a href="iptw-application.html#cb5-2" tabindex="-1"></a>unadjusted<span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT)<span class="sc">~</span>TREAT0, <span class="at">data =</span> data)</span>
+<span id="cb5-2"><a href="iptw-application.html#cb5-2" tabindex="-1"></a>unadjusted<span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT)<span class="sc">~</span>TREAT, <span class="at">data =</span> data)</span>
 <span id="cb5-3"><a href="iptw-application.html#cb5-3" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="iptw-application.html#cb5-4" tabindex="-1"></a><span class="co">#Implement IPTW adjusted model</span></span>
-<span id="cb5-5"><a href="iptw-application.html#cb5-5" tabindex="-1"></a>weighted<span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT)<span class="sc">~</span>TREAT0, <span class="at">data =</span> data, <span class="at">weights =</span> weights)</span>
+<span id="cb5-5"><a href="iptw-application.html#cb5-5" tabindex="-1"></a>weighted<span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT)<span class="sc">~</span>TREAT, <span class="at">data =</span> data, <span class="at">weights =</span> weights)</span>
 <span id="cb5-6"><a href="iptw-application.html#cb5-6" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="iptw-application.html#cb5-7" tabindex="-1"></a><span class="co">#Combine both</span></span>
 <span id="cb5-8"><a href="iptw-application.html#cb5-8" tabindex="-1"></a>fit<span class="ot">&lt;-</span><span class="fu">list</span>(unadjusted,weighted)</span>
@@ -974,30 +974,30 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb5-34"><a href="iptw-application.html#cb5-34" tabindex="-1"></a>                   <span class="at">xlab =</span> <span class="st">&quot;Time (in weeks)&quot;</span>,</span>
 <span id="cb5-35"><a href="iptw-application.html#cb5-35" tabindex="-1"></a>                   <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/km-1.png" width="672" /></p>
-<p>As outlined, differences in time to relapse vary depending on the analysis and treatment group considered. In the unadjusted analysis, we observed a survival probability of 0.82 [0.77; 0.89] for Sertralex, compared to 0.69 [0.63; 0.77] for Duloxyn. In the weighted analysis (where weights are used to create a pseudo population), these differences were reduced, with survival probabilities of 0.72 [0.63; 0.83] for Sertralex and 0.79 [0.73; 0.85] for Duloxyn.</p>
+<p>As outlined, differences in time to relapse vary depending on the analysis and treatment group considered. In the unadjusted analysis, we observed a survival probability of 0.69 [0.63; 0.75] for Sertralex, compared to 0.53 [0.48; 0.59] for Duloxyn. In the weighted analysis (where weights are used to create a pseudo population), these differences were reduced, with survival probabilities of 0.58 [0.51; 0.65] for Sertralex and 0.64 [0.59; 0.69] for Duloxyn.</p>
 <p>Second, unadjusted, multivariable, and weighted Cox are displayed.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="iptw-application.html#cb6-1" tabindex="-1"></a><span class="co"># Fit the Cox models</span></span>
-<span id="cb6-2"><a href="iptw-application.html#cb6-2" tabindex="-1"></a>unadjusted <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT0, <span class="at">data =</span> data)</span>
-<span id="cb6-3"><a href="iptw-application.html#cb6-3" tabindex="-1"></a>multivariable <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT0 <span class="sc">+</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO <span class="sc">+</span> BECK0, <span class="at">data =</span> data)</span>
-<span id="cb6-4"><a href="iptw-application.html#cb6-4" tabindex="-1"></a>weighted <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT0 <span class="sc">+</span> BECK0, <span class="at">weights =</span> weights, <span class="at">data =</span> data)</span>
+<span id="cb6-2"><a href="iptw-application.html#cb6-2" tabindex="-1"></a>unadjusted <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT, <span class="at">data =</span> data)</span>
+<span id="cb6-3"><a href="iptw-application.html#cb6-3" tabindex="-1"></a>multivariable <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT <span class="sc">+</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO <span class="sc">+</span> BECK, <span class="at">data =</span> data)</span>
+<span id="cb6-4"><a href="iptw-application.html#cb6-4" tabindex="-1"></a>weighted <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TIME_TO_EVENT, EVENT) <span class="sc">~</span> TREAT, <span class="at">weights =</span> weights, <span class="at">data =</span> data)</span>
 <span id="cb6-5"><a href="iptw-application.html#cb6-5" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="iptw-application.html#cb6-6" tabindex="-1"></a><span class="co"># Create regression tables</span></span>
 <span id="cb6-7"><a href="iptw-application.html#cb6-7" tabindex="-1"></a>unadjusted_table <span class="ot">&lt;-</span> unadjusted <span class="sc">%&gt;%</span> </span>
 <span id="cb6-8"><a href="iptw-application.html#cb6-8" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-9"><a href="iptw-application.html#cb6-9" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT0 <span class="sc">~</span> <span class="st">&quot;Treatment (unadjusted)&quot;</span>))</span>
+<span id="cb6-9"><a href="iptw-application.html#cb6-9" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT <span class="sc">~</span> <span class="st">&quot;Treatment (unadjusted)&quot;</span>))</span>
 <span id="cb6-10"><a href="iptw-application.html#cb6-10" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="iptw-application.html#cb6-11" tabindex="-1"></a>multivariable_table <span class="ot">&lt;-</span> multivariable <span class="sc">%&gt;%</span> </span>
 <span id="cb6-12"><a href="iptw-application.html#cb6-12" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-13"><a href="iptw-application.html#cb6-13" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT0 <span class="sc">~</span> <span class="st">&quot;Treatment (multivariable regression)&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="iptw-application.html#cb6-13" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT <span class="sc">~</span> <span class="st">&quot;Treatment (multivariable regression)&quot;</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb6-14"><a href="iptw-application.html#cb6-14" tabindex="-1"></a>  <span class="fu">modify_table_body</span>(</span>
-<span id="cb6-15"><a href="iptw-application.html#cb6-15" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;TREAT0&quot;</span>)</span>
+<span id="cb6-15"><a href="iptw-application.html#cb6-15" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;TREAT&quot;</span>)</span>
 <span id="cb6-16"><a href="iptw-application.html#cb6-16" tabindex="-1"></a>  )</span>
 <span id="cb6-17"><a href="iptw-application.html#cb6-17" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="iptw-application.html#cb6-18" tabindex="-1"></a>weighted_table <span class="ot">&lt;-</span> weighted <span class="sc">%&gt;%</span> </span>
 <span id="cb6-19"><a href="iptw-application.html#cb6-19" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-20"><a href="iptw-application.html#cb6-20" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT0 <span class="sc">~</span> <span class="st">&quot;Treatment (weighted)&quot;</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="iptw-application.html#cb6-20" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(TREAT <span class="sc">~</span> <span class="st">&quot;Treatment (weighted)&quot;</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb6-21"><a href="iptw-application.html#cb6-21" tabindex="-1"></a>  <span class="fu">modify_table_body</span>(</span>
-<span id="cb6-22"><a href="iptw-application.html#cb6-22" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;TREAT0&quot;</span>)</span>
+<span id="cb6-22"><a href="iptw-application.html#cb6-22" tabindex="-1"></a>    <span class="sc">~</span> .x <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;TREAT&quot;</span>)</span>
 <span id="cb6-23"><a href="iptw-application.html#cb6-23" tabindex="-1"></a>  )</span>
 <span id="cb6-24"><a href="iptw-application.html#cb6-24" tabindex="-1"></a></span>
 <span id="cb6-25"><a href="iptw-application.html#cb6-25" tabindex="-1"></a><span class="co"># Function to extract HR and CI for a specific variable</span></span>
@@ -1009,30 +1009,30 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb6-31"><a href="iptw-application.html#cb6-31" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;HR = &quot;</span>, hr, <span class="st">&quot; [&quot;</span>, ci_lower, <span class="st">&quot;; &quot;</span>, ci_upper, <span class="st">&quot;]&quot;</span>))</span>
 <span id="cb6-32"><a href="iptw-application.html#cb6-32" tabindex="-1"></a>}</span>
 <span id="cb6-33"><a href="iptw-application.html#cb6-33" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="iptw-application.html#cb6-34" tabindex="-1"></a><span class="co"># Extract and format HR and CI for TREAT0</span></span>
+<span id="cb6-34"><a href="iptw-application.html#cb6-34" tabindex="-1"></a><span class="co"># Extract and format HR and CI for TREAT</span></span>
 <span id="cb6-35"><a href="iptw-application.html#cb6-35" tabindex="-1"></a>unadjusted_hr_ci <span class="ot">&lt;-</span> <span class="fu">extract_hr_ci</span>(unadjusted)</span>
 <span id="cb6-36"><a href="iptw-application.html#cb6-36" tabindex="-1"></a>multivariable_hr_ci <span class="ot">&lt;-</span> <span class="fu">extract_hr_ci</span>(multivariable)</span>
 <span id="cb6-37"><a href="iptw-application.html#cb6-37" tabindex="-1"></a>weighted_hr_ci <span class="ot">&lt;-</span> <span class="fu">extract_hr_ci</span>(weighted)</span>
 <span id="cb6-38"><a href="iptw-application.html#cb6-38" tabindex="-1"></a></span>
 <span id="cb6-39"><a href="iptw-application.html#cb6-39" tabindex="-1"></a><span class="co"># Stack the regression tables</span></span>
 <span id="cb6-40"><a href="iptw-application.html#cb6-40" tabindex="-1"></a><span class="fu">tbl_stack</span>(<span class="fu">list</span>(unadjusted_table, multivariable_table, weighted_table))</span></code></pre></div>
-<div id="wmilxxvlav" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wmilxxvlav table {
+<div id="runsaennip" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#runsaennip table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wmilxxvlav thead, #wmilxxvlav tbody, #wmilxxvlav tfoot, #wmilxxvlav tr, #wmilxxvlav td, #wmilxxvlav th {
+#runsaennip thead, #runsaennip tbody, #runsaennip tfoot, #runsaennip tr, #runsaennip td, #runsaennip th {
   border-style: none;
 }
 
-#wmilxxvlav p {
+#runsaennip p {
   margin: 0;
   padding: 0;
 }
 
-#wmilxxvlav .gt_table {
+#runsaennip .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1058,12 +1058,12 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-left-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_caption {
+#runsaennip .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wmilxxvlav .gt_title {
+#runsaennip .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1075,7 +1075,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-width: 0;
 }
 
-#wmilxxvlav .gt_subtitle {
+#runsaennip .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1087,7 +1087,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-top-width: 0;
 }
 
-#wmilxxvlav .gt_heading {
+#runsaennip .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1099,13 +1099,13 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_bottom_border {
+#runsaennip .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_col_headings {
+#runsaennip .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1120,7 +1120,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_col_heading {
+#runsaennip .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1140,7 +1140,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   overflow-x: hidden;
 }
 
-#wmilxxvlav .gt_column_spanner_outer {
+#runsaennip .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1152,15 +1152,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 4px;
 }
 
-#wmilxxvlav .gt_column_spanner_outer:first-child {
+#runsaennip .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wmilxxvlav .gt_column_spanner_outer:last-child {
+#runsaennip .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wmilxxvlav .gt_column_spanner {
+#runsaennip .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1172,11 +1172,11 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   width: 100%;
 }
 
-#wmilxxvlav .gt_spanner_row {
+#runsaennip .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wmilxxvlav .gt_group_heading {
+#runsaennip .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1202,7 +1202,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   text-align: left;
 }
 
-#wmilxxvlav .gt_empty_group_heading {
+#runsaennip .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1217,15 +1217,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   vertical-align: middle;
 }
 
-#wmilxxvlav .gt_from_md > :first-child {
+#runsaennip .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wmilxxvlav .gt_from_md > :last-child {
+#runsaennip .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wmilxxvlav .gt_row {
+#runsaennip .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1244,7 +1244,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   overflow-x: hidden;
 }
 
-#wmilxxvlav .gt_stub {
+#runsaennip .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1257,7 +1257,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#wmilxxvlav .gt_stub_row_group {
+#runsaennip .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1271,15 +1271,15 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   vertical-align: top;
 }
 
-#wmilxxvlav .gt_row_group_first td {
+#runsaennip .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wmilxxvlav .gt_row_group_first th {
+#runsaennip .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wmilxxvlav .gt_summary_row {
+#runsaennip .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1289,16 +1289,16 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#wmilxxvlav .gt_first_summary_row {
+#runsaennip .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_first_summary_row.thick {
+#runsaennip .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wmilxxvlav .gt_last_summary_row {
+#runsaennip .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1308,7 +1308,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_grand_summary_row {
+#runsaennip .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1318,7 +1318,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#wmilxxvlav .gt_first_grand_summary_row {
+#runsaennip .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1328,7 +1328,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-top-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_last_grand_summary_row_top {
+#runsaennip .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1338,11 +1338,11 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_striped {
+#runsaennip .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wmilxxvlav .gt_table_body {
+#runsaennip .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1351,7 +1351,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-bottom-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_footnotes {
+#runsaennip .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1365,7 +1365,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_footnote {
+#runsaennip .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1374,7 +1374,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#wmilxxvlav .gt_sourcenotes {
+#runsaennip .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1388,7 +1388,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   border-right-color: #D3D3D3;
 }
 
-#wmilxxvlav .gt_sourcenote {
+#runsaennip .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1396,72 +1396,72 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   padding-right: 5px;
 }
 
-#wmilxxvlav .gt_left {
+#runsaennip .gt_left {
   text-align: left;
 }
 
-#wmilxxvlav .gt_center {
+#runsaennip .gt_center {
   text-align: center;
 }
 
-#wmilxxvlav .gt_right {
+#runsaennip .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wmilxxvlav .gt_font_normal {
+#runsaennip .gt_font_normal {
   font-weight: normal;
 }
 
-#wmilxxvlav .gt_font_bold {
+#runsaennip .gt_font_bold {
   font-weight: bold;
 }
 
-#wmilxxvlav .gt_font_italic {
+#runsaennip .gt_font_italic {
   font-style: italic;
 }
 
-#wmilxxvlav .gt_super {
+#runsaennip .gt_super {
   font-size: 65%;
 }
 
-#wmilxxvlav .gt_footnote_marks {
+#runsaennip .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wmilxxvlav .gt_asterisk {
+#runsaennip .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wmilxxvlav .gt_indent_1 {
+#runsaennip .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wmilxxvlav .gt_indent_2 {
+#runsaennip .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wmilxxvlav .gt_indent_3 {
+#runsaennip .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wmilxxvlav .gt_indent_4 {
+#runsaennip .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wmilxxvlav .gt_indent_5 {
+#runsaennip .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wmilxxvlav .katex-display {
+#runsaennip .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wmilxxvlav div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#runsaennip div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1484,8 +1484,8 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Duloxyn</td>
-<td headers="estimate" class="gt_row gt_center">2.11</td>
-<td headers="conf.low" class="gt_row gt_center">1.40, 3.18</td>
+<td headers="estimate" class="gt_row gt_center">1.63</td>
+<td headers="conf.low" class="gt_row gt_center">1.31, 2.01</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Treatment (multivariable regression)</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
@@ -1496,9 +1496,9 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Duloxyn</td>
-<td headers="estimate" class="gt_row gt_center">0.77</td>
-<td headers="conf.low" class="gt_row gt_center">0.46, 1.29</td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.80</td>
+<td headers="conf.low" class="gt_row gt_center">0.64, 1.00</td>
+<td headers="p.value" class="gt_row gt_center">0.051</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Treatment (weighted)</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
 <td headers="conf.low" class="gt_row gt_center"><br /></td>
@@ -1508,9 +1508,9 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Duloxyn</td>
-<td headers="estimate" class="gt_row gt_center">0.70</td>
-<td headers="conf.low" class="gt_row gt_center">0.38, 1.29</td>
-<td headers="p.value" class="gt_row gt_center">0.3</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.84</td>
+<td headers="conf.low" class="gt_row gt_center">0.67, 1.06</td>
+<td headers="p.value" class="gt_row gt_center">0.14</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -1520,7 +1520,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
   </tfoot>
 </table>
 </div>
-<p>As shown, the treatment effect varies depending on the analysis and treatment group considered. In the raw analysis, the HR = 2.11 [1.40; 3.18], suggesting that Duloxyn significantly increases the risk of relapse. Conversely, the multivariate model and IPTW analyses yielded an HR = 0.77 [0.46; 1.29], and HR = 0.70 [0.38; 1.29], respectively, indicating a trend toward Duloxyn having a protective effect by prolonging the time to relapse, although these results were not statistically significant. Lastly, the slight differences between the multivariate and IPTW models highlight that conditional and marginal effects are not equivalent.</p>
+<p>As shown, the treatment effect varies depending on the analysis and treatment group considered. In the raw analysis, the HR = 1.63 [1.31; 2.01], suggesting that Duloxyn significantly increases the risk of relapse. Conversely, the multivariate model and IPTW analyses yielded an HR = 0.80 [0.64; 1.00], and HR = 0.84 [0.67; 1.06], respectively, indicating a trend toward Duloxyn having a protective effect by prolonging the time to relapse, although these results were not statistically significant. Lastly, the slight differences between the multivariate and IPTW models highlight that conditional and marginal effects are not equivalent.</p>
 
 </div>
 </div>

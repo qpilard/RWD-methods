@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-05" />
+<meta name="date" content="2024-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,11 +235,11 @@ div.csl-indent {
 <div id="ich" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Appendix B</span> ICH E9 (R1) addendum<a href="ich.html#ich" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In 2020, the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH) released the E9 (R1) addendum, which aims to guide practice regarding estimands and sensitivity analyses in clinical trials, moving beyond traditional ITT and PP analyses <span class="citation">(<a href="references.html#ref-noauthor_ich_1998"><span>“ICH E9 R1 Addendum”</span> 2020</a>)</span>.</p>
-<p>An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Various strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, and composite approaches <span class="citation">(<a href="references.html#ref-lawrance_what_2020">Lawrance et al. 2020</a>)</span>.</p>
+<p>An estimand provides a clear definition of the treatment effect that reflects the clinical question posed by a specific trial objective. Its formulation is based on five attributes: treatment, population, variable of interest (endpoint), intercurrent event handling, and summary measure. The concept of intercurrent events, introduced in this framework, refers to events occurring after treatment initiation. Five strategies exist for handling intercurrent events, including treatment policy, while on treatment, hypothetical, composite approaches, and principal stratum strategy <span class="citation">(<a href="references.html#ref-lawrance_what_2020">Lawrance et al. 2020</a>; <a href="references.html#ref-roca_2024">Roca and Gourgou 2024</a>)</span>.</p>
 <p>In our example, we reformulate the ITT and PP questions as suggested in the framework:</p>
 <ul>
-<li><p>ITT: “In patients diagnosed with Persistent Depressive Disorder (PDD), what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), regardless of study treatment discontinuation?” (treatment policy approach)</p></li>
-<li><p>PP: “In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from treatment randomization, after one year of follow-up, or until death occurs (whichever comes first), while accounting for potential treatment switches between the two drugs until week 6, irrespective of study treatment discontinuation?” (composite approach)</p></li>
+<li><p>ITT: “In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from the date of diagnosis, over a one-year follow-up period or until death (whichever occurs first), regardless of study treatment discontinuation?” (this follows the treatment policy approach to handle treatment discontinuation).</p></li>
+<li><p>PP: “In patients diagnosed with PDD, what is the effect of Duloxyn compared to Sertralex on the time to relapse from the date of diagnosis, over a one-year follow-up period or until death, or treatment discontinuation (whichever occurs first)?” (this follows the principal stratum strategy to handle treatment discontinuation).</p></li>
 </ul>
 </div>
             </section>
