@@ -30,12 +30,11 @@ This models the treatment effect across the entire population likely to receive 
 
 ```{r iptw, message=FALSE}
 #Perform weighting
-W <- weightit(TREAT ~ AGE + GENDER + SOCIO_ECO + BECK,
+W <- WeightIt::weightit(TREAT ~ AGE + GENDER + SOCIO_ECO + BECK,
                             data = data,
                             method = "glm",
                             estimand = "ATE",
                             stabilize = TRUE)
-
 data$weights <- W$weights
 data$ps <- W$ps
 ```
@@ -64,13 +63,10 @@ t1 <- data %>%
                            SOCIO_ECO ~ "SES level (1-5)",
                            BECK ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
-  add_overall() %>%
   modify_header(label ~ "**Variable**", 
                 estimate ~ "**SMD**", 
-                stat_0 ~ "**Total**", 
-                stat_1 ~ "**Sertralex**", 
-                stat_2 ~ "**Duloxyn**")
-
+                stat_1 ~ paste0("**Sertralex (N=",nrow(data[which(data$TREAT=="Sertralex"),]),")**"), 
+                stat_2 ~ paste0("**Duloxyn (N=",nrow(data[which(data$TREAT=="Duloxyn"),]),")**"))
 data_selected <- data %>%
   select(AGE, GENDER, SOCIO_ECO, BECK, TREAT)
 
@@ -84,12 +80,10 @@ t2 <- data_svy %>%
                            SOCIO_ECO ~ "SES level (1-5)",
                            BECK ~ "Beck score (0-63)")) %>%
   add_difference(test = everything() ~ "smd") %>%
-  add_overall() %>% 
   modify_header(label ~ "**Variable**", 
                 estimate ~ "**SMD**", 
-                stat_0 ~ "**Total**",
-                stat_1 ~ "**Sertralex**",
-                stat_2 ~ "**Duloxyn**")
+                stat_1 ~ paste0("**Sertralex (N=",round(ESS(W$weights[W$treat=="Sertralex"]),0),")**"), 
+                stat_2 ~ paste0("**Duloxyn (N=",round(ESS(W$weights[W$treat=="Duloxyn"]),0),")**")) 
 
 for (int_col in c("modify_stat_N", "modify_stat_n")) {
   t1$table_styling$header[[int_col]] <-
@@ -146,27 +140,28 @@ This section details the outcome analyis. First, unadjusted and weighted Kaplan-
 ```{r km, warning=FALSE}
 #Implement unadjusted model
 unadjusted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT, data = data)
-
 #Implement IPTW adjusted model
 weighted<- survfit(Surv(TIME_TO_EVENT, EVENT)~TREAT, data = data, weights = weights)
-
 #Combine both
 fit<-list(unadjusted,weighted)
 
 # Function to format survival probabilities at a given time point
-format_survival_prob <- function(surv_object, time_point, treatment_index) {
-  surv_prob <- sprintf("%.2f", round(summary(surv_object, times = time_point)$surv[treatment_index], 2))
-  lower_ci <- sprintf("%.2f", round(summary(surv_object, times = time_point)$lower[treatment_index], 2))
-  upper_ci <- sprintf("%.2f", round(summary(surv_object, times = time_point)$upper[treatment_index], 2))
+format_median_time <- function(surv_object, treatment_index) {
   
-  return(paste0(surv_prob, " [", lower_ci, "; ", upper_ci, "]"))
+  # Extract the median survival time for the given treatment index
+  median_surv <- sprintf("%.2f", round(summary(surv_object)$table[treatment_index, "median"], 2))
+  lower_ci <- sprintf("%.2f", round(summary(surv_object)$table[treatment_index, "0.95LCL"], 2))
+  upper_ci <- sprintf("%.2f", round(summary(surv_object)$table[treatment_index, "0.95UCL"], 2))
+  
+  return(paste0(median_surv, " [", lower_ci, "; ", upper_ci, "]"))
+  
 }
 
-# Usage for raw and IPTW survival probabilities at week 26
-unadjusted_treatment_0 <- format_survival_prob(unadjusted, 26, 1)
-unadjusted_treatment_1 <- format_survival_prob(unadjusted, 26, 2)
-weighted_treatment_0 <- format_survival_prob(weighted, 26, 1)
-weighted_treatment_1 <- format_survival_prob(weighted, 26, 2)
+# Usage for raw and IPTW median time
+unadjusted_treatment_0 <- format_median_time(unadjusted, 1)
+unadjusted_treatment_1 <- format_median_time(unadjusted, 2)
+weighted_treatment_0 <- format_median_time(weighted, 1)
+weighted_treatment_1 <- format_median_time(weighted, 2)
 
 ggsurvplot_combine(fit, 
                    data = data,
@@ -177,11 +172,11 @@ ggsurvplot_combine(fit,
                                    "Weighted: Duloxyn"),
                    palette = c("#ff331a","#ff80a6","#FFDB6D","#27d4ad"),
                    conf.int = TRUE,
-                   xlab = "Time (in weeks)",
+                   xlab = "Time (in days)",
                    ggtheme = theme_bw())
 ```
 
-As outlined, differences in time to relapse vary depending on the analysis and treatment group considered. In the unadjusted analysis, we observed a survival probability of `r unadjusted_treatment_0` for Sertralex, compared to `r unadjusted_treatment_1` for Duloxyn. In the weighted analysis (where weights are used to create a pseudo population), these differences were reduced, with survival probabilities of `r weighted_treatment_0` for Sertralex and `r weighted_treatment_1` for Duloxyn.
+As outlined, the median time to relapse differs depending on the analysis and treatment group considered. In the unadjusted analysis, we observed a median survival time of `r unadjusted_treatment_0` days for Sertralex, compared to `r unadjusted_treatment_1` days for Duloxyn. In the weighted analysis (where weights are used to create a pseudo population), these differences were reduced, median survival time of `r weighted_treatment_0` days for Sertralex and `r weighted_treatment_1` days for Duloxyn.
 
 Second, unadjusted, multivariable, and weighted Cox are displayed.
 
@@ -228,4 +223,4 @@ weighted_hr_ci <- extract_hr_ci(weighted)
 tbl_stack(list(unadjusted_table, multivariable_table, weighted_table))
 ```
 
-As shown, the treatment effect varies depending on the analysis and treatment group considered. In the raw analysis, the `r unadjusted_hr_ci`, suggesting that Duloxyn significantly increases the risk of relapse. Conversely, the multivariate model and IPTW analyses yielded an `r multivariable_hr_ci`, and `r weighted_hr_ci`, respectively, indicating a trend toward Duloxyn having a protective effect by prolonging the time to relapse, although these results were not statistically significant. Lastly, the slight differences between the multivariate and IPTW models highlight that conditional and marginal effects are not equivalent.
+As shown, the treatment effect varies depending on the analysis and treatment group considered. In the raw analysis, the `r unadjusted_hr_ci`, suggesting that Duloxyn significantly increases the risk of relapse. Conversely, the multivariate model and IPTW analyses yielded an `r multivariable_hr_ci`, and `r weighted_hr_ci`, respectively, indicating not statistically significant findings. Lastly, the slight differences between the multivariate and IPTW models highlight that conditional and marginal effects are not equivalent.

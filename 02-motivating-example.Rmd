@@ -22,18 +22,18 @@ Here is the list of variables included in the dataset:
 
 -   **AGE**: Age at diagnosis (years)
 
--   **GENDER**: Gender of the patient [Male; Female]
+-   **GENDER**: Gender of the patient [0=Male; 1=Female]
 
--   **BECK**: Beck Depression Inventory score at diagnosis [0-63 (worst prognosis)]
+-   **BECK**: Beck Depression Inventory score at diagnosis [0 (best prognosis) - 63 (worst prognosis)]
 
--   **SOCIO_ECO**: Socioeconomic status [Very low; Low; Moderate; High; Very high]
+-   **SOCIO_ECO**: Socioeconomic status [1=Very low; 2=Low; 3=Moderate; 4=High; 5=Very high]
 
--   **EVENT**: Relapse indicator [No relapse; Relapse]
+-   **EVENT**: Relapse indicator [0=No relapse; 1=Relapse]
 
--   **TIME_TO_EVENT**: Time from diagnosis to event of interest or censoring
+-   **TIME_TO_EVENT**: Time from diagnosis to event of interest or censoring (in days)
 
--   **TREAT**: Therapy initiated at diagnosis [Sertralex; Duloxyn].
+-   **TREAT**: Therapy initiated at diagnosis [0=Sertralex; 1=Duloxyn].
 
--   **TIME_TO_TREAT**: Time from diagnosis to treatment (for scenario 2 only).
+-   **TIME_TO_TREAT**: Time from diagnosis to treatment (in days)
 
 Further information on the simulation process to generate these data are described in Appendix \@ref(r-code).

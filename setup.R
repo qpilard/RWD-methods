@@ -18,5 +18,7 @@ pacman::p_load(
   survminer,
   survival,
   dagitty,
-  ggdag
+  ggdag,
+  kable,
+  kableExtra
 )

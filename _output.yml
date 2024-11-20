@@ -14,12 +14,13 @@ bookdown::gitbook:
             <a href="./">Real World Data methods</a>
           </li>
         </ul>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/qpilard/RWD-methods/%s
     download: ["pdf", "epub"]
     sharing:
-      github: yes
-      facebook: no
-      twitter: no
+      github: true
+      twitter: false
+      facebook: false
+      google: false
+      weibo: false
+      instapaper: false
+      vk: false
     

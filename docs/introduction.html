@@ -12,11 +12,11 @@ set in the _output.yml file.</p>" />
 
   <meta property="og:title" content="Chapter 1 Introduction | Methods for the analysis of Real World Data" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="/images/logo.jpeg" />
+  <meta property="og:image" content="http://qpilard.github.io/RWD-methods//images/logo.jpeg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="qpilard/RWD-methods" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 Introduction | Methods for the analysis of Real World Data" />
@@ -24,12 +24,12 @@ set in the _output.yml file.</p>" />
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="twitter:image" content="/images/logo.jpeg" />
+  <meta name="twitter:image" content="http://qpilard.github.io/RWD-methods//images/logo.jpeg" />
 
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-06" />
+<meta name="date" content="2024-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +58,10 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -204,17 +208,16 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#background-2"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
-<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#implement-ccw"><i class="fa fa-check"></i><b>5.2</b> Implement CCW</a></li>
+<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a></li>
+<li class="chapter" data-level="5.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#outcome-analysis-1"><i class="fa fa-check"></i><b>5.3</b> Outcome analysis</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>A</b> R code of the simulated dataset</a></li>
 <li class="chapter" data-level="B" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>B</b> ICH E9 (R1) addendum</a></li>
 <li class="chapter" data-level="C" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>C</b> DAG of the simulated dataset</a></li>
 <li class="chapter" data-level="D" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>D</b> Causal inference estimand</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -302,7 +305,9 @@ gitbook.start({
 "instapaper": false,
 "vk": false,
 "whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": false,
+"google": false,
+"instapper": false
 },
 "fontsettings": {
 "theme": "white",
@@ -310,8 +315,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/qpilard/RWD-methods/01-intro.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,

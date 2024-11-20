@@ -3,16 +3,28 @@ title: "Methods for the analysis of Real World Data"
 author: "Quentin Pilard"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output:
+  bookdown::gitbook: 
+    config: 
+      sharing:
+        facebook: no
+        twitter: no
+        google: no
+        weibo: no
+        instapper: no
+        vk: no
+        github: yes
+        all: no
 documentclass: book
-bibliography: [book.bib, packages.bib]
-# url: your book url like https://bookdown.org/yihui/bookdown
+bibliography: [book.bib]
 cover-image: images/logo.jpeg
 description: |
   This is a minimal example of using the bookdown package to write a book.
   The HTML output format for this example is bookdown::gitbook,
   set in the _output.yml file.
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: qpilard/RWD-methods
+url: 'http\://qpilard.github.io/RWD-methods/'
 ---
 
 ```{r setup, include=FALSE}
