@@ -114,4 +114,82 @@ combined_data %>%
   scroll_box(width = "100%", height = "200px")
 ```
 
-TBC
+Finally, the probability of remaining uncensored is estimated separately using a Cox model.
+
+```{r weighting, message=FALSE}
+#Step 3 - Censoring
+# Filter data for Duloxyn and estimate censoring probabilities
+combined_data_duloxyn <- combined_data %>% filter(TREAT == "Duloxyn")
+
+ms_cens_duloxyn <- coxph(Surv(TSTART, TSTOP, CENSOR) ~ AGE + GENDER + SOCIO_ECO + BECK, 
+                         ties = "efron", data = combined_data_duloxyn)
+
+combined_data_duloxyn$weights <- 1 / predict(ms_cens_duloxyn, 
+                                                       new.data = combined_data_duloxyn, 
+                                                       type = "survival")
+
+# Filter data for Sertralex and estimate censoring probabilities
+combined_data_sertralex <- combined_data %>% filter(TREAT == "Sertralex")
+
+ms_cens_sertralex <- coxph(Surv(TSTART, TSTOP, CENSOR) ~ AGE + GENDER + SOCIO_ECO + BECK, 
+                           ties = "efron", data = combined_data_sertralex)
+
+combined_data_sertralex$weights <- 1 / predict(ms_cens_sertralex, 
+                                                         new.data = combined_data_sertralex, 
+                                                         type = "survival")
+
+# Combine Duloxyn and Sertralex datasets with weights
+combined_data <- rbind(combined_data_duloxyn, combined_data_sertralex)
+
+# Print first individual (ID = 3) and its clone (ID = 1003)
+combined_data %>%
+  filter(ID %in% c(3,1003)) %>%
+  arrange(ID) %>%
+  kbl() %>%
+  kable_styling(font_size = 12) %>%
+  scroll_box(width = "100%", height = "200px")
+
+
+```
+
+## Outcome analysis
+
+First, the KM model is implemented.
+
+```{r ccw_km, warning=FALSE}
+#Implement CCW  model
+ccw<- survfit(Surv(TSTART, TSTOP, EVENT) ~ TREAT, data = combined_data, weights = weights)
+
+# Calculate median survival time
+ccw_treatment_0 <- format_median_time(ccw, 1)
+ccw_treatment_1 <- format_median_time(ccw, 2)
+
+ggsurvplot(ccw, 
+           data = combined_data,
+           legend.title = "",
+           legend.labs = c("CCW: Sertralex",
+                           "CCW: Duloxyn"),
+           palette = c("#5A8DEE","#F28C2C"),
+           conf.int = TRUE,
+           xlab = "Time (in days)",
+           ggtheme = theme_bw())
+```
+
+In the CCW approach, the estimated median survival time in the Sertralex population is estimated at `r ccw_treatment_0` and `r ccw_treatment_1` in the Duloxyn population.
+
+Next, the Cox model is implemented where weights are considred into the analysis.
+
+```{r ccw_cox}
+# Fit the Cox models
+combined_data$TREAT <- relevel(combined_data$TREAT,ref="Sertralex")
+CCW_cox <- coxph(Surv(TSTART, TSTOP, EVENT) ~ TREAT, data = combined_data, weights = weights)
+
+# Create regression tables
+CCW_cox %>% 
+  tbl_regression(exponentiate = TRUE,
+                 label = list(TREAT ~ "Treatment (CCW approach)"))
+
+ccw_hr_ci <- extract_hr_ci(CCW_cox)
+```
+
+As seen, the treatment effect after accounting for immortal time bias is estimated at `r ccw_hr_ci`.
