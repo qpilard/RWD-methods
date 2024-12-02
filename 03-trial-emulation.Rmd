@@ -31,7 +31,7 @@ As suggested, we specified the target trial as below:
 +----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Analysis plan**                | In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn      |
 |                                  |                                                                                                                                                                                              |
-|                                  | To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted(IPCW) methods [@robins_correcting_2000]          |
+|                                  | To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted (IPCW) methods [@robins_correcting_2000]          |
 +----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## Emulate the target trial

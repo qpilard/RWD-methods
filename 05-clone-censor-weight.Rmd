@@ -20,6 +20,12 @@ The cloning approach involves creating a duplicate of the initial dataset, where
 # Step 1 cloning
 # Make a copy of original data
 original_data <- data
+original_data <- original_data %>%
+                  mutate(SOCIO_ECO_2 = ifelse(SOCIO_ECO == "Low", 1, 0),
+                         SOCIO_ECO_3 = ifelse(SOCIO_ECO == "Moderate", 1, 0),
+                         SOCIO_ECO_4 = ifelse(SOCIO_ECO == "High", 1, 0),
+                         SOCIO_ECO_5 = ifelse(SOCIO_ECO == "Very high", 1, 0)) %>%
+  select(-SOCIO_ECO)
 
 # Create cloned data
 cloned_data <- original_data %>%
@@ -82,7 +88,7 @@ combined_data_cens <- survSplit(
 
 # Extract covariates for the analysis
 combined_data_covariate <- combined_data %>%
-  select(ID, AGE, GENDER, SOCIO_ECO, BECK)
+  select(ID, AGE, GENDER, SOCIO_ECO_2, SOCIO_ECO_3, SOCIO_ECO_4, SOCIO_ECO_5, BECK)
 
 # Combine event and censoring datasets
 combined_data <- full_join(
@@ -114,4 +120,112 @@ combined_data %>%
   scroll_box(width = "100%", height = "200px")
 ```
 
-TBC
+Finally, the probability of remaining uncensored is estimated separately using a Cox model.
+
+```{r weighting, message=FALSE}
+# Step 3 - Censoring
+
+
+#Filter data for the "Duloxyn" treatment group and estimate censoring probabilities
+
+combined_data_duloxyn <- combined_data %>% filter(TREAT == "Duloxyn")
+
+# Fit a Cox proportional hazards model to estimate the hazard for censoring
+ms_cens_duloxyn <- coxph(Surv(TSTART, TSTOP, CENSOR) ~ AGE + GENDER + SOCIO_ECO_2 + SOCIO_ECO_3 + SOCIO_ECO_4 + SOCIO_ECO_5 + BECK, 
+                         ties = "efron", data = combined_data_duloxyn)
+
+# Extract the baseline hazard from the Cox model
+baseline_hazard <- basehaz(ms_cens_duloxyn, centered = FALSE)
+
+# Calculate the linear predictor (lp) for the "Duloxyn" group
+combined_data_duloxyn$lp <- predict(ms_cens_duloxyn, newdata = combined_data_duloxyn, type = "lp")
+
+# Merge the baseline hazard with the dataset based on time
+combined_data_duloxyn <- merge(combined_data_duloxyn, baseline_hazard, 
+                               by.x = "TSTOP", by.y = "time", all.x = TRUE)
+
+# Calculate the uncensored probability
+combined_data_duloxyn$p_uncens <- exp(-combined_data_duloxyn$hazard * exp(combined_data_duloxyn$lp))
+
+# Calculate the weights as the inverse of the uncensored probability
+combined_data_duloxyn$weights <- 1 / combined_data_duloxyn$p_uncens
+
+
+# Repeat the same process for the "Sertralex" treatment group
+# Filter data for the "Sertralex" treatment group
+
+combined_data_sertralex <- combined_data %>% filter(TREAT == "Sertralex")
+
+# Fit a Cox proportional hazards model for censoring in the "Sertralex" group
+ms_cens_sertralex <- coxph(Surv(TSTART, TSTOP, CENSOR) ~ AGE + GENDER + SOCIO_ECO_2 + SOCIO_ECO_3 + SOCIO_ECO_4 + SOCIO_ECO_5 + BECK, 
+                           ties = "efron", data = combined_data_sertralex)
+
+# Use the baseline hazard from the "Duloxyn" model (assumed shared here)
+baseline_hazard <- basehaz(ms_cens_duloxyn, centered = FALSE)
+
+# Calculate the linear predictor (lp) for the "Sertralex" group
+combined_data_sertralex$lp <- predict(ms_cens_sertralex, newdata = combined_data_sertralex, type = "lp")
+
+# Merge the baseline hazard with the dataset based on time
+combined_data_sertralex <- merge(combined_data_sertralex, baseline_hazard, 
+                                 by.x = "TSTOP", by.y = "time", all.x = TRUE)
+
+# Calculate the uncensored probability
+combined_data_sertralex$p_uncens <- exp(-combined_data_sertralex$hazard * exp(combined_data_sertralex$lp))
+
+# Calculate the weights as the inverse of the uncensored probability
+combined_data_sertralex$weights <- 1 / combined_data_sertralex$p_uncens
+
+# Combine the datasets for "Duloxyn" and "Sertralex" treatments with the calculated weights
+combined_data <- rbind(combined_data_duloxyn, combined_data_sertralex)
+
+# Display the first individual (ID = 3) and its clone (ID = 1003) with improved visualization
+combined_data %>%
+  filter(ID %in% c(3, 1003)) %>%
+  arrange(ID) %>%
+  kbl() %>%
+  kable_styling(font_size = 12) %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+## Outcome analysis
+
+First, the KM model is implemented.
+
+```{r ccw_km, warning=FALSE}
+#Implement CCW  model
+ccw<- survfit(Surv(TSTART, TSTOP, EVENT) ~ TREAT, data = combined_data, weights = weights)
+
+# Calculate median survival time
+ccw_treatment_0 <- format_median_time(ccw, 1)
+ccw_treatment_1 <- format_median_time(ccw, 2)
+
+ggsurvplot(ccw, 
+           data = combined_data,
+           legend.title = "",
+           legend.labs = c("CCW: Sertralex",
+                           "CCW: Duloxyn"),
+           palette = c("#5A8DEE","#F28C2C"),
+           conf.int = TRUE,
+           xlab = "Time (in days)",
+           ggtheme = theme_bw())
+```
+
+In the CCW approach, the estimated median survival time in the Sertralex population is estimated at `r ccw_treatment_0` and `r ccw_treatment_1` in the Duloxyn population.
+
+Next, the Cox model is implemented where weights are considered into the analysis.
+
+```{r ccw_cox}
+# Fit the Cox models
+combined_data$TREAT <- relevel(combined_data$TREAT,ref="Sertralex")
+CCW_cox <- coxph(Surv(TSTART, TSTOP, EVENT) ~ TREAT, data = combined_data, weights = weights)
+
+# Create regression tables
+CCW_cox %>% 
+  tbl_regression(exponentiate = TRUE,
+                 label = list(TREAT ~ "Treatment (CCW approach)"))
+
+ccw_hr_ci <- extract_hr_ci(CCW_cox)
+```
+
+As seen, the treatment effect after accounting for immortal time bias is estimated at `r ccw_hr_ci`.

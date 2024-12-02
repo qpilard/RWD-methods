@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-11-28" />
+<meta name="date" content="2024-12-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,6 +209,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#background-2"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
 <li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a></li>
+<li class="chapter" data-level="5.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#outcome-analysis-1"><i class="fa fa-check"></i><b>5.3</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -244,48 +245,57 @@ div.csl-indent {
 <div id="specify-the-target-trial" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Specify the target trial<a href="target-trial-emulation.html#specify-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As suggested, we specified the target trial as below:</p>
-<table>
+<table style="width:100%;">
 <colgroup>
 <col width="15%" />
-<col width="84%" />
+<col width="83%" />
+<col width="0%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th>Protocol component</th>
 <th>Target trial emulation</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Eligibility criteria</strong></td>
 <td>Individuals aged 18 or older, newly diagnosed with PDD.</td>
+<td></td>
 </tr>
 <tr class="even">
 <td><strong>Treatment strategies</strong></td>
 <td>Individuals who initiated Sertralex or Duloxyn.</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td><strong>Assignment procedures</strong></td>
 <td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy</td>
+<td></td>
 </tr>
 <tr class="even">
 <td><strong>Follow-up period</strong></td>
 <td>Starts at randomization and ends at the first occurrence of a relapse event, death, or after one year of follow-up, whichever occurs first.</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td><strong>Outcome</strong></td>
 <td>Relapse (defined as a recurrence of depressive disorder) diagnosed by a clinician, identified through clinical assessment or documented diagnosis of depression during the follow-up period.</td>
+<td></td>
 </tr>
 <tr class="even">
 <td><strong>Causal contrasts of interest</strong></td>
 <td><p>Intention-to-treat (ITT): Effect of being assigned to treatment strategies at randomization, regardless of whether individuals adhere to them during follow-up.</p>
 <p>Per Protocol (PP): Individuals who discontinued treatment during follow-up were right censored at the first occurence.</p>
 <p>(see Appendix <a href="ich.html#ich">B</a> for causal contrasts of interest defined as formulated in the ICH E9 (R1) addendum)</p></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td><strong>Analysis plan</strong></td>
-<td><p>In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn</p>
-<p>To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted(IPCW) methods <span class="citation">(<a href="references.html#ref-robins_correcting_2000">Robins and Finkelstein 2000</a>)</span></p></td>
+<td colspan="2">In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn |
+|
+To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted (IPCW) methods <span class="citation">(<a href="references.html#ref-robins_correcting_2000">Robins and Finkelstein 2000</a>)</span></td>
 </tr>
 </tbody>
 </table>

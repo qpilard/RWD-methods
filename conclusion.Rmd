@@ -1,3 +1,3 @@
 # Conclusion {.unnumbered #conclusion}
 
-TBC
+As highlighted, careful consideration is essential when using RWD to generate RWE that complements the findings of RCTs. However, following guidance on its application and the use of appropriate statistical methods are crucial to ensuring the reliability and robustness of its conclusions.
