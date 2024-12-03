@@ -12,7 +12,9 @@ The scenario 2 discussed in Chapter \@ref(motivating-example) corresponds to the
 
 ## CCW implementation
 
-This code implements the CCW approach. 
+This code implements the CCW approach.
+
+### Cloning
 
 The cloning approach involves creating a duplicate of the initial dataset, where each clone is assigned the opposite treatment.
 
@@ -34,6 +36,8 @@ cloned_data <- original_data %>%
     TREAT = ifelse(TREAT == "Duloxyn", "Sertralex", "Duloxyn")
   )         # Remove TIME_TO_TREAT for clones
 ```
+
+### Censoring
 
 Next, the censoring pattern must be established in the dataset. In the original dataset, no censoring is applied, whereas in the cloned dataset, censoring is set at the time of treatment initiation. The two datasets are then merged and reformatted to include risk intervals for each individual, defined with start and stop times.
 
@@ -120,14 +124,14 @@ combined_data %>%
   scroll_box(width = "100%", height = "200px")
 ```
 
+### Weighting
+
 Finally, the probability of remaining uncensored is estimated separately using a Cox model.
 
 ```{r weighting, message=FALSE}
-# Step 3 - Censoring
-
+# Step 3 weighting
 
 #Filter data for the "Duloxyn" treatment group and estimate censoring probabilities
-
 combined_data_duloxyn <- combined_data %>% filter(TREAT == "Duloxyn")
 
 # Fit a Cox proportional hazards model to estimate the hazard for censoring
@@ -149,7 +153,6 @@ combined_data_duloxyn$p_uncens <- exp(-combined_data_duloxyn$hazard * exp(combin
 
 # Calculate the weights as the inverse of the uncensored probability
 combined_data_duloxyn$weights <- 1 / combined_data_duloxyn$p_uncens
-
 
 # Repeat the same process for the "Sertralex" treatment group
 # Filter data for the "Sertralex" treatment group
@@ -228,4 +231,4 @@ CCW_cox %>%
 ccw_hr_ci <- extract_hr_ci(CCW_cox)
 ```
 
-As seen, the treatment effect after accounting for immortal time bias is estimated at `r ccw_hr_ci`.
+After adjusting for immortal time bias, the estimated treatment effect is represented by `r ccw_hr_ci`, indicating that the association becomes significant. This finding aligns with the simulation process, which modeled a average difference in treatment initiation of 5 days (15 days for Duloxyn and 10 days for Sertralex), thereby offering a survival advantage for Duloxyn users.

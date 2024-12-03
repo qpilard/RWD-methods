@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data</title>
+  <title>Appendix A Installed packages | Methods for the analysis of Real World Data</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data" />
+  <meta property="og:title" content="Appendix A Installed packages | Methods for the analysis of Real World Data" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="http://qpilard.github.io/RWD-methods//images/logo.jpeg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="qpilard/RWD-methods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Target Trial Emulation using observational data | Methods for the analysis of Real World Data" />
+  <meta name="twitter:title" content="Appendix A Installed packages | Methods for the analysis of Real World Data" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="motivating-example.html"/>
-<link rel="next" href="iptw-application.html"/>
+<link rel="prev" href="references.html"/>
+<link rel="next" href="r-code.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -243,91 +243,43 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="target-trial-emulation" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Target Trial Emulation using observational data<a href="target-trial-emulation.html#target-trial-emulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="background" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Background<a href="target-trial-emulation.html#background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In 2016, Hernán and Rubins presented a framework to emulate a clinical trial using observational data when no clinical trial exists <span class="citation">(<a href="references.html#ref-hernan_using_2016">Hernán and Robins 2016</a>)</span>.The latter is a 2-step process: (1) <strong>Specifying the target trial</strong> (i.e., which is the hypothetical trial that could have been performed to answer the research question). This includes these elements eligibility criteria, treatment strategies, assignment procedures, follow-up period, outcome, causal contrast of interest and analysis plan, and (2) <strong>Emulating each element</strong> from the target trial.</p>
-<p>Let us illustrate the TTE framework using our motivating example.</p>
-</div>
-<div id="specify-the-target-trial" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Specify the target trial<a href="target-trial-emulation.html#specify-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As suggested, we specified the target trial as below:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="15%" />
-<col width="83%" />
-<col width="0%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Protocol component</th>
-<th>Target trial emulation</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Eligibility criteria</strong></td>
-<td>Individuals aged 18 or older, newly diagnosed with PDD.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Treatment strategies</strong></td>
-<td>Individuals who initiated Sertralex or Duloxyn.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Assignment procedures</strong></td>
-<td>Individuals randomly assigned to either strategy at baseline and are not aware of the assigned strategy</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Follow-up period</strong></td>
-<td>Starts at randomization and ends at the first occurrence of a relapse event, death, or after one year of follow-up, whichever occurs first.</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Outcome</strong></td>
-<td>Relapse (defined as a recurrence of depressive disorder) diagnosed by a clinician, identified through clinical assessment or documented diagnosis of depression during the follow-up period.</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Causal contrasts of interest</strong></td>
-<td><p>Intention-to-treat (ITT): Effect of being assigned to treatment strategies at randomization, regardless of whether individuals adhere to them during follow-up.</p>
-<p>Per Protocol (PP): Individuals who discontinued treatment during follow-up were right censored at the first occurence.</p>
-<p>(see Appendix <a href="ich.html#ich">C</a> for causal contrasts of interest defined as formulated in the ICH E9 (R1) addendum)</p></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Analysis plan</strong></td>
-<td colspan="2">In both analyses (ITT and PP), Kaplan-Meier estimates and Cox proportional hazards models were utilized to compare the time to relapse from randomization between Sertralex and Duloxyn |
-|
-To estimate the validity of PP, adjustment for post randomization confunding is anticipated using Inverse Probability of Censoring Weighted (IPCW) methods <span class="citation">(<a href="references.html#ref-robins_correcting_2000">Robins and Finkelstein 2000</a>)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="emulate-the-target-trial" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Emulate the target trial<a href="target-trial-emulation.html#emulate-the-target-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, we examined each component and detailed how they can be derived using RWD.</p>
-<p><strong>Eligibility criteria</strong>: We included individuals aged 18 or older who were firstly diagnosed with PDD.</p>
-<p><strong>Treatment strategies</strong>: We defined two treatment strategies: either Sertralex or Duloxyn as the first prescription following a PDD diagnosis. In scenario 1 (see Chapter <a href="motivating-example.html#motivating-example">2</a>), this is considered as immediate, while in scenario 2, we allowed a period of up to 30 days to record the first initiation.</p>
-<p><strong>Assignment procedures</strong>: We assumed these two groups were exchangeable at the date of PDD diagnosis (or up to 30 days following PDD diagnosis for scenario 2), conditionally on baseline covariates: Age, gender, Beck score and socioeconomic status.</p>
-<p><strong>Follow-up periods</strong>: We defined time zero as the date of PDD diagnosis. From this point, we followed-up individuals until the earliest of the following events: first clinical relapse, loss of follow-up (corresponds to the last activity record in the database), 365 days after time zero.</p>
-<p><strong>Outcomes</strong>: We assumed the outcome as the first relapse occurring after time zero.</p>
-<p><strong>Causal contrast of interest</strong>: We considered observational analogues of the ITT and PP effect. However, the ITT effect in the emulated trial is closer to a PP effect, as we lack information on treatment discontinuation, and thus assumed full adherence throughout the study.</p>
-<p><strong>Analysis plan</strong>: In scenario 1, we used Inverse Probability Treatment Weights (IPTW) to emulate the randomization process and applied these weights in the outcome analysis, including weighted Kaplan-Meier estimates and Cox proportional hazards models (see Chapter <a href="iptw-application.html#iptw-application">4</a> for further details). In scenario 2, we implemented the Clone-Censor-Weight method (CCW) to address both confounding and immortal time bias due to the permitted delay between PDD diagnosis and treatment initiation (see Chapter <a href="clone-censor-weight.html#clone-censor-weight">5</a> for further details).</p>
-
-</div>
+<div id="r-packages" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Appendix A</span> Installed packages<a href="r-packages.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This is the R packages installed and loaded to write this book, with the use of the pacman library.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-packages.html#cb13-1" tabindex="-1"></a><span class="co">#Install pacman library</span></span>
+<span id="cb13-2"><a href="r-packages.html#cb13-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;https://cloud.r-project.org&quot;</span>)</span>
+<span id="cb13-3"><a href="r-packages.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="r-packages.html#cb13-4" tabindex="-1"></a><span class="co"># Load pacman</span></span>
+<span id="cb13-5"><a href="r-packages.html#cb13-5" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb13-6"><a href="r-packages.html#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="r-packages.html#cb13-7" tabindex="-1"></a><span class="co"># Install and load the packages</span></span>
+<span id="cb13-8"><a href="r-packages.html#cb13-8" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb13-9"><a href="r-packages.html#cb13-9" tabindex="-1"></a>  cobalt,</span>
+<span id="cb13-10"><a href="r-packages.html#cb13-10" tabindex="-1"></a>  WeightIt,</span>
+<span id="cb13-11"><a href="r-packages.html#cb13-11" tabindex="-1"></a>  gtsummary,</span>
+<span id="cb13-12"><a href="r-packages.html#cb13-12" tabindex="-1"></a>  smd,</span>
+<span id="cb13-13"><a href="r-packages.html#cb13-13" tabindex="-1"></a>  survey,</span>
+<span id="cb13-14"><a href="r-packages.html#cb13-14" tabindex="-1"></a>  ggplot2,</span>
+<span id="cb13-15"><a href="r-packages.html#cb13-15" tabindex="-1"></a>  dplyr,</span>
+<span id="cb13-16"><a href="r-packages.html#cb13-16" tabindex="-1"></a>  ggpubr,</span>
+<span id="cb13-17"><a href="r-packages.html#cb13-17" tabindex="-1"></a>  cardx,</span>
+<span id="cb13-18"><a href="r-packages.html#cb13-18" tabindex="-1"></a>  broom,</span>
+<span id="cb13-19"><a href="r-packages.html#cb13-19" tabindex="-1"></a>  broom.helpers,</span>
+<span id="cb13-20"><a href="r-packages.html#cb13-20" tabindex="-1"></a>  survminer,</span>
+<span id="cb13-21"><a href="r-packages.html#cb13-21" tabindex="-1"></a>  survival,</span>
+<span id="cb13-22"><a href="r-packages.html#cb13-22" tabindex="-1"></a>  dagitty,</span>
+<span id="cb13-23"><a href="r-packages.html#cb13-23" tabindex="-1"></a>  ggdag,</span>
+<span id="cb13-24"><a href="r-packages.html#cb13-24" tabindex="-1"></a>  kable,</span>
+<span id="cb13-25"><a href="r-packages.html#cb13-25" tabindex="-1"></a>  kableExtra</span>
+<span id="cb13-26"><a href="r-packages.html#cb13-26" tabindex="-1"></a>)</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="motivating-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="iptw-application.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

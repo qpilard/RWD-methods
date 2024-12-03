@@ -77,9 +77,9 @@ TIME_TO_TREAT <- numeric(N)
 for (i in 1:N) {
   # Select appropriate coefficients
   delay_coeffs <- if (TREAT[i] == 1) {
-    coefficients_delay$sertralex 
-  } else {
     coefficients_delay$duloxyn
+  } else {
+    coefficients_delay$sertralex 
   }
   
   # Compute the mean

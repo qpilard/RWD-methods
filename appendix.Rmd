@@ -1,5 +1,38 @@
 # (APPENDIX) Appendix {.unnumbered}
 
+# Installed packages {#r-packages}
+
+This is the R packages installed and loaded to write this book, with the use of the pacman library.
+
+```{r installed_packages, message=FALSE, warning=FALSE}
+#Install pacman library
+if (!require("pacman")) install.packages("pacman", repos = "https://cloud.r-project.org")
+
+# Load pacman
+library(pacman)
+
+# Install and load the packages
+pacman::p_load(
+  cobalt,
+  WeightIt,
+  gtsummary,
+  smd,
+  survey,
+  ggplot2,
+  dplyr,
+  ggpubr,
+  cardx,
+  broom,
+  broom.helpers,
+  survminer,
+  survival,
+  dagitty,
+  ggdag,
+  kable,
+  kableExtra
+)
+```
+
 # R code of the simulated dataset {#r-code}
 
 This is the R code to reproduce the motivating example:
@@ -56,7 +89,7 @@ TREAT <- rbinom(N, 1, logit_prob(eta_treat + rnorm(N)))  # Simulating treatment 
 # Coefficients for treatment delay based on treatment status
 coefficients_delay <- list(
   sertralex = list(
-    intercept = 15,      # Base parameter for delay
+    intercept = 10,      # Base parameter for delay
     age = -0.02,         # Negative effect of age on delay
     gender = 0.1,        # Positive effect of gender on delay
     beck = -0.05,        # Negative effect of Beck score on delay
@@ -84,9 +117,9 @@ TIME_TO_TREAT <- numeric(N)
 for (i in 1:N) {
   # Select appropriate coefficients
   delay_coeffs <- if (TREAT[i] == 1) {
-    coefficients_delay$sertralex 
-  } else {
     coefficients_delay$duloxyn
+  } else {
+    coefficients_delay$sertralex 
   }
   
   # Compute the mean

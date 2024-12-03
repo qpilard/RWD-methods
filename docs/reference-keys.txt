@@ -2,7 +2,9 @@ fig:unnamed-chunk-3
 introduction
 definition
 use-of-rwd-in-drug-development
-addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials
+regulators-acceptance-of-rwd
+use-of-external-control-arm-and-target-trial-emulation
+main-biases-in-rwd
 motivating-example
 target-trial-emulation
 background
@@ -17,7 +19,11 @@ outcome-analysis
 clone-censor-weight
 background-2
 ccw-implementation
+cloning
+censoring
+weighting
 outcome-analysis-1
+r-packages
 r-code
 ich
 dag

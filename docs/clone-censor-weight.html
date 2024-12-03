@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-12-02" />
+<meta name="date" content="2024-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#use-of-rwd-in-drug-development"><i class="fa fa-check"></i><b>1.2</b> Use of RWD in drug development</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials"><i class="fa fa-check"></i><b>1.3</b> Addressing Challenges with RWD: External Control Arms and Emulation of Trials</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#regulators-acceptance-of-rwd"><i class="fa fa-check"></i><b>1.3</b> Regulators acceptance of RWD</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#use-of-external-control-arm-and-target-trial-emulation"><i class="fa fa-check"></i><b>1.4</b> Use of External Control Arm and Target Trial Emulation</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#main-biases-in-rwd"><i class="fa fa-check"></i><b>1.5</b> Main biases in RWD</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="motivating-example.html"><a href="motivating-example.html"><i class="fa fa-check"></i><b>2</b> Motivating example</a></li>
 <li class="chapter" data-level="3" data-path="target-trial-emulation.html"><a href="target-trial-emulation.html"><i class="fa fa-check"></i><b>3</b> Target Trial Emulation using observational data</a>
@@ -208,16 +210,22 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#background-2"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
-<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a></li>
+<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#cloning"><i class="fa fa-check"></i><b>5.2.1</b> Cloning</a></li>
+<li class="chapter" data-level="5.2.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#censoring"><i class="fa fa-check"></i><b>5.2.2</b> Censoring</a></li>
+<li class="chapter" data-level="5.2.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#weighting"><i class="fa fa-check"></i><b>5.2.3</b> Weighting</a></li>
+</ul></li>
 <li class="chapter" data-level="5.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#outcome-analysis-1"><i class="fa fa-check"></i><b>5.3</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>A</b> R code of the simulated dataset</a></li>
-<li class="chapter" data-level="B" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>B</b> ICH E9 (R1) addendum</a></li>
-<li class="chapter" data-level="C" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>C</b> DAG of the simulated dataset</a></li>
-<li class="chapter" data-level="D" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>D</b> Causal inference estimand</a></li>
+<li class="chapter" data-level="A" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>A</b> Installed packages</a></li>
+<li class="chapter" data-level="B" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>B</b> R code of the simulated dataset</a></li>
+<li class="chapter" data-level="C" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>C</b> ICH E9 (R1) addendum</a></li>
+<li class="chapter" data-level="D" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>D</b> DAG of the simulated dataset</a></li>
+<li class="chapter" data-level="E" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>E</b> Causal inference estimand</a></li>
 </ul>
 
       </nav>
@@ -247,6 +255,8 @@ div.csl-indent {
 <div id="ccw-implementation" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> CCW implementation<a href="clone-censor-weight.html#ccw-implementation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This code implements the CCW approach.</p>
+<div id="cloning" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Cloning<a href="clone-censor-weight.html#cloning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The cloning approach involves creating a duplicate of the initial dataset, where each clone is assigned the opposite treatment.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="clone-censor-weight.html#cb7-1" tabindex="-1"></a><span class="co"># Step 1 cloning</span></span>
 <span id="cb7-2"><a href="clone-censor-weight.html#cb7-2" tabindex="-1"></a><span class="co"># Make a copy of original data</span></span>
@@ -264,6 +274,9 @@ div.csl-indent {
 <span id="cb7-14"><a href="clone-censor-weight.html#cb7-14" tabindex="-1"></a>    <span class="at">ID =</span> ID <span class="sc">+</span> <span class="dv">1000</span>,                   <span class="co"># Modify ID to differentiate cloned records</span></span>
 <span id="cb7-15"><a href="clone-censor-weight.html#cb7-15" tabindex="-1"></a>    <span class="at">TREAT =</span> <span class="fu">ifelse</span>(TREAT <span class="sc">==</span> <span class="st">&quot;Duloxyn&quot;</span>, <span class="st">&quot;Sertralex&quot;</span>, <span class="st">&quot;Duloxyn&quot;</span>)</span>
 <span id="cb7-16"><a href="clone-censor-weight.html#cb7-16" tabindex="-1"></a>  )         <span class="co"># Remove TIME_TO_TREAT for clones</span></span></code></pre></div>
+</div>
+<div id="censoring" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Censoring<a href="clone-censor-weight.html#censoring" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Next, the censoring pattern must be established in the dataset. In the original dataset, no censoring is applied, whereas in the cloned dataset, censoring is set at the time of treatment initiation. The two datasets are then merged and reformatted to include risk intervals for each individual, defined with start and stop times.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="clone-censor-weight.html#cb8-1" tabindex="-1"></a><span class="co"># Step 2 censoring</span></span>
 <span id="cb8-2"><a href="clone-censor-weight.html#cb8-2" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> original_data <span class="sc">%&gt;%</span></span>
@@ -402,6 +415,47 @@ Sertralex
 0.000
 </td>
 <td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Sertralex
+</td>
+<td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
 5.001
 </td>
 <td style="text-align:right;">
@@ -7167,6 +7221,47 @@ Duloxyn
 0.000
 </td>
 <td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1003
+</td>
+<td style="text-align:left;">
+Duloxyn
+</td>
+<td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
 5.001
 </td>
 <td style="text-align:right;">
@@ -7373,211 +7468,6 @@ Duloxyn
 </td>
 <td style="text-align:right;">
 10.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-10.001
-</td>
-<td style="text-align:right;">
-11.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-11.001
-</td>
-<td style="text-align:right;">
-12.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-12.001
-</td>
-<td style="text-align:right;">
-13.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-13.001
-</td>
-<td style="text-align:right;">
-14.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-14.001
-</td>
-<td style="text-align:right;">
-15.001
 </td>
 <td style="text-align:right;">
 0
@@ -7610,70 +7500,70 @@ Female
 </tbody>
 </table>
 </div>
+</div>
+<div id="weighting" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Weighting<a href="clone-censor-weight.html#weighting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, the probability of remaining uncensored is estimated separately using a Cox model.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="clone-censor-weight.html#cb9-1" tabindex="-1"></a><span class="co"># Step 3 - Censoring</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="clone-censor-weight.html#cb9-1" tabindex="-1"></a><span class="co"># Step 3 weighting</span></span>
 <span id="cb9-2"><a href="clone-censor-weight.html#cb9-2" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="clone-censor-weight.html#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="clone-censor-weight.html#cb9-4" tabindex="-1"></a><span class="co">#Filter data for the &quot;Duloxyn&quot; treatment group and estimate censoring probabilities</span></span>
+<span id="cb9-3"><a href="clone-censor-weight.html#cb9-3" tabindex="-1"></a><span class="co">#Filter data for the &quot;Duloxyn&quot; treatment group and estimate censoring probabilities</span></span>
+<span id="cb9-4"><a href="clone-censor-weight.html#cb9-4" tabindex="-1"></a>combined_data_duloxyn <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(TREAT <span class="sc">==</span> <span class="st">&quot;Duloxyn&quot;</span>)</span>
 <span id="cb9-5"><a href="clone-censor-weight.html#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="clone-censor-weight.html#cb9-6" tabindex="-1"></a>combined_data_duloxyn <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(TREAT <span class="sc">==</span> <span class="st">&quot;Duloxyn&quot;</span>)</span>
-<span id="cb9-7"><a href="clone-censor-weight.html#cb9-7" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="clone-censor-weight.html#cb9-8" tabindex="-1"></a><span class="co"># Fit a Cox proportional hazards model to estimate the hazard for censoring</span></span>
-<span id="cb9-9"><a href="clone-censor-weight.html#cb9-9" tabindex="-1"></a>ms_cens_duloxyn <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TSTART, TSTOP, CENSOR) <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO_2 <span class="sc">+</span> SOCIO_ECO_3 <span class="sc">+</span> SOCIO_ECO_4 <span class="sc">+</span> SOCIO_ECO_5 <span class="sc">+</span> BECK, </span>
-<span id="cb9-10"><a href="clone-censor-weight.html#cb9-10" tabindex="-1"></a>                         <span class="at">ties =</span> <span class="st">&quot;efron&quot;</span>, <span class="at">data =</span> combined_data_duloxyn)</span>
-<span id="cb9-11"><a href="clone-censor-weight.html#cb9-11" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="clone-censor-weight.html#cb9-12" tabindex="-1"></a><span class="co"># Extract the baseline hazard from the Cox model</span></span>
-<span id="cb9-13"><a href="clone-censor-weight.html#cb9-13" tabindex="-1"></a>baseline_hazard <span class="ot">&lt;-</span> <span class="fu">basehaz</span>(ms_cens_duloxyn, <span class="at">centered =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb9-14"><a href="clone-censor-weight.html#cb9-14" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="clone-censor-weight.html#cb9-15" tabindex="-1"></a><span class="co"># Calculate the linear predictor (lp) for the &quot;Duloxyn&quot; group</span></span>
-<span id="cb9-16"><a href="clone-censor-weight.html#cb9-16" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>lp <span class="ot">&lt;-</span> <span class="fu">predict</span>(ms_cens_duloxyn, <span class="at">newdata =</span> combined_data_duloxyn, <span class="at">type =</span> <span class="st">&quot;lp&quot;</span>)</span>
-<span id="cb9-17"><a href="clone-censor-weight.html#cb9-17" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="clone-censor-weight.html#cb9-18" tabindex="-1"></a><span class="co"># Merge the baseline hazard with the dataset based on time</span></span>
-<span id="cb9-19"><a href="clone-censor-weight.html#cb9-19" tabindex="-1"></a>combined_data_duloxyn <span class="ot">&lt;-</span> <span class="fu">merge</span>(combined_data_duloxyn, baseline_hazard, </span>
-<span id="cb9-20"><a href="clone-censor-weight.html#cb9-20" tabindex="-1"></a>                               <span class="at">by.x =</span> <span class="st">&quot;TSTOP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;time&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-21"><a href="clone-censor-weight.html#cb9-21" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="clone-censor-weight.html#cb9-22" tabindex="-1"></a><span class="co"># Calculate the uncensored probability</span></span>
-<span id="cb9-23"><a href="clone-censor-weight.html#cb9-23" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>p_uncens <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>combined_data_duloxyn<span class="sc">$</span>hazard <span class="sc">*</span> <span class="fu">exp</span>(combined_data_duloxyn<span class="sc">$</span>lp))</span>
-<span id="cb9-24"><a href="clone-censor-weight.html#cb9-24" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="clone-censor-weight.html#cb9-25" tabindex="-1"></a><span class="co"># Calculate the weights as the inverse of the uncensored probability</span></span>
-<span id="cb9-26"><a href="clone-censor-weight.html#cb9-26" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>weights <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> combined_data_duloxyn<span class="sc">$</span>p_uncens</span>
-<span id="cb9-27"><a href="clone-censor-weight.html#cb9-27" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="clone-censor-weight.html#cb9-6" tabindex="-1"></a><span class="co"># Fit a Cox proportional hazards model to estimate the hazard for censoring</span></span>
+<span id="cb9-7"><a href="clone-censor-weight.html#cb9-7" tabindex="-1"></a>ms_cens_duloxyn <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TSTART, TSTOP, CENSOR) <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO_2 <span class="sc">+</span> SOCIO_ECO_3 <span class="sc">+</span> SOCIO_ECO_4 <span class="sc">+</span> SOCIO_ECO_5 <span class="sc">+</span> BECK, </span>
+<span id="cb9-8"><a href="clone-censor-weight.html#cb9-8" tabindex="-1"></a>                         <span class="at">ties =</span> <span class="st">&quot;efron&quot;</span>, <span class="at">data =</span> combined_data_duloxyn)</span>
+<span id="cb9-9"><a href="clone-censor-weight.html#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="clone-censor-weight.html#cb9-10" tabindex="-1"></a><span class="co"># Extract the baseline hazard from the Cox model</span></span>
+<span id="cb9-11"><a href="clone-censor-weight.html#cb9-11" tabindex="-1"></a>baseline_hazard <span class="ot">&lt;-</span> <span class="fu">basehaz</span>(ms_cens_duloxyn, <span class="at">centered =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-12"><a href="clone-censor-weight.html#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="clone-censor-weight.html#cb9-13" tabindex="-1"></a><span class="co"># Calculate the linear predictor (lp) for the &quot;Duloxyn&quot; group</span></span>
+<span id="cb9-14"><a href="clone-censor-weight.html#cb9-14" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>lp <span class="ot">&lt;-</span> <span class="fu">predict</span>(ms_cens_duloxyn, <span class="at">newdata =</span> combined_data_duloxyn, <span class="at">type =</span> <span class="st">&quot;lp&quot;</span>)</span>
+<span id="cb9-15"><a href="clone-censor-weight.html#cb9-15" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="clone-censor-weight.html#cb9-16" tabindex="-1"></a><span class="co"># Merge the baseline hazard with the dataset based on time</span></span>
+<span id="cb9-17"><a href="clone-censor-weight.html#cb9-17" tabindex="-1"></a>combined_data_duloxyn <span class="ot">&lt;-</span> <span class="fu">merge</span>(combined_data_duloxyn, baseline_hazard, </span>
+<span id="cb9-18"><a href="clone-censor-weight.html#cb9-18" tabindex="-1"></a>                               <span class="at">by.x =</span> <span class="st">&quot;TSTOP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;time&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-19"><a href="clone-censor-weight.html#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="clone-censor-weight.html#cb9-20" tabindex="-1"></a><span class="co"># Calculate the uncensored probability</span></span>
+<span id="cb9-21"><a href="clone-censor-weight.html#cb9-21" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>p_uncens <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>combined_data_duloxyn<span class="sc">$</span>hazard <span class="sc">*</span> <span class="fu">exp</span>(combined_data_duloxyn<span class="sc">$</span>lp))</span>
+<span id="cb9-22"><a href="clone-censor-weight.html#cb9-22" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="clone-censor-weight.html#cb9-23" tabindex="-1"></a><span class="co"># Calculate the weights as the inverse of the uncensored probability</span></span>
+<span id="cb9-24"><a href="clone-censor-weight.html#cb9-24" tabindex="-1"></a>combined_data_duloxyn<span class="sc">$</span>weights <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> combined_data_duloxyn<span class="sc">$</span>p_uncens</span>
+<span id="cb9-25"><a href="clone-censor-weight.html#cb9-25" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="clone-censor-weight.html#cb9-26" tabindex="-1"></a><span class="co"># Repeat the same process for the &quot;Sertralex&quot; treatment group</span></span>
+<span id="cb9-27"><a href="clone-censor-weight.html#cb9-27" tabindex="-1"></a><span class="co"># Filter data for the &quot;Sertralex&quot; treatment group</span></span>
 <span id="cb9-28"><a href="clone-censor-weight.html#cb9-28" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="clone-censor-weight.html#cb9-29" tabindex="-1"></a><span class="co"># Repeat the same process for the &quot;Sertralex&quot; treatment group</span></span>
-<span id="cb9-30"><a href="clone-censor-weight.html#cb9-30" tabindex="-1"></a><span class="co"># Filter data for the &quot;Sertralex&quot; treatment group</span></span>
-<span id="cb9-31"><a href="clone-censor-weight.html#cb9-31" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="clone-censor-weight.html#cb9-32" tabindex="-1"></a>combined_data_sertralex <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(TREAT <span class="sc">==</span> <span class="st">&quot;Sertralex&quot;</span>)</span>
-<span id="cb9-33"><a href="clone-censor-weight.html#cb9-33" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="clone-censor-weight.html#cb9-34" tabindex="-1"></a><span class="co"># Fit a Cox proportional hazards model for censoring in the &quot;Sertralex&quot; group</span></span>
-<span id="cb9-35"><a href="clone-censor-weight.html#cb9-35" tabindex="-1"></a>ms_cens_sertralex <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TSTART, TSTOP, CENSOR) <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO_2 <span class="sc">+</span> SOCIO_ECO_3 <span class="sc">+</span> SOCIO_ECO_4 <span class="sc">+</span> SOCIO_ECO_5 <span class="sc">+</span> BECK, </span>
-<span id="cb9-36"><a href="clone-censor-weight.html#cb9-36" tabindex="-1"></a>                           <span class="at">ties =</span> <span class="st">&quot;efron&quot;</span>, <span class="at">data =</span> combined_data_sertralex)</span>
+<span id="cb9-29"><a href="clone-censor-weight.html#cb9-29" tabindex="-1"></a>combined_data_sertralex <span class="ot">&lt;-</span> combined_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(TREAT <span class="sc">==</span> <span class="st">&quot;Sertralex&quot;</span>)</span>
+<span id="cb9-30"><a href="clone-censor-weight.html#cb9-30" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="clone-censor-weight.html#cb9-31" tabindex="-1"></a><span class="co"># Fit a Cox proportional hazards model for censoring in the &quot;Sertralex&quot; group</span></span>
+<span id="cb9-32"><a href="clone-censor-weight.html#cb9-32" tabindex="-1"></a>ms_cens_sertralex <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(TSTART, TSTOP, CENSOR) <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO_2 <span class="sc">+</span> SOCIO_ECO_3 <span class="sc">+</span> SOCIO_ECO_4 <span class="sc">+</span> SOCIO_ECO_5 <span class="sc">+</span> BECK, </span>
+<span id="cb9-33"><a href="clone-censor-weight.html#cb9-33" tabindex="-1"></a>                           <span class="at">ties =</span> <span class="st">&quot;efron&quot;</span>, <span class="at">data =</span> combined_data_sertralex)</span>
+<span id="cb9-34"><a href="clone-censor-weight.html#cb9-34" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="clone-censor-weight.html#cb9-35" tabindex="-1"></a><span class="co"># Use the baseline hazard from the &quot;Duloxyn&quot; model (assumed shared here)</span></span>
+<span id="cb9-36"><a href="clone-censor-weight.html#cb9-36" tabindex="-1"></a>baseline_hazard <span class="ot">&lt;-</span> <span class="fu">basehaz</span>(ms_cens_duloxyn, <span class="at">centered =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb9-37"><a href="clone-censor-weight.html#cb9-37" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="clone-censor-weight.html#cb9-38" tabindex="-1"></a><span class="co"># Use the baseline hazard from the &quot;Duloxyn&quot; model (assumed shared here)</span></span>
-<span id="cb9-39"><a href="clone-censor-weight.html#cb9-39" tabindex="-1"></a>baseline_hazard <span class="ot">&lt;-</span> <span class="fu">basehaz</span>(ms_cens_duloxyn, <span class="at">centered =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-38"><a href="clone-censor-weight.html#cb9-38" tabindex="-1"></a><span class="co"># Calculate the linear predictor (lp) for the &quot;Sertralex&quot; group</span></span>
+<span id="cb9-39"><a href="clone-censor-weight.html#cb9-39" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>lp <span class="ot">&lt;-</span> <span class="fu">predict</span>(ms_cens_sertralex, <span class="at">newdata =</span> combined_data_sertralex, <span class="at">type =</span> <span class="st">&quot;lp&quot;</span>)</span>
 <span id="cb9-40"><a href="clone-censor-weight.html#cb9-40" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="clone-censor-weight.html#cb9-41" tabindex="-1"></a><span class="co"># Calculate the linear predictor (lp) for the &quot;Sertralex&quot; group</span></span>
-<span id="cb9-42"><a href="clone-censor-weight.html#cb9-42" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>lp <span class="ot">&lt;-</span> <span class="fu">predict</span>(ms_cens_sertralex, <span class="at">newdata =</span> combined_data_sertralex, <span class="at">type =</span> <span class="st">&quot;lp&quot;</span>)</span>
-<span id="cb9-43"><a href="clone-censor-weight.html#cb9-43" tabindex="-1"></a></span>
-<span id="cb9-44"><a href="clone-censor-weight.html#cb9-44" tabindex="-1"></a><span class="co"># Merge the baseline hazard with the dataset based on time</span></span>
-<span id="cb9-45"><a href="clone-censor-weight.html#cb9-45" tabindex="-1"></a>combined_data_sertralex <span class="ot">&lt;-</span> <span class="fu">merge</span>(combined_data_sertralex, baseline_hazard, </span>
-<span id="cb9-46"><a href="clone-censor-weight.html#cb9-46" tabindex="-1"></a>                                 <span class="at">by.x =</span> <span class="st">&quot;TSTOP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;time&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-41"><a href="clone-censor-weight.html#cb9-41" tabindex="-1"></a><span class="co"># Merge the baseline hazard with the dataset based on time</span></span>
+<span id="cb9-42"><a href="clone-censor-weight.html#cb9-42" tabindex="-1"></a>combined_data_sertralex <span class="ot">&lt;-</span> <span class="fu">merge</span>(combined_data_sertralex, baseline_hazard, </span>
+<span id="cb9-43"><a href="clone-censor-weight.html#cb9-43" tabindex="-1"></a>                                 <span class="at">by.x =</span> <span class="st">&quot;TSTOP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;time&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-44"><a href="clone-censor-weight.html#cb9-44" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="clone-censor-weight.html#cb9-45" tabindex="-1"></a><span class="co"># Calculate the uncensored probability</span></span>
+<span id="cb9-46"><a href="clone-censor-weight.html#cb9-46" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>p_uncens <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>combined_data_sertralex<span class="sc">$</span>hazard <span class="sc">*</span> <span class="fu">exp</span>(combined_data_sertralex<span class="sc">$</span>lp))</span>
 <span id="cb9-47"><a href="clone-censor-weight.html#cb9-47" tabindex="-1"></a></span>
-<span id="cb9-48"><a href="clone-censor-weight.html#cb9-48" tabindex="-1"></a><span class="co"># Calculate the uncensored probability</span></span>
-<span id="cb9-49"><a href="clone-censor-weight.html#cb9-49" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>p_uncens <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>combined_data_sertralex<span class="sc">$</span>hazard <span class="sc">*</span> <span class="fu">exp</span>(combined_data_sertralex<span class="sc">$</span>lp))</span>
+<span id="cb9-48"><a href="clone-censor-weight.html#cb9-48" tabindex="-1"></a><span class="co"># Calculate the weights as the inverse of the uncensored probability</span></span>
+<span id="cb9-49"><a href="clone-censor-weight.html#cb9-49" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>weights <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> combined_data_sertralex<span class="sc">$</span>p_uncens</span>
 <span id="cb9-50"><a href="clone-censor-weight.html#cb9-50" tabindex="-1"></a></span>
-<span id="cb9-51"><a href="clone-censor-weight.html#cb9-51" tabindex="-1"></a><span class="co"># Calculate the weights as the inverse of the uncensored probability</span></span>
-<span id="cb9-52"><a href="clone-censor-weight.html#cb9-52" tabindex="-1"></a>combined_data_sertralex<span class="sc">$</span>weights <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> combined_data_sertralex<span class="sc">$</span>p_uncens</span>
+<span id="cb9-51"><a href="clone-censor-weight.html#cb9-51" tabindex="-1"></a><span class="co"># Combine the datasets for &quot;Duloxyn&quot; and &quot;Sertralex&quot; treatments with the calculated weights</span></span>
+<span id="cb9-52"><a href="clone-censor-weight.html#cb9-52" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(combined_data_duloxyn, combined_data_sertralex)</span>
 <span id="cb9-53"><a href="clone-censor-weight.html#cb9-53" tabindex="-1"></a></span>
-<span id="cb9-54"><a href="clone-censor-weight.html#cb9-54" tabindex="-1"></a><span class="co"># Combine the datasets for &quot;Duloxyn&quot; and &quot;Sertralex&quot; treatments with the calculated weights</span></span>
-<span id="cb9-55"><a href="clone-censor-weight.html#cb9-55" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(combined_data_duloxyn, combined_data_sertralex)</span>
-<span id="cb9-56"><a href="clone-censor-weight.html#cb9-56" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="clone-censor-weight.html#cb9-57" tabindex="-1"></a><span class="co"># Display the first individual (ID = 3) and its clone (ID = 1003) with improved visualization</span></span>
-<span id="cb9-58"><a href="clone-censor-weight.html#cb9-58" tabindex="-1"></a>combined_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-59"><a href="clone-censor-weight.html#cb9-59" tabindex="-1"></a>  <span class="fu">filter</span>(ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1003</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-60"><a href="clone-censor-weight.html#cb9-60" tabindex="-1"></a>  <span class="fu">arrange</span>(ID) <span class="sc">%&gt;%</span></span>
-<span id="cb9-61"><a href="clone-censor-weight.html#cb9-61" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-62"><a href="clone-censor-weight.html#cb9-62" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-63"><a href="clone-censor-weight.html#cb9-63" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="at">height =</span> <span class="st">&quot;200px&quot;</span>)</span></code></pre></div>
+<span id="cb9-54"><a href="clone-censor-weight.html#cb9-54" tabindex="-1"></a><span class="co"># Display the first individual (ID = 3) and its clone (ID = 1003) with improved visualization</span></span>
+<span id="cb9-55"><a href="clone-censor-weight.html#cb9-55" tabindex="-1"></a>combined_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-56"><a href="clone-censor-weight.html#cb9-56" tabindex="-1"></a>  <span class="fu">filter</span>(ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1003</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-57"><a href="clone-censor-weight.html#cb9-57" tabindex="-1"></a>  <span class="fu">arrange</span>(ID) <span class="sc">%&gt;%</span></span>
+<span id="cb9-58"><a href="clone-censor-weight.html#cb9-58" tabindex="-1"></a>  <span class="fu">kbl</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-59"><a href="clone-censor-weight.html#cb9-59" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-60"><a href="clone-censor-weight.html#cb9-60" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="at">height =</span> <span class="st">&quot;200px&quot;</span>)</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead>
@@ -7734,7 +7624,7 @@ weights
 <tbody>
 <tr>
 <td style="text-align:right;">
-5.001
+4.001
 </td>
 <td style="text-align:right;">
 3
@@ -7773,16 +7663,69 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0353463
 </td>
 <td style="text-align:right;">
-1.0000000
+0.9748327
 </td>
 <td style="text-align:right;">
-1.000000
+1.025817
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.001
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Sertralex
+</td>
+<td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+-0.3269311
+</td>
+<td style="text-align:right;">
+0.0897951
+</td>
+<td style="text-align:right;">
+0.9372978
+</td>
+<td style="text-align:right;">
+1.066897
 </td>
 </tr>
 <tr>
@@ -7826,16 +7769,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0013513
+0.1618184
 </td>
 <td style="text-align:right;">
-0.9988989
+0.8898586
 </td>
 <td style="text-align:right;">
-1.001102
+1.123774
 </td>
 </tr>
 <tr>
@@ -7879,16 +7822,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0027131
+0.2280559
 </td>
 <td style="text-align:right;">
-0.9977904
+0.8483527
 </td>
 <td style="text-align:right;">
-1.002215
+1.178755
 </td>
 </tr>
 <tr>
@@ -7932,16 +7875,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0082927
+0.3461736
 </td>
 <td style="text-align:right;">
-0.9932617
+0.7790833
 </td>
 <td style="text-align:right;">
-1.006784
+1.283560
 </td>
 </tr>
 <tr>
@@ -7985,16 +7928,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0225162
+0.4478113
 </td>
 <td style="text-align:right;">
-0.9818099
+0.7240233
 </td>
 <td style="text-align:right;">
-1.018527
+1.381171
 </td>
 </tr>
 <tr>
@@ -8038,16 +7981,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.0645376
+0.5468552
 </td>
 <td style="text-align:right;">
-0.9487425
+0.6741144
 </td>
 <td style="text-align:right;">
-1.054027
+1.483428
 </td>
 </tr>
 <tr>
@@ -8091,16 +8034,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.1144831
+0.6352811
 </td>
 <td style="text-align:right;">
-0.9108849
+0.6324701
 </td>
 <td style="text-align:right;">
-1.097833
+1.581103
 </td>
 </tr>
 <tr>
@@ -8144,16 +8087,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.1661099
+0.6745200
 </td>
 <td style="text-align:right;">
-0.8733399
+0.6148242
 </td>
 <td style="text-align:right;">
-1.145029
+1.626481
 </td>
 </tr>
 <tr>
@@ -8197,16 +8140,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.2663942
+0.6894336
 </td>
 <td style="text-align:right;">
-0.8047748
+0.6082474
 </td>
 <td style="text-align:right;">
-1.242584
+1.644068
 </td>
 </tr>
 <tr>
@@ -8250,16 +8193,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.3488185
+0.7130222
 </td>
 <td style="text-align:right;">
-0.7524702
+0.5979883
 </td>
 <td style="text-align:right;">
-1.328956
+1.672274
 </td>
 </tr>
 <tr>
@@ -8303,16 +8246,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.4181057
+0.7209293
 </td>
 <td style="text-align:right;">
-0.7111414
+0.5945882
 </td>
 <td style="text-align:right;">
-1.406190
+1.681836
 </td>
 </tr>
 <tr>
@@ -8356,16 +8299,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.4954028
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6677077
+0.5929288
 </td>
 <td style="text-align:right;">
-1.497661
+1.686543
 </td>
 </tr>
 <tr>
@@ -8409,16 +8352,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5299113
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6491835
+0.5929288
 </td>
 <td style="text-align:right;">
-1.540396
+1.686543
 </td>
 </tr>
 <tr>
@@ -8462,16 +8405,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5437311
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6419100
+0.5929288
 </td>
 <td style="text-align:right;">
-1.557851
+1.686543
 </td>
 </tr>
 <tr>
@@ -8515,16 +8458,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5584561
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6342497
+0.5929288
 </td>
 <td style="text-align:right;">
-1.576666
+1.686543
 </td>
 </tr>
 <tr>
@@ -8568,16 +8511,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5661477
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6302847
+0.5929288
 </td>
 <td style="text-align:right;">
-1.586585
+1.686543
 </td>
 </tr>
 <tr>
@@ -8621,16 +8564,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8674,16 +8617,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8727,16 +8670,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8780,16 +8723,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8833,16 +8776,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8886,16 +8829,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8939,16 +8882,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -8992,16 +8935,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9045,16 +8988,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9098,16 +9041,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9151,16 +9094,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9204,16 +9147,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9257,16 +9200,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9310,16 +9253,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9363,16 +9306,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9416,16 +9359,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9469,16 +9412,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9522,16 +9465,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9575,16 +9518,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9628,16 +9571,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9681,16 +9624,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9734,16 +9677,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9787,16 +9730,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9840,16 +9783,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9893,16 +9836,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9946,16 +9889,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -9999,16 +9942,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10052,16 +9995,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10105,16 +10048,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10158,16 +10101,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10211,16 +10154,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10264,16 +10207,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10317,16 +10260,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10370,16 +10313,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10423,16 +10366,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10476,16 +10419,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10529,16 +10472,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10582,16 +10525,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10635,16 +10578,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10688,16 +10631,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10741,16 +10684,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10794,16 +10737,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10847,16 +10790,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10900,16 +10843,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -10953,16 +10896,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11006,16 +10949,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11059,16 +11002,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11112,16 +11055,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11165,16 +11108,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11218,16 +11161,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11271,16 +11214,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11324,16 +11267,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11377,16 +11320,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11430,16 +11373,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11483,16 +11426,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11536,16 +11479,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11589,16 +11532,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11642,16 +11585,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11695,16 +11638,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11748,16 +11691,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11801,16 +11744,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11854,16 +11797,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11907,16 +11850,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -11960,16 +11903,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12013,16 +11956,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12066,16 +12009,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12119,16 +12062,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12172,16 +12115,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12225,16 +12168,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12278,16 +12221,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12331,16 +12274,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12384,16 +12327,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12437,16 +12380,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12490,16 +12433,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12543,16 +12486,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12596,16 +12539,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12649,16 +12592,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12702,16 +12645,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12755,16 +12698,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12808,16 +12751,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12861,16 +12804,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12914,16 +12857,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -12967,16 +12910,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13020,16 +12963,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13073,16 +13016,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13126,16 +13069,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13179,16 +13122,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13232,16 +13175,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13285,16 +13228,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13338,16 +13281,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13391,16 +13334,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13444,16 +13387,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13497,16 +13440,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13550,16 +13493,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13603,16 +13546,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13656,16 +13599,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13709,16 +13652,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13762,16 +13705,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13815,16 +13758,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13868,16 +13811,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13921,16 +13864,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -13974,16 +13917,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14027,16 +13970,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14080,16 +14023,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14133,16 +14076,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14186,16 +14129,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14239,16 +14182,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14292,16 +14235,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14345,16 +14288,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14398,16 +14341,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14451,16 +14394,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14504,16 +14447,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14557,16 +14500,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14610,16 +14553,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14663,16 +14606,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14716,16 +14659,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14769,16 +14712,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14822,16 +14765,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14875,16 +14818,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14928,16 +14871,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -14981,16 +14924,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15034,16 +14977,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15087,16 +15030,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15140,16 +15083,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15193,16 +15136,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15246,16 +15189,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15299,16 +15242,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15352,16 +15295,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15405,16 +15348,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15458,16 +15401,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15511,16 +15454,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15564,16 +15507,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15617,16 +15560,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15670,16 +15613,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15723,16 +15666,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15776,16 +15719,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15829,16 +15772,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15882,16 +15825,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15935,16 +15878,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -15988,16 +15931,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16041,16 +15984,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16094,16 +16037,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16147,16 +16090,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16200,16 +16143,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16253,16 +16196,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16306,16 +16249,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16359,16 +16302,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16412,16 +16355,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
@@ -16465,21 +16408,21 @@ Female
 23
 </td>
 <td style="text-align:right;">
--0.2041918
+-0.3269311
 </td>
 <td style="text-align:right;">
-0.5701637
+0.7248048
 </td>
 <td style="text-align:right;">
-0.6282244
+0.5929288
 </td>
 <td style="text-align:right;">
-1.591788
+1.686543
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-5.001
+4.001
 </td>
 <td style="text-align:right;">
 1003
@@ -16518,16 +16461,69 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.0000000
+0.0360903
 </td>
 <td style="text-align:right;">
-1.0000000
+0.9550646
 </td>
 <td style="text-align:right;">
-1.000000
+1.047050
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.001
+</td>
+<td style="text-align:right;">
+1003
+</td>
+<td style="text-align:left;">
+Duloxyn
+</td>
+<td style="text-align:right;">
+4.001
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+0.2421007
+</td>
+<td style="text-align:right;">
+0.0921679
+</td>
+<td style="text-align:right;">
+0.8892163
+</td>
+<td style="text-align:right;">
+1.124586
 </td>
 </tr>
 <tr>
@@ -16571,16 +16567,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.0014194
+0.1644918
 </td>
 <td style="text-align:right;">
-0.9970570
+0.8109493
 </td>
 <td style="text-align:right;">
-1.002952
+1.233123
 </td>
 </tr>
 <tr>
@@ -16624,16 +16620,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.0028491
+0.2329759
 </td>
 <td style="text-align:right;">
-0.9941015
+0.7431977
 </td>
 <td style="text-align:right;">
-1.005934
+1.345537
 </td>
 </tr>
 <tr>
@@ -16677,16 +16673,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.0086082
+0.3543962
 </td>
 <td style="text-align:right;">
-0.9822843
+0.6366895
 </td>
 <td style="text-align:right;">
-1.018035
+1.570624
 </td>
 </tr>
 <tr>
@@ -16730,16 +16726,16 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.0232945
+0.4598797
 </td>
 <td style="text-align:right;">
-0.9527810
+0.5566319
 </td>
 <td style="text-align:right;">
-1.049559
+1.796519
 </td>
 </tr>
 <tr>
@@ -16759,271 +16755,6 @@ Duloxyn
 0
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.7306648
-</td>
-<td style="text-align:right;">
-0.0680521
-</td>
-<td style="text-align:right;">
-0.8682223
-</td>
-<td style="text-align:right;">
-1.151779
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-11.001
-</td>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-10.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.7306648
-</td>
-<td style="text-align:right;">
-0.1204820
-</td>
-<td style="text-align:right;">
-0.7786637
-</td>
-<td style="text-align:right;">
-1.284252
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-12.001
-</td>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-11.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.7306648
-</td>
-<td style="text-align:right;">
-0.1762284
-</td>
-<td style="text-align:right;">
-0.6935504
-</td>
-<td style="text-align:right;">
-1.441856
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-13.001
-</td>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-12.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.7306648
-</td>
-<td style="text-align:right;">
-0.2810719
-</td>
-<td style="text-align:right;">
-0.5578670
-</td>
-<td style="text-align:right;">
-1.792542
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-14.001
-</td>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-13.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.7306648
-</td>
-<td style="text-align:right;">
-0.3691663
-</td>
-<td style="text-align:right;">
-0.4646090
-</td>
-<td style="text-align:right;">
-2.152348
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-15.001
-</td>
-<td style="text-align:right;">
-1003
-</td>
-<td style="text-align:left;">
-Duloxyn
-</td>
-<td style="text-align:right;">
-14.001
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
@@ -17048,20 +16779,21 @@ Female
 23
 </td>
 <td style="text-align:right;">
-0.7306648
+0.2421007
 </td>
 <td style="text-align:right;">
-0.4442781
+0.5589815
 </td>
 <td style="text-align:right;">
-0.3975137
+0.4906133
 </td>
 <td style="text-align:right;">
-2.515637
+2.038265
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="outcome-analysis-1" class="section level2 hasAnchor" number="5.3">
@@ -17084,7 +16816,7 @@ Female
 <span id="cb10-15"><a href="clone-censor-weight.html#cb10-15" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Time (in days)&quot;</span>,</span>
 <span id="cb10-16"><a href="clone-censor-weight.html#cb10-16" tabindex="-1"></a>           <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/ccw_km-1.png" width="672" /></p>
-<p>In the CCW approach, the estimated median survival time in the Sertralex population is estimated at 77.00 [62.00; 94.00] and 64.00 [53.00; 87.00] in the Duloxyn population.</p>
+<p>In the CCW approach, the estimated median survival time in the Sertralex population is estimated at 51.00 [40.00; 62.00] and 68.00 [56.00; 93.00] in the Duloxyn population.</p>
 <p>Next, the Cox model is implemented where weights are considered into the analysis.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="clone-censor-weight.html#cb11-1" tabindex="-1"></a><span class="co"># Fit the Cox models</span></span>
 <span id="cb11-2"><a href="clone-censor-weight.html#cb11-2" tabindex="-1"></a>combined_data<span class="sc">$</span>TREAT <span class="ot">&lt;-</span> <span class="fu">relevel</span>(combined_data<span class="sc">$</span>TREAT,<span class="at">ref=</span><span class="st">&quot;Sertralex&quot;</span>)</span>
@@ -17562,9 +17294,9 @@ Female
 <td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Duloxyn</td>
-<td headers="estimate" class="gt_row gt_center">1.04</td>
-<td headers="conf.low" class="gt_row gt_center">0.85, 1.27</td>
-<td headers="p.value" class="gt_row gt_center">0.7</td></tr>
+<td headers="estimate" class="gt_row gt_center">0.71</td>
+<td headers="conf.low" class="gt_row gt_center">0.58, 0.88</td>
+<td headers="p.value" class="gt_row gt_center">0.002</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
@@ -17575,7 +17307,7 @@ Female
 </table>
 </div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="clone-censor-weight.html#cb12-1" tabindex="-1"></a>ccw_hr_ci <span class="ot">&lt;-</span> <span class="fu">extract_hr_ci</span>(CCW_cox)</span></code></pre></div>
-<p>As seen, the treatment effect after accounting for immortal time bias is estimated at HR = 1.04 [0.85; 1.27].</p>
+<p>After adjusting for immortal time bias, the estimated treatment effect is represented by HR = 0.71 [0.58; 0.88], indicating that the association becomes significant. This finding aligns with the simulation process, which modeled a average difference in treatment initiation of 5 days (15 days for Duloxyn and 10 days for Sertralex), thereby offering a survival advantage for Duloxyn users.</p>
 
 </div>
 </div>

@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Appendix A R code of the simulated dataset | Methods for the analysis of Real World Data</title>
+  <title>Appendix B R code of the simulated dataset | Methods for the analysis of Real World Data</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Appendix A R code of the simulated dataset | Methods for the analysis of Real World Data" />
+  <meta property="og:title" content="Appendix B R code of the simulated dataset | Methods for the analysis of Real World Data" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="http://qpilard.github.io/RWD-methods//images/logo.jpeg" />
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="qpilard/RWD-methods" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Appendix A R code of the simulated dataset | Methods for the analysis of Real World Data" />
+  <meta name="twitter:title" content="Appendix B R code of the simulated dataset | Methods for the analysis of Real World Data" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -29,14 +29,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-12-02" />
+<meta name="date" content="2024-12-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="references.html"/>
+<link rel="prev" href="r-packages.html"/>
 <link rel="next" href="ich.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -188,7 +188,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#definition"><i class="fa fa-check"></i><b>1.1</b> Definition</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#use-of-rwd-in-drug-development"><i class="fa fa-check"></i><b>1.2</b> Use of RWD in drug development</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#addressing-challenges-with-rwd-external-control-arms-and-emulation-of-trials"><i class="fa fa-check"></i><b>1.3</b> Addressing Challenges with RWD: External Control Arms and Emulation of Trials</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#regulators-acceptance-of-rwd"><i class="fa fa-check"></i><b>1.3</b> Regulators acceptance of RWD</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#use-of-external-control-arm-and-target-trial-emulation"><i class="fa fa-check"></i><b>1.4</b> Use of External Control Arm and Target Trial Emulation</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#main-biases-in-rwd"><i class="fa fa-check"></i><b>1.5</b> Main biases in RWD</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="motivating-example.html"><a href="motivating-example.html"><i class="fa fa-check"></i><b>2</b> Motivating example</a></li>
 <li class="chapter" data-level="3" data-path="target-trial-emulation.html"><a href="target-trial-emulation.html"><i class="fa fa-check"></i><b>3</b> Target Trial Emulation using observational data</a>
@@ -208,16 +210,22 @@ div.csl-indent {
 <li class="chapter" data-level="5" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html"><i class="fa fa-check"></i><b>5</b> Clone-Censor-Weight method</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#background-2"><i class="fa fa-check"></i><b>5.1</b> Background</a></li>
-<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a></li>
+<li class="chapter" data-level="5.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#ccw-implementation"><i class="fa fa-check"></i><b>5.2</b> CCW implementation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#cloning"><i class="fa fa-check"></i><b>5.2.1</b> Cloning</a></li>
+<li class="chapter" data-level="5.2.2" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#censoring"><i class="fa fa-check"></i><b>5.2.2</b> Censoring</a></li>
+<li class="chapter" data-level="5.2.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#weighting"><i class="fa fa-check"></i><b>5.2.3</b> Weighting</a></li>
+</ul></li>
 <li class="chapter" data-level="5.3" data-path="clone-censor-weight.html"><a href="clone-censor-weight.html#outcome-analysis-1"><i class="fa fa-check"></i><b>5.3</b> Outcome analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>A</b> R code of the simulated dataset</a></li>
-<li class="chapter" data-level="B" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>B</b> ICH E9 (R1) addendum</a></li>
-<li class="chapter" data-level="C" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>C</b> DAG of the simulated dataset</a></li>
-<li class="chapter" data-level="D" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>D</b> Causal inference estimand</a></li>
+<li class="chapter" data-level="A" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>A</b> Installed packages</a></li>
+<li class="chapter" data-level="B" data-path="r-code.html"><a href="r-code.html"><i class="fa fa-check"></i><b>B</b> R code of the simulated dataset</a></li>
+<li class="chapter" data-level="C" data-path="ich.html"><a href="ich.html"><i class="fa fa-check"></i><b>C</b> ICH E9 (R1) addendum</a></li>
+<li class="chapter" data-level="D" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>D</b> DAG of the simulated dataset</a></li>
+<li class="chapter" data-level="E" data-path="causal.html"><a href="causal.html"><i class="fa fa-check"></i><b>E</b> Causal inference estimand</a></li>
 </ul>
 
       </nav>
@@ -235,170 +243,170 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-code" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Appendix A</span> R code of the simulated dataset<a href="r-code.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-code" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Appendix B</span> R code of the simulated dataset<a href="r-code.html#r-code" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This is the R code to reproduce the motivating example:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-code.html#cb13-1" tabindex="-1"></a><span class="co"># Ensure reproducibility</span></span>
-<span id="cb13-2"><a href="r-code.html#cb13-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  </span>
-<span id="cb13-3"><a href="r-code.html#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="r-code.html#cb13-4" tabindex="-1"></a><span class="co"># Number of patients</span></span>
-<span id="cb13-5"><a href="r-code.html#cb13-5" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">800</span></span>
-<span id="cb13-6"><a href="r-code.html#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="r-code.html#cb13-7" tabindex="-1"></a><span class="co"># Patient IDs</span></span>
-<span id="cb13-8"><a href="r-code.html#cb13-8" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>N</span>
-<span id="cb13-9"><a href="r-code.html#cb13-9" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="r-code.html#cb13-10" tabindex="-1"></a><span class="co"># Generation of base variables</span></span>
-<span id="cb13-11"><a href="r-code.html#cb13-11" tabindex="-1"></a>AGE <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="fu">pmin</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">32</span>, <span class="at">sd =</span> <span class="fl">6.19</span>)), <span class="dv">80</span>), <span class="dv">18</span>)  <span class="co"># Age bounded between 18 and 80</span></span>
-<span id="cb13-12"><a href="r-code.html#cb13-12" tabindex="-1"></a>GENDER <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Binary gender variable</span></span>
-<span id="cb13-13"><a href="r-code.html#cb13-13" tabindex="-1"></a>SOCIO_ECO <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Socioeconomic status categories</span></span>
-<span id="cb13-14"><a href="r-code.html#cb13-14" tabindex="-1"></a>SOCIO_ECO_2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">2</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 2</span></span>
-<span id="cb13-15"><a href="r-code.html#cb13-15" tabindex="-1"></a>SOCIO_ECO_3 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">3</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 3</span></span>
-<span id="cb13-16"><a href="r-code.html#cb13-16" tabindex="-1"></a>SOCIO_ECO_4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">4</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 4</span></span>
-<span id="cb13-17"><a href="r-code.html#cb13-17" tabindex="-1"></a>SOCIO_ECO_5 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">5</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 5</span></span>
-<span id="cb13-18"><a href="r-code.html#cb13-18" tabindex="-1"></a>BECK <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="fu">pmin</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">9.33</span>)), <span class="dv">63</span>), <span class="dv">0</span>)  <span class="co"># Beck score bounded between 0 and 63</span></span>
-<span id="cb13-19"><a href="r-code.html#cb13-19" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="r-code.html#cb13-20" tabindex="-1"></a><span class="co"># Utility function to generate binary variables based on a logistic model</span></span>
-<span id="cb13-21"><a href="r-code.html#cb13-21" tabindex="-1"></a>logit_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(eta) {</span>
-<span id="cb13-22"><a href="r-code.html#cb13-22" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>eta))  <span class="co"># Logistic function</span></span>
-<span id="cb13-23"><a href="r-code.html#cb13-23" tabindex="-1"></a>}</span>
-<span id="cb13-24"><a href="r-code.html#cb13-24" tabindex="-1"></a></span>
-<span id="cb13-25"><a href="r-code.html#cb13-25" tabindex="-1"></a><span class="co"># Coefficients for predictors</span></span>
-<span id="cb13-26"><a href="r-code.html#cb13-26" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-27"><a href="r-code.html#cb13-27" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="sc">-</span><span class="fl">1.5</span>,      <span class="co"># Base intercept for treatment assignment</span></span>
-<span id="cb13-28"><a href="r-code.html#cb13-28" tabindex="-1"></a>  <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.04</span>,           <span class="co"># Negative effect of age</span></span>
-<span id="cb13-29"><a href="r-code.html#cb13-29" tabindex="-1"></a>  <span class="at">gender =</span> <span class="sc">-</span><span class="fl">0.3</span>,         <span class="co"># Negative effect of gender (e.g., Female is less likely to be assigned)</span></span>
-<span id="cb13-30"><a href="r-code.html#cb13-30" tabindex="-1"></a>  <span class="at">beck =</span> <span class="fl">0.1</span>,            <span class="co"># Positive effect of Beck score</span></span>
-<span id="cb13-31"><a href="r-code.html#cb13-31" tabindex="-1"></a>  <span class="at">socio_eco_2 =</span> <span class="sc">-</span><span class="fl">0.10</span>,   <span class="co"># Negative effect for SOCIO_ECO_2</span></span>
-<span id="cb13-32"><a href="r-code.html#cb13-32" tabindex="-1"></a>  <span class="at">socio_eco_3 =</span> <span class="sc">-</span><span class="fl">0.12</span>,   <span class="co"># Negative effect for SOCIO_ECO_3</span></span>
-<span id="cb13-33"><a href="r-code.html#cb13-33" tabindex="-1"></a>  <span class="at">socio_eco_4 =</span> <span class="sc">-</span><span class="fl">0.18</span>,   <span class="co"># Negative effect for SOCIO_ECO_4</span></span>
-<span id="cb13-34"><a href="r-code.html#cb13-34" tabindex="-1"></a>  <span class="at">socio_eco_5 =</span> <span class="sc">-</span><span class="fl">0.25</span>    <span class="co"># Stronger negative effect for SOCIO_ECO_5</span></span>
-<span id="cb13-35"><a href="r-code.html#cb13-35" tabindex="-1"></a>)</span>
-<span id="cb13-36"><a href="r-code.html#cb13-36" tabindex="-1"></a></span>
-<span id="cb13-37"><a href="r-code.html#cb13-37" tabindex="-1"></a><span class="co"># Generation of initial treatment (TREAT)</span></span>
-<span id="cb13-38"><a href="r-code.html#cb13-38" tabindex="-1"></a>eta_treat <span class="ot">&lt;-</span> coefficients<span class="sc">$</span>intercept <span class="sc">+</span> </span>
-<span id="cb13-39"><a href="r-code.html#cb13-39" tabindex="-1"></a>  coefficients<span class="sc">$</span>age <span class="sc">*</span> AGE <span class="sc">+</span> </span>
-<span id="cb13-40"><a href="r-code.html#cb13-40" tabindex="-1"></a>  coefficients<span class="sc">$</span>gender <span class="sc">*</span> GENDER <span class="sc">+</span></span>
-<span id="cb13-41"><a href="r-code.html#cb13-41" tabindex="-1"></a>  coefficients<span class="sc">$</span>beck <span class="sc">*</span> BECK <span class="sc">+</span> </span>
-<span id="cb13-42"><a href="r-code.html#cb13-42" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2 <span class="sc">+</span></span>
-<span id="cb13-43"><a href="r-code.html#cb13-43" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3 <span class="sc">+</span> </span>
-<span id="cb13-44"><a href="r-code.html#cb13-44" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4 <span class="sc">+</span></span>
-<span id="cb13-45"><a href="r-code.html#cb13-45" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5</span>
-<span id="cb13-46"><a href="r-code.html#cb13-46" tabindex="-1"></a></span>
-<span id="cb13-47"><a href="r-code.html#cb13-47" tabindex="-1"></a>TREAT <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N, <span class="dv">1</span>, <span class="fu">logit_prob</span>(eta_treat <span class="sc">+</span> <span class="fu">rnorm</span>(N)))  <span class="co"># Simulating treatment assignment</span></span>
-<span id="cb13-48"><a href="r-code.html#cb13-48" tabindex="-1"></a></span>
-<span id="cb13-49"><a href="r-code.html#cb13-49" tabindex="-1"></a><span class="co"># Coefficients for treatment delay based on treatment status</span></span>
-<span id="cb13-50"><a href="r-code.html#cb13-50" tabindex="-1"></a>coefficients_delay <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-51"><a href="r-code.html#cb13-51" tabindex="-1"></a>  <span class="at">sertralex =</span> <span class="fu">list</span>(</span>
-<span id="cb13-52"><a href="r-code.html#cb13-52" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">15</span>,      <span class="co"># Base parameter for delay</span></span>
-<span id="cb13-53"><a href="r-code.html#cb13-53" tabindex="-1"></a>    <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.02</span>,         <span class="co"># Negative effect of age on delay</span></span>
-<span id="cb13-54"><a href="r-code.html#cb13-54" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fl">0.1</span>,        <span class="co"># Positive effect of gender on delay</span></span>
-<span id="cb13-55"><a href="r-code.html#cb13-55" tabindex="-1"></a>    <span class="at">beck =</span> <span class="sc">-</span><span class="fl">0.05</span>,        <span class="co"># Negative effect of Beck score on delay</span></span>
-<span id="cb13-56"><a href="r-code.html#cb13-56" tabindex="-1"></a>    <span class="at">socio_eco_2 =</span> <span class="fl">0.2</span>,</span>
-<span id="cb13-57"><a href="r-code.html#cb13-57" tabindex="-1"></a>    <span class="at">socio_eco_3 =</span> <span class="fl">0.15</span>,</span>
-<span id="cb13-58"><a href="r-code.html#cb13-58" tabindex="-1"></a>    <span class="at">socio_eco_4 =</span> <span class="fl">0.1</span>,</span>
-<span id="cb13-59"><a href="r-code.html#cb13-59" tabindex="-1"></a>    <span class="at">socio_eco_5 =</span> <span class="fl">0.05</span></span>
-<span id="cb13-60"><a href="r-code.html#cb13-60" tabindex="-1"></a>  ),</span>
-<span id="cb13-61"><a href="r-code.html#cb13-61" tabindex="-1"></a>  <span class="at">duloxyn =</span> <span class="fu">list</span>(</span>
-<span id="cb13-62"><a href="r-code.html#cb13-62" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">15</span>,</span>
-<span id="cb13-63"><a href="r-code.html#cb13-63" tabindex="-1"></a>    <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.02</span>,</span>
-<span id="cb13-64"><a href="r-code.html#cb13-64" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fl">0.1</span>,</span>
-<span id="cb13-65"><a href="r-code.html#cb13-65" tabindex="-1"></a>    <span class="at">beck =</span> <span class="sc">-</span><span class="fl">0.05</span>,</span>
-<span id="cb13-66"><a href="r-code.html#cb13-66" tabindex="-1"></a>    <span class="at">socio_eco_2 =</span> <span class="fl">0.2</span>,</span>
-<span id="cb13-67"><a href="r-code.html#cb13-67" tabindex="-1"></a>    <span class="at">socio_eco_3 =</span> <span class="fl">0.15</span>,</span>
-<span id="cb13-68"><a href="r-code.html#cb13-68" tabindex="-1"></a>    <span class="at">socio_eco_4 =</span> <span class="fl">0.1</span>,</span>
-<span id="cb13-69"><a href="r-code.html#cb13-69" tabindex="-1"></a>    <span class="at">socio_eco_5 =</span> <span class="fl">0.05</span></span>
-<span id="cb13-70"><a href="r-code.html#cb13-70" tabindex="-1"></a>  )</span>
-<span id="cb13-71"><a href="r-code.html#cb13-71" tabindex="-1"></a>)</span>
-<span id="cb13-72"><a href="r-code.html#cb13-72" tabindex="-1"></a></span>
-<span id="cb13-73"><a href="r-code.html#cb13-73" tabindex="-1"></a><span class="co"># Initialization of TIME_TO_TREAT variable</span></span>
-<span id="cb13-74"><a href="r-code.html#cb13-74" tabindex="-1"></a>TIME_TO_TREAT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
-<span id="cb13-75"><a href="r-code.html#cb13-75" tabindex="-1"></a></span>
-<span id="cb13-76"><a href="r-code.html#cb13-76" tabindex="-1"></a><span class="co"># Generation of treatment initiation delays</span></span>
-<span id="cb13-77"><a href="r-code.html#cb13-77" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb13-78"><a href="r-code.html#cb13-78" tabindex="-1"></a>  <span class="co"># Select appropriate coefficients</span></span>
-<span id="cb13-79"><a href="r-code.html#cb13-79" tabindex="-1"></a>  delay_coeffs <span class="ot">&lt;-</span> <span class="cf">if</span> (TREAT[i] <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb13-80"><a href="r-code.html#cb13-80" tabindex="-1"></a>    coefficients_delay<span class="sc">$</span>sertralex </span>
-<span id="cb13-81"><a href="r-code.html#cb13-81" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-82"><a href="r-code.html#cb13-82" tabindex="-1"></a>    coefficients_delay<span class="sc">$</span>duloxyn</span>
-<span id="cb13-83"><a href="r-code.html#cb13-83" tabindex="-1"></a>  }</span>
-<span id="cb13-84"><a href="r-code.html#cb13-84" tabindex="-1"></a>  </span>
-<span id="cb13-85"><a href="r-code.html#cb13-85" tabindex="-1"></a>  <span class="co"># Compute the mean</span></span>
-<span id="cb13-86"><a href="r-code.html#cb13-86" tabindex="-1"></a>  linear_pred <span class="ot">&lt;-</span> delay_coeffs<span class="sc">$</span>intercept <span class="sc">+</span></span>
-<span id="cb13-87"><a href="r-code.html#cb13-87" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>age <span class="sc">*</span> AGE[i] <span class="sc">+</span></span>
-<span id="cb13-88"><a href="r-code.html#cb13-88" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>gender <span class="sc">*</span> GENDER[i] <span class="sc">+</span></span>
-<span id="cb13-89"><a href="r-code.html#cb13-89" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>beck <span class="sc">*</span> BECK[i] <span class="sc">+</span></span>
-<span id="cb13-90"><a href="r-code.html#cb13-90" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2[i] <span class="sc">+</span></span>
-<span id="cb13-91"><a href="r-code.html#cb13-91" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3[i] <span class="sc">+</span></span>
-<span id="cb13-92"><a href="r-code.html#cb13-92" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4[i] <span class="sc">+</span></span>
-<span id="cb13-93"><a href="r-code.html#cb13-93" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5[i]</span>
-<span id="cb13-94"><a href="r-code.html#cb13-94" tabindex="-1"></a>  </span>
-<span id="cb13-95"><a href="r-code.html#cb13-95" tabindex="-1"></a>  <span class="co"># Generate time from a normal distribution</span></span>
-<span id="cb13-96"><a href="r-code.html#cb13-96" tabindex="-1"></a>  TIME_TO_TREAT[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> linear_pred <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>), <span class="at">sd =</span> <span class="fl">2.5</span>), <span class="dv">0</span>)</span>
-<span id="cb13-97"><a href="r-code.html#cb13-97" tabindex="-1"></a>}</span>
-<span id="cb13-98"><a href="r-code.html#cb13-98" tabindex="-1"></a></span>
-<span id="cb13-99"><a href="r-code.html#cb13-99" tabindex="-1"></a><span class="co"># Generation of relapse (EVENT) and time until relapse (TIME_TO_EVENT) in days</span></span>
-<span id="cb13-100"><a href="r-code.html#cb13-100" tabindex="-1"></a>base_hazard <span class="ot">&lt;-</span> <span class="fl">0.005</span>  <span class="co"># Baseline hazard rate</span></span>
-<span id="cb13-101"><a href="r-code.html#cb13-101" tabindex="-1"></a>EVENT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
-<span id="cb13-102"><a href="r-code.html#cb13-102" tabindex="-1"></a>TIME_TO_EVENT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
-<span id="cb13-103"><a href="r-code.html#cb13-103" tabindex="-1"></a>max_follow_up <span class="ot">&lt;-</span> <span class="dv">365</span>  <span class="co"># Maximum follow-up duration in days</span></span>
-<span id="cb13-104"><a href="r-code.html#cb13-104" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb13-105"><a href="r-code.html#cb13-105" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">4</span>,       <span class="co"># Base intercept for event hazard</span></span>
-<span id="cb13-106"><a href="r-code.html#cb13-106" tabindex="-1"></a>  <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.01</span>,          <span class="co"># Younger individuals are more likely to experience PDD                      </span></span>
-<span id="cb13-107"><a href="r-code.html#cb13-107" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fl">0.1</span>,         <span class="co"># Women are more likely to experience PDD                   </span></span>
-<span id="cb13-108"><a href="r-code.html#cb13-108" tabindex="-1"></a>  <span class="at">socio_eco_2 =</span> <span class="sc">-</span><span class="fl">0.05</span>,  <span class="co"># Lower SES is more likely to experience PDD             </span></span>
-<span id="cb13-109"><a href="r-code.html#cb13-109" tabindex="-1"></a>  <span class="at">socio_eco_3 =</span> <span class="sc">-</span><span class="fl">0.10</span>,             </span>
-<span id="cb13-110"><a href="r-code.html#cb13-110" tabindex="-1"></a>  <span class="at">socio_eco_4 =</span> <span class="sc">-</span><span class="fl">0.15</span>,            </span>
-<span id="cb13-111"><a href="r-code.html#cb13-111" tabindex="-1"></a>  <span class="at">socio_eco_5 =</span> <span class="sc">-</span><span class="fl">0.20</span>,            </span>
-<span id="cb13-112"><a href="r-code.html#cb13-112" tabindex="-1"></a>  <span class="at">beck =</span> <span class="fl">0.2</span>,           <span class="co"># Higher Beck score increases the likelihood of PDD                    </span></span>
-<span id="cb13-113"><a href="r-code.html#cb13-113" tabindex="-1"></a>  <span class="at">treat =</span> <span class="sc">-</span><span class="fl">0.2</span>          <span class="co"># Protective effect of Duloxyn                </span></span>
-<span id="cb13-114"><a href="r-code.html#cb13-114" tabindex="-1"></a>)</span>
-<span id="cb13-115"><a href="r-code.html#cb13-115" tabindex="-1"></a></span>
-<span id="cb13-116"><a href="r-code.html#cb13-116" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb13-117"><a href="r-code.html#cb13-117" tabindex="-1"></a>  eta_event <span class="ot">&lt;-</span> coefficients<span class="sc">$</span>intercept <span class="sc">+</span> </span>
-<span id="cb13-118"><a href="r-code.html#cb13-118" tabindex="-1"></a>    coefficients<span class="sc">$</span>age <span class="sc">*</span> AGE[i] <span class="sc">+</span> </span>
-<span id="cb13-119"><a href="r-code.html#cb13-119" tabindex="-1"></a>    coefficients<span class="sc">$</span>gender <span class="sc">*</span> GENDER[i] <span class="sc">+</span></span>
-<span id="cb13-120"><a href="r-code.html#cb13-120" tabindex="-1"></a>    coefficients<span class="sc">$</span>beck <span class="sc">*</span> BECK[i] <span class="sc">+</span> </span>
-<span id="cb13-121"><a href="r-code.html#cb13-121" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2[i] <span class="sc">+</span></span>
-<span id="cb13-122"><a href="r-code.html#cb13-122" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3[i] <span class="sc">+</span> </span>
-<span id="cb13-123"><a href="r-code.html#cb13-123" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4[i] <span class="sc">+</span></span>
-<span id="cb13-124"><a href="r-code.html#cb13-124" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5[i] <span class="sc">+</span> </span>
-<span id="cb13-125"><a href="r-code.html#cb13-125" tabindex="-1"></a>    coefficients<span class="sc">$</span>treat <span class="sc">*</span> TREAT[i]</span>
-<span id="cb13-126"><a href="r-code.html#cb13-126" tabindex="-1"></a>  </span>
-<span id="cb13-127"><a href="r-code.html#cb13-127" tabindex="-1"></a>  adjusted_hazard <span class="ot">&lt;-</span> base_hazard <span class="sc">*</span> <span class="fu">exp</span>(eta_event)  <span class="co"># Adjust hazard rate</span></span>
-<span id="cb13-128"><a href="r-code.html#cb13-128" tabindex="-1"></a>  </span>
-<span id="cb13-129"><a href="r-code.html#cb13-129" tabindex="-1"></a>  <span class="co"># Generate time to event in days</span></span>
-<span id="cb13-130"><a href="r-code.html#cb13-130" tabindex="-1"></a>  TIME_TO_EVENT[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> adjusted_hazard), <span class="dv">0</span>)</span>
-<span id="cb13-131"><a href="r-code.html#cb13-131" tabindex="-1"></a>  </span>
-<span id="cb13-132"><a href="r-code.html#cb13-132" tabindex="-1"></a>  <span class="co"># Ensure EVENT only occurs within 365 days</span></span>
-<span id="cb13-133"><a href="r-code.html#cb13-133" tabindex="-1"></a>  <span class="cf">if</span> (TIME_TO_EVENT[i] <span class="sc">&lt;</span> max_follow_up) {</span>
-<span id="cb13-134"><a href="r-code.html#cb13-134" tabindex="-1"></a>    EVENT[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb13-135"><a href="r-code.html#cb13-135" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-136"><a href="r-code.html#cb13-136" tabindex="-1"></a>    EVENT[i] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-137"><a href="r-code.html#cb13-137" tabindex="-1"></a>  }</span>
-<span id="cb13-138"><a href="r-code.html#cb13-138" tabindex="-1"></a>  </span>
-<span id="cb13-139"><a href="r-code.html#cb13-139" tabindex="-1"></a>  <span class="co"># Ensure TIME_TO_EVENT doesn&#39;t exceed the maximum follow-up period</span></span>
-<span id="cb13-140"><a href="r-code.html#cb13-140" tabindex="-1"></a>  TIME_TO_EVENT[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(TIME_TO_EVENT[i], max_follow_up)</span>
-<span id="cb13-141"><a href="r-code.html#cb13-141" tabindex="-1"></a>  </span>
-<span id="cb13-142"><a href="r-code.html#cb13-142" tabindex="-1"></a>}</span>
-<span id="cb13-143"><a href="r-code.html#cb13-143" tabindex="-1"></a></span>
-<span id="cb13-144"><a href="r-code.html#cb13-144" tabindex="-1"></a><span class="co"># Organize data in a data frame</span></span>
-<span id="cb13-145"><a href="r-code.html#cb13-145" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, AGE, GENDER, SOCIO_ECO, BECK, TREAT, TIME_TO_EVENT, EVENT, TIME_TO_TREAT)</span>
-<span id="cb13-146"><a href="r-code.html#cb13-146" tabindex="-1"></a></span>
-<span id="cb13-147"><a href="r-code.html#cb13-147" tabindex="-1"></a><span class="co"># Filter data based on conditions</span></span>
-<span id="cb13-148"><a href="r-code.html#cb13-148" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb13-149"><a href="r-code.html#cb13-149" tabindex="-1"></a>  <span class="fu">filter</span>(TIME_TO_EVENT <span class="sc">&gt;</span> TIME_TO_TREAT <span class="sc">&amp;</span> TIME_TO_TREAT <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> TIME_TO_EVENT <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb13-150"><a href="r-code.html#cb13-150" tabindex="-1"></a></span>
-<span id="cb13-151"><a href="r-code.html#cb13-151" tabindex="-1"></a><span class="co"># Recategorize variables</span></span>
-<span id="cb13-152"><a href="r-code.html#cb13-152" tabindex="-1"></a>data<span class="sc">$</span>GENDER <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>GENDER, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span>
-<span id="cb13-153"><a href="r-code.html#cb13-153" tabindex="-1"></a>data<span class="sc">$</span>SOCIO_ECO <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SOCIO_ECO, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Very low&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Moderate&quot;</span>, <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Very high&quot;</span>))</span>
-<span id="cb13-154"><a href="r-code.html#cb13-154" tabindex="-1"></a>data<span class="sc">$</span>TREAT <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>TREAT, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sertralex&quot;</span>, <span class="st">&quot;Duloxyn&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-code.html#cb14-1" tabindex="-1"></a><span class="co"># Ensure reproducibility</span></span>
+<span id="cb14-2"><a href="r-code.html#cb14-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  </span>
+<span id="cb14-3"><a href="r-code.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="r-code.html#cb14-4" tabindex="-1"></a><span class="co"># Number of patients</span></span>
+<span id="cb14-5"><a href="r-code.html#cb14-5" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">800</span></span>
+<span id="cb14-6"><a href="r-code.html#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="r-code.html#cb14-7" tabindex="-1"></a><span class="co"># Patient IDs</span></span>
+<span id="cb14-8"><a href="r-code.html#cb14-8" tabindex="-1"></a>ID <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>N</span>
+<span id="cb14-9"><a href="r-code.html#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="r-code.html#cb14-10" tabindex="-1"></a><span class="co"># Generation of base variables</span></span>
+<span id="cb14-11"><a href="r-code.html#cb14-11" tabindex="-1"></a>AGE <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="fu">pmin</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">32</span>, <span class="at">sd =</span> <span class="fl">6.19</span>)), <span class="dv">80</span>), <span class="dv">18</span>)  <span class="co"># Age bounded between 18 and 80</span></span>
+<span id="cb14-12"><a href="r-code.html#cb14-12" tabindex="-1"></a>GENDER <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Binary gender variable</span></span>
+<span id="cb14-13"><a href="r-code.html#cb14-13" tabindex="-1"></a>SOCIO_ECO <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, N, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Socioeconomic status categories</span></span>
+<span id="cb14-14"><a href="r-code.html#cb14-14" tabindex="-1"></a>SOCIO_ECO_2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">2</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 2</span></span>
+<span id="cb14-15"><a href="r-code.html#cb14-15" tabindex="-1"></a>SOCIO_ECO_3 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">3</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 3</span></span>
+<span id="cb14-16"><a href="r-code.html#cb14-16" tabindex="-1"></a>SOCIO_ECO_4 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">4</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 4</span></span>
+<span id="cb14-17"><a href="r-code.html#cb14-17" tabindex="-1"></a>SOCIO_ECO_5 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(SOCIO_ECO <span class="sc">==</span> <span class="dv">5</span>)  <span class="co"># Dummy variable for SOCIO_ECO == 5</span></span>
+<span id="cb14-18"><a href="r-code.html#cb14-18" tabindex="-1"></a>BECK <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="fu">pmin</span>(<span class="fu">round</span>(<span class="fu">rnorm</span>(N, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">9.33</span>)), <span class="dv">63</span>), <span class="dv">0</span>)  <span class="co"># Beck score bounded between 0 and 63</span></span>
+<span id="cb14-19"><a href="r-code.html#cb14-19" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="r-code.html#cb14-20" tabindex="-1"></a><span class="co"># Utility function to generate binary variables based on a logistic model</span></span>
+<span id="cb14-21"><a href="r-code.html#cb14-21" tabindex="-1"></a>logit_prob <span class="ot">&lt;-</span> <span class="cf">function</span>(eta) {</span>
+<span id="cb14-22"><a href="r-code.html#cb14-22" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>eta))  <span class="co"># Logistic function</span></span>
+<span id="cb14-23"><a href="r-code.html#cb14-23" tabindex="-1"></a>}</span>
+<span id="cb14-24"><a href="r-code.html#cb14-24" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="r-code.html#cb14-25" tabindex="-1"></a><span class="co"># Coefficients for predictors</span></span>
+<span id="cb14-26"><a href="r-code.html#cb14-26" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-27"><a href="r-code.html#cb14-27" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="sc">-</span><span class="fl">1.5</span>,      <span class="co"># Base intercept for treatment assignment</span></span>
+<span id="cb14-28"><a href="r-code.html#cb14-28" tabindex="-1"></a>  <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.04</span>,           <span class="co"># Negative effect of age</span></span>
+<span id="cb14-29"><a href="r-code.html#cb14-29" tabindex="-1"></a>  <span class="at">gender =</span> <span class="sc">-</span><span class="fl">0.3</span>,         <span class="co"># Negative effect of gender (e.g., Female is less likely to be assigned)</span></span>
+<span id="cb14-30"><a href="r-code.html#cb14-30" tabindex="-1"></a>  <span class="at">beck =</span> <span class="fl">0.1</span>,            <span class="co"># Positive effect of Beck score</span></span>
+<span id="cb14-31"><a href="r-code.html#cb14-31" tabindex="-1"></a>  <span class="at">socio_eco_2 =</span> <span class="sc">-</span><span class="fl">0.10</span>,   <span class="co"># Negative effect for SOCIO_ECO_2</span></span>
+<span id="cb14-32"><a href="r-code.html#cb14-32" tabindex="-1"></a>  <span class="at">socio_eco_3 =</span> <span class="sc">-</span><span class="fl">0.12</span>,   <span class="co"># Negative effect for SOCIO_ECO_3</span></span>
+<span id="cb14-33"><a href="r-code.html#cb14-33" tabindex="-1"></a>  <span class="at">socio_eco_4 =</span> <span class="sc">-</span><span class="fl">0.18</span>,   <span class="co"># Negative effect for SOCIO_ECO_4</span></span>
+<span id="cb14-34"><a href="r-code.html#cb14-34" tabindex="-1"></a>  <span class="at">socio_eco_5 =</span> <span class="sc">-</span><span class="fl">0.25</span>    <span class="co"># Stronger negative effect for SOCIO_ECO_5</span></span>
+<span id="cb14-35"><a href="r-code.html#cb14-35" tabindex="-1"></a>)</span>
+<span id="cb14-36"><a href="r-code.html#cb14-36" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="r-code.html#cb14-37" tabindex="-1"></a><span class="co"># Generation of initial treatment (TREAT)</span></span>
+<span id="cb14-38"><a href="r-code.html#cb14-38" tabindex="-1"></a>eta_treat <span class="ot">&lt;-</span> coefficients<span class="sc">$</span>intercept <span class="sc">+</span> </span>
+<span id="cb14-39"><a href="r-code.html#cb14-39" tabindex="-1"></a>  coefficients<span class="sc">$</span>age <span class="sc">*</span> AGE <span class="sc">+</span> </span>
+<span id="cb14-40"><a href="r-code.html#cb14-40" tabindex="-1"></a>  coefficients<span class="sc">$</span>gender <span class="sc">*</span> GENDER <span class="sc">+</span></span>
+<span id="cb14-41"><a href="r-code.html#cb14-41" tabindex="-1"></a>  coefficients<span class="sc">$</span>beck <span class="sc">*</span> BECK <span class="sc">+</span> </span>
+<span id="cb14-42"><a href="r-code.html#cb14-42" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2 <span class="sc">+</span></span>
+<span id="cb14-43"><a href="r-code.html#cb14-43" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3 <span class="sc">+</span> </span>
+<span id="cb14-44"><a href="r-code.html#cb14-44" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4 <span class="sc">+</span></span>
+<span id="cb14-45"><a href="r-code.html#cb14-45" tabindex="-1"></a>  coefficients<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5</span>
+<span id="cb14-46"><a href="r-code.html#cb14-46" tabindex="-1"></a></span>
+<span id="cb14-47"><a href="r-code.html#cb14-47" tabindex="-1"></a>TREAT <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N, <span class="dv">1</span>, <span class="fu">logit_prob</span>(eta_treat <span class="sc">+</span> <span class="fu">rnorm</span>(N)))  <span class="co"># Simulating treatment assignment</span></span>
+<span id="cb14-48"><a href="r-code.html#cb14-48" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="r-code.html#cb14-49" tabindex="-1"></a><span class="co"># Coefficients for treatment delay based on treatment status</span></span>
+<span id="cb14-50"><a href="r-code.html#cb14-50" tabindex="-1"></a>coefficients_delay <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-51"><a href="r-code.html#cb14-51" tabindex="-1"></a>  <span class="at">sertralex =</span> <span class="fu">list</span>(</span>
+<span id="cb14-52"><a href="r-code.html#cb14-52" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">10</span>,      <span class="co"># Base parameter for delay</span></span>
+<span id="cb14-53"><a href="r-code.html#cb14-53" tabindex="-1"></a>    <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.02</span>,         <span class="co"># Negative effect of age on delay</span></span>
+<span id="cb14-54"><a href="r-code.html#cb14-54" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fl">0.1</span>,        <span class="co"># Positive effect of gender on delay</span></span>
+<span id="cb14-55"><a href="r-code.html#cb14-55" tabindex="-1"></a>    <span class="at">beck =</span> <span class="sc">-</span><span class="fl">0.05</span>,        <span class="co"># Negative effect of Beck score on delay</span></span>
+<span id="cb14-56"><a href="r-code.html#cb14-56" tabindex="-1"></a>    <span class="at">socio_eco_2 =</span> <span class="fl">0.2</span>,</span>
+<span id="cb14-57"><a href="r-code.html#cb14-57" tabindex="-1"></a>    <span class="at">socio_eco_3 =</span> <span class="fl">0.15</span>,</span>
+<span id="cb14-58"><a href="r-code.html#cb14-58" tabindex="-1"></a>    <span class="at">socio_eco_4 =</span> <span class="fl">0.1</span>,</span>
+<span id="cb14-59"><a href="r-code.html#cb14-59" tabindex="-1"></a>    <span class="at">socio_eco_5 =</span> <span class="fl">0.05</span></span>
+<span id="cb14-60"><a href="r-code.html#cb14-60" tabindex="-1"></a>  ),</span>
+<span id="cb14-61"><a href="r-code.html#cb14-61" tabindex="-1"></a>  <span class="at">duloxyn =</span> <span class="fu">list</span>(</span>
+<span id="cb14-62"><a href="r-code.html#cb14-62" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="dv">15</span>,</span>
+<span id="cb14-63"><a href="r-code.html#cb14-63" tabindex="-1"></a>    <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.02</span>,</span>
+<span id="cb14-64"><a href="r-code.html#cb14-64" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fl">0.1</span>,</span>
+<span id="cb14-65"><a href="r-code.html#cb14-65" tabindex="-1"></a>    <span class="at">beck =</span> <span class="sc">-</span><span class="fl">0.05</span>,</span>
+<span id="cb14-66"><a href="r-code.html#cb14-66" tabindex="-1"></a>    <span class="at">socio_eco_2 =</span> <span class="fl">0.2</span>,</span>
+<span id="cb14-67"><a href="r-code.html#cb14-67" tabindex="-1"></a>    <span class="at">socio_eco_3 =</span> <span class="fl">0.15</span>,</span>
+<span id="cb14-68"><a href="r-code.html#cb14-68" tabindex="-1"></a>    <span class="at">socio_eco_4 =</span> <span class="fl">0.1</span>,</span>
+<span id="cb14-69"><a href="r-code.html#cb14-69" tabindex="-1"></a>    <span class="at">socio_eco_5 =</span> <span class="fl">0.05</span></span>
+<span id="cb14-70"><a href="r-code.html#cb14-70" tabindex="-1"></a>  )</span>
+<span id="cb14-71"><a href="r-code.html#cb14-71" tabindex="-1"></a>)</span>
+<span id="cb14-72"><a href="r-code.html#cb14-72" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="r-code.html#cb14-73" tabindex="-1"></a><span class="co"># Initialization of TIME_TO_TREAT variable</span></span>
+<span id="cb14-74"><a href="r-code.html#cb14-74" tabindex="-1"></a>TIME_TO_TREAT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb14-75"><a href="r-code.html#cb14-75" tabindex="-1"></a></span>
+<span id="cb14-76"><a href="r-code.html#cb14-76" tabindex="-1"></a><span class="co"># Generation of treatment initiation delays</span></span>
+<span id="cb14-77"><a href="r-code.html#cb14-77" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb14-78"><a href="r-code.html#cb14-78" tabindex="-1"></a>  <span class="co"># Select appropriate coefficients</span></span>
+<span id="cb14-79"><a href="r-code.html#cb14-79" tabindex="-1"></a>  delay_coeffs <span class="ot">&lt;-</span> <span class="cf">if</span> (TREAT[i] <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb14-80"><a href="r-code.html#cb14-80" tabindex="-1"></a>    coefficients_delay<span class="sc">$</span>duloxyn</span>
+<span id="cb14-81"><a href="r-code.html#cb14-81" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-82"><a href="r-code.html#cb14-82" tabindex="-1"></a>    coefficients_delay<span class="sc">$</span>sertralex </span>
+<span id="cb14-83"><a href="r-code.html#cb14-83" tabindex="-1"></a>  }</span>
+<span id="cb14-84"><a href="r-code.html#cb14-84" tabindex="-1"></a>  </span>
+<span id="cb14-85"><a href="r-code.html#cb14-85" tabindex="-1"></a>  <span class="co"># Compute the mean</span></span>
+<span id="cb14-86"><a href="r-code.html#cb14-86" tabindex="-1"></a>  linear_pred <span class="ot">&lt;-</span> delay_coeffs<span class="sc">$</span>intercept <span class="sc">+</span></span>
+<span id="cb14-87"><a href="r-code.html#cb14-87" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>age <span class="sc">*</span> AGE[i] <span class="sc">+</span></span>
+<span id="cb14-88"><a href="r-code.html#cb14-88" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>gender <span class="sc">*</span> GENDER[i] <span class="sc">+</span></span>
+<span id="cb14-89"><a href="r-code.html#cb14-89" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>beck <span class="sc">*</span> BECK[i] <span class="sc">+</span></span>
+<span id="cb14-90"><a href="r-code.html#cb14-90" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2[i] <span class="sc">+</span></span>
+<span id="cb14-91"><a href="r-code.html#cb14-91" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3[i] <span class="sc">+</span></span>
+<span id="cb14-92"><a href="r-code.html#cb14-92" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4[i] <span class="sc">+</span></span>
+<span id="cb14-93"><a href="r-code.html#cb14-93" tabindex="-1"></a>    delay_coeffs<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5[i]</span>
+<span id="cb14-94"><a href="r-code.html#cb14-94" tabindex="-1"></a>  </span>
+<span id="cb14-95"><a href="r-code.html#cb14-95" tabindex="-1"></a>  <span class="co"># Generate time from a normal distribution</span></span>
+<span id="cb14-96"><a href="r-code.html#cb14-96" tabindex="-1"></a>  TIME_TO_TREAT[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">mean =</span> linear_pred <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">1</span>), <span class="at">sd =</span> <span class="fl">2.5</span>), <span class="dv">0</span>)</span>
+<span id="cb14-97"><a href="r-code.html#cb14-97" tabindex="-1"></a>}</span>
+<span id="cb14-98"><a href="r-code.html#cb14-98" tabindex="-1"></a></span>
+<span id="cb14-99"><a href="r-code.html#cb14-99" tabindex="-1"></a><span class="co"># Generation of relapse (EVENT) and time until relapse (TIME_TO_EVENT) in days</span></span>
+<span id="cb14-100"><a href="r-code.html#cb14-100" tabindex="-1"></a>base_hazard <span class="ot">&lt;-</span> <span class="fl">0.005</span>  <span class="co"># Baseline hazard rate</span></span>
+<span id="cb14-101"><a href="r-code.html#cb14-101" tabindex="-1"></a>EVENT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb14-102"><a href="r-code.html#cb14-102" tabindex="-1"></a>TIME_TO_EVENT <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb14-103"><a href="r-code.html#cb14-103" tabindex="-1"></a>max_follow_up <span class="ot">&lt;-</span> <span class="dv">365</span>  <span class="co"># Maximum follow-up duration in days</span></span>
+<span id="cb14-104"><a href="r-code.html#cb14-104" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-105"><a href="r-code.html#cb14-105" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="sc">-</span><span class="dv">4</span>,       <span class="co"># Base intercept for event hazard</span></span>
+<span id="cb14-106"><a href="r-code.html#cb14-106" tabindex="-1"></a>  <span class="at">age =</span> <span class="sc">-</span><span class="fl">0.01</span>,          <span class="co"># Younger individuals are more likely to experience PDD                      </span></span>
+<span id="cb14-107"><a href="r-code.html#cb14-107" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fl">0.1</span>,         <span class="co"># Women are more likely to experience PDD                   </span></span>
+<span id="cb14-108"><a href="r-code.html#cb14-108" tabindex="-1"></a>  <span class="at">socio_eco_2 =</span> <span class="sc">-</span><span class="fl">0.05</span>,  <span class="co"># Lower SES is more likely to experience PDD             </span></span>
+<span id="cb14-109"><a href="r-code.html#cb14-109" tabindex="-1"></a>  <span class="at">socio_eco_3 =</span> <span class="sc">-</span><span class="fl">0.10</span>,             </span>
+<span id="cb14-110"><a href="r-code.html#cb14-110" tabindex="-1"></a>  <span class="at">socio_eco_4 =</span> <span class="sc">-</span><span class="fl">0.15</span>,            </span>
+<span id="cb14-111"><a href="r-code.html#cb14-111" tabindex="-1"></a>  <span class="at">socio_eco_5 =</span> <span class="sc">-</span><span class="fl">0.20</span>,            </span>
+<span id="cb14-112"><a href="r-code.html#cb14-112" tabindex="-1"></a>  <span class="at">beck =</span> <span class="fl">0.2</span>,           <span class="co"># Higher Beck score increases the likelihood of PDD                    </span></span>
+<span id="cb14-113"><a href="r-code.html#cb14-113" tabindex="-1"></a>  <span class="at">treat =</span> <span class="sc">-</span><span class="fl">0.2</span>          <span class="co"># Protective effect of Duloxyn                </span></span>
+<span id="cb14-114"><a href="r-code.html#cb14-114" tabindex="-1"></a>)</span>
+<span id="cb14-115"><a href="r-code.html#cb14-115" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="r-code.html#cb14-116" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb14-117"><a href="r-code.html#cb14-117" tabindex="-1"></a>  eta_event <span class="ot">&lt;-</span> coefficients<span class="sc">$</span>intercept <span class="sc">+</span> </span>
+<span id="cb14-118"><a href="r-code.html#cb14-118" tabindex="-1"></a>    coefficients<span class="sc">$</span>age <span class="sc">*</span> AGE[i] <span class="sc">+</span> </span>
+<span id="cb14-119"><a href="r-code.html#cb14-119" tabindex="-1"></a>    coefficients<span class="sc">$</span>gender <span class="sc">*</span> GENDER[i] <span class="sc">+</span></span>
+<span id="cb14-120"><a href="r-code.html#cb14-120" tabindex="-1"></a>    coefficients<span class="sc">$</span>beck <span class="sc">*</span> BECK[i] <span class="sc">+</span> </span>
+<span id="cb14-121"><a href="r-code.html#cb14-121" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_2 <span class="sc">*</span> SOCIO_ECO_2[i] <span class="sc">+</span></span>
+<span id="cb14-122"><a href="r-code.html#cb14-122" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_3 <span class="sc">*</span> SOCIO_ECO_3[i] <span class="sc">+</span> </span>
+<span id="cb14-123"><a href="r-code.html#cb14-123" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_4 <span class="sc">*</span> SOCIO_ECO_4[i] <span class="sc">+</span></span>
+<span id="cb14-124"><a href="r-code.html#cb14-124" tabindex="-1"></a>    coefficients<span class="sc">$</span>socio_eco_5 <span class="sc">*</span> SOCIO_ECO_5[i] <span class="sc">+</span> </span>
+<span id="cb14-125"><a href="r-code.html#cb14-125" tabindex="-1"></a>    coefficients<span class="sc">$</span>treat <span class="sc">*</span> TREAT[i]</span>
+<span id="cb14-126"><a href="r-code.html#cb14-126" tabindex="-1"></a>  </span>
+<span id="cb14-127"><a href="r-code.html#cb14-127" tabindex="-1"></a>  adjusted_hazard <span class="ot">&lt;-</span> base_hazard <span class="sc">*</span> <span class="fu">exp</span>(eta_event)  <span class="co"># Adjust hazard rate</span></span>
+<span id="cb14-128"><a href="r-code.html#cb14-128" tabindex="-1"></a>  </span>
+<span id="cb14-129"><a href="r-code.html#cb14-129" tabindex="-1"></a>  <span class="co"># Generate time to event in days</span></span>
+<span id="cb14-130"><a href="r-code.html#cb14-130" tabindex="-1"></a>  TIME_TO_EVENT[i] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rexp</span>(<span class="dv">1</span>, <span class="at">rate =</span> adjusted_hazard), <span class="dv">0</span>)</span>
+<span id="cb14-131"><a href="r-code.html#cb14-131" tabindex="-1"></a>  </span>
+<span id="cb14-132"><a href="r-code.html#cb14-132" tabindex="-1"></a>  <span class="co"># Ensure EVENT only occurs within 365 days</span></span>
+<span id="cb14-133"><a href="r-code.html#cb14-133" tabindex="-1"></a>  <span class="cf">if</span> (TIME_TO_EVENT[i] <span class="sc">&lt;</span> max_follow_up) {</span>
+<span id="cb14-134"><a href="r-code.html#cb14-134" tabindex="-1"></a>    EVENT[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb14-135"><a href="r-code.html#cb14-135" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-136"><a href="r-code.html#cb14-136" tabindex="-1"></a>    EVENT[i] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb14-137"><a href="r-code.html#cb14-137" tabindex="-1"></a>  }</span>
+<span id="cb14-138"><a href="r-code.html#cb14-138" tabindex="-1"></a>  </span>
+<span id="cb14-139"><a href="r-code.html#cb14-139" tabindex="-1"></a>  <span class="co"># Ensure TIME_TO_EVENT doesn&#39;t exceed the maximum follow-up period</span></span>
+<span id="cb14-140"><a href="r-code.html#cb14-140" tabindex="-1"></a>  TIME_TO_EVENT[i] <span class="ot">&lt;-</span> <span class="fu">min</span>(TIME_TO_EVENT[i], max_follow_up)</span>
+<span id="cb14-141"><a href="r-code.html#cb14-141" tabindex="-1"></a>  </span>
+<span id="cb14-142"><a href="r-code.html#cb14-142" tabindex="-1"></a>}</span>
+<span id="cb14-143"><a href="r-code.html#cb14-143" tabindex="-1"></a></span>
+<span id="cb14-144"><a href="r-code.html#cb14-144" tabindex="-1"></a><span class="co"># Organize data in a data frame</span></span>
+<span id="cb14-145"><a href="r-code.html#cb14-145" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ID, AGE, GENDER, SOCIO_ECO, BECK, TREAT, TIME_TO_EVENT, EVENT, TIME_TO_TREAT)</span>
+<span id="cb14-146"><a href="r-code.html#cb14-146" tabindex="-1"></a></span>
+<span id="cb14-147"><a href="r-code.html#cb14-147" tabindex="-1"></a><span class="co"># Filter data based on conditions</span></span>
+<span id="cb14-148"><a href="r-code.html#cb14-148" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb14-149"><a href="r-code.html#cb14-149" tabindex="-1"></a>  <span class="fu">filter</span>(TIME_TO_EVENT <span class="sc">&gt;</span> TIME_TO_TREAT <span class="sc">&amp;</span> TIME_TO_TREAT <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> TIME_TO_EVENT <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb14-150"><a href="r-code.html#cb14-150" tabindex="-1"></a></span>
+<span id="cb14-151"><a href="r-code.html#cb14-151" tabindex="-1"></a><span class="co"># Recategorize variables</span></span>
+<span id="cb14-152"><a href="r-code.html#cb14-152" tabindex="-1"></a>data<span class="sc">$</span>GENDER <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>GENDER, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span>
+<span id="cb14-153"><a href="r-code.html#cb14-153" tabindex="-1"></a>data<span class="sc">$</span>SOCIO_ECO <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SOCIO_ECO, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Very low&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Moderate&quot;</span>, <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Very high&quot;</span>))</span>
+<span id="cb14-154"><a href="r-code.html#cb14-154" tabindex="-1"></a>data<span class="sc">$</span>TREAT <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>TREAT, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sertralex&quot;</span>, <span class="st">&quot;Duloxyn&quot;</span>))</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="references.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-packages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="ich.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

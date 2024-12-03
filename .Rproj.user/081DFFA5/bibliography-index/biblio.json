@@ -67,7 +67,7 @@
         },
         {
             "URL": "https://www.fda.gov/science-research/science-and-research-special-topics/real-world-evidence",
-            "abstract": "Real-world data (RWD) and real-world evidence (RWE) played an increasing role in health care decisions. The 21st Century Cures Act, passed in 2016, placed additional focus on the use of these types of data to support regulatory decision making.",
+            "abstract": "Real-world data (RWD) and real-world evidence (RWE) play an increasing role in health care decisions. The 21st Century Cures Act, passed in 2016, placed additional focus on the use of these types of data to support regulatory decision making.",
             "accessed": {
                 "date-parts": [
                     [
@@ -79,23 +79,19 @@
             },
             "author": [
                 {
-                    "dropping-particle": "of the",
-                    "family": "Commissioner",
-                    "given": "Office"
+                    "literal": "FDA"
                 }
             ],
-            "id": "commissioner_real-world_2024",
+            "id": "fda_real-world_2024",
             "issued": {
                 "date-parts": [
                     [
-                        2024,
-                        9,
-                        19
+                        2018
                     ]
                 ]
             },
             "language": "en-US",
-            "note": "Publisher: FDA",
+            "note": "Publisher: U.S. Food and Drug Administration (FDA)",
             "title": "Real-world evidence. FDA",
             "title-short": "Real-world evidence",
             "type": "webpage"
@@ -1239,6 +1235,189 @@
             "title": "Methods for constructing and assessing propensity scores",
             "type": "article-journal",
             "volume": "49"
+        },
+        {
+            "DOI": "10.1002/pds.4932",
+            "ISSN": "1053-8569",
+            "PMCID": "PMC7687110",
+            "PMID": "31823482",
+            "URL": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7687110/",
+            "abstract": "Purpose There is a need to develop hybrid trial methodology combining the best parts of traditional randomized controlled trials (RCTsRCTs) and observational study designs to produce real‐world evidence (RWERWE) that provides adequate scientific evidence for regulatory decision‐making.Methods This review explores how hybrid study designs that include features of RCTsRCTs and studies with real‐world data (RWDRWD) can combine the advantages of both to generate RWERWE that is fit for regulatory purposes.Results Some hybrid designs include randomization and use pragmatic outcomes; other designs use single‐arm trial data supplemented with external comparators derived from RWDRWD or leverage novel data collection approaches to capture long‐term outcomes in a real‐world setting. Some of these approaches have already been successfully used in regulatory decisions, raising the possibility that studies using RWDRWD could increasingly be used to augment or replace traditional RCTsRCTs for the demonstration of drug effectiveness in certain contexts. These changes come against a background of long reliance on RCTsRCTs for regulatory decision‐making, which are labor‐intensive, costly, and produce data that can have limited applicability in real‐world clinical practice.Conclusions While RWERWE from observational studies is well accepted for satisfying postapproval safety monitoring requirements, it has not commonly been used to demonstrate drug effectiveness for regulatory purposes. However, this position is changing as regulatory opinions, guidance frameworks, and RWDRWD methodologies are evolving, with growing recognition of the value of using RWERWE that is acceptable for regulatory decision‐making.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        12,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Baumfeld Andre",
+                    "given": "Elodie"
+                },
+                {
+                    "family": "Reynolds",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Caubel",
+                    "given": "Patrick"
+                },
+                {
+                    "family": "Azoulay",
+                    "given": "Laurent"
+                },
+                {
+                    "family": "Dreyer",
+                    "given": "Nancy A."
+                }
+            ],
+            "container-title": "Pharmacoepidemiology and Drug Safety",
+            "container-title-short": "Pharmacoepidemiol Drug Saf",
+            "id": "baumfeld_andre_trial_2020",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020,
+                        10
+                    ]
+                ]
+            },
+            "page": "1201-1212",
+            "title": "Trial designs using real‐world data: The changing landscape of the regulatory approval process",
+            "title-short": "Trial designs using real‐world data",
+            "type": "article-journal",
+            "volume": "29"
+        },
+        {
+            "DOI": "10.1161/CIRCULATIONAHA.120.051718",
+            "ISSN": "1524-4539",
+            "PMCID": "PMC7940583",
+            "PMID": "33327727",
+            "abstract": "BACKGROUND: Regulators are evaluating the use of noninterventional real-world evidence (RWE) studies to assess the effectiveness of medical products. The RCT DUPLICATE initiative (Randomized, Controlled Trials Duplicated Using Prospective Longitudinal Insurance Claims: Applying Techniques of Epidemiology) uses a structured process to design RWE studies emulating randomized, controlled trials (RCTs) and compare results. We report findings of the first 10 trial emulations, evaluating cardiovascular outcomes of antidiabetic or antiplatelet medications. METHODS: We selected 3 active-controlled and 7 placebo-controlled RCTs for replication. Using patient-level claims data from US commercial and Medicare payers, we implemented inclusion and exclusion criteria, selected primary end points, and comparator populations to emulate those of each corresponding RCT. Within the trial-mimicking populations, we conducted propensity score matching to control for >120 preexposure confounders. All study measures were prospectively defined and protocols registered before hazard ratios and 95% CIs were computed. Success criteria for the primary analysis were prespecified for each replication. RESULTS: Despite attempts to emulate RCT design as closely as possible, differences between the RCT and corresponding RWE study populations remained. The regulatory conclusions were equivalent in 6 of 10. The RWE emulations achieved a hazard ratio estimate that was within the 95% CI from the corresponding RCT in 8 of 10 studies. In 9 of 10, either the regulatory or estimate agreement success criteria were fulfilled. The largest differences in effect estimates were found for RCTs where second-generation sulfonylureas were used as a proxy for placebo regarding cardiovascular effects. Nine of 10 replications had a standardized difference between effect estimates of <2, which suggests differences within expected random variation. CONCLUSIONS: Agreement between RCT and RWE findings varies depending on which agreement metric is used. Interim findings indicate that selection of active comparator therapies with similar indications and use patterns enhances the validity of RWE. Even in the context of active comparators, concordance between RCT and RWE findings is not guaranteed, partially because trials are not emulated exactly. More trial emulations are needed to understand how often and in what contexts RWE findings match RCTs. Registration: URL: https://www.clinicaltrials.gov; Unique identifiers: NCT03936049, NCT04215523, NCT04215536, NCT03936010, NCT03936036, NCT03936062, NCT03936023, NCT03648424, NCT04237935, NCT04237922.",
+            "author": [
+                {
+                    "family": "Franklin",
+                    "given": "Jessica M."
+                },
+                {
+                    "family": "Patorno",
+                    "given": "Elisabetta"
+                },
+                {
+                    "family": "Desai",
+                    "given": "Rishi J."
+                },
+                {
+                    "family": "Glynn",
+                    "given": "Robert J."
+                },
+                {
+                    "family": "Martin",
+                    "given": "David"
+                },
+                {
+                    "family": "Quinto",
+                    "given": "Kenneth"
+                },
+                {
+                    "family": "Pawar",
+                    "given": "Ajinkya"
+                },
+                {
+                    "family": "Bessette",
+                    "given": "Lily G."
+                },
+                {
+                    "family": "Lee",
+                    "given": "Hemin"
+                },
+                {
+                    "family": "Garry",
+                    "given": "Elizabeth M."
+                },
+                {
+                    "family": "Gautam",
+                    "given": "Nileesa"
+                },
+                {
+                    "family": "Schneeweiss",
+                    "given": "Sebastian"
+                }
+            ],
+            "container-title": "Circulation",
+            "container-title-short": "Circulation",
+            "id": "franklin_emulating_2021",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021,
+                        3,
+                        9
+                    ]
+                ]
+            },
+            "keyword": "Aged, bias, diabetes mellitus, dipeptidyl-peptidase IV inhibitors, Female, Humans, Male, Middle Aged, Pragmatic Clinical Trials as Topic, randomized controlled trial, Randomized Controlled Trials as Topic, sodium-glucose transporter 2 inhibitors",
+            "page": "1002-1013",
+            "title": "Emulating randomized clinical trials with nonrandomized real-world evidence studies: First results from the RCT DUPLICATE initiative",
+            "title-short": "Emulating randomized clinical trials with nonrandomized real-world evidence studies",
+            "type": "article-journal",
+            "volume": "143"
+        },
+        {
+            "URL": "https://www.ema.europa.eu/en/documents/report/real-world-evidence-framework-support-eu-regulatory-decision-making-report-experience-gained-regulator-led-studies-september-2021-february-2023_en.pdf",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2024,
+                        12,
+                        3
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "literal": "EMA"
+                }
+            ],
+            "id": "ema_2024",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "Accessed: 2024-12-03",
+            "publisher": "European Medicines Agency (EMA)",
+            "title": "Real-world evidence framework to support EU regulatory decision-making",
+            "type": "webpage"
+        },
+        {
+            "URL": "https://www.fda.gov/media/154714/download",
+            "author": [
+                {
+                    "literal": "FDA"
+                }
+            ],
+            "container-title": "Guidance Document",
+            "id": "fda_considerations",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "note": "Accessed: 2024-12-03",
+            "publisher": "FDA",
+            "title": "Considerations for the use of real-world data and real-world evidence to support regulatory decision-making for drug and biological products",
+            "type": "article-journal"
         }
     ],
     "project_biblios": [

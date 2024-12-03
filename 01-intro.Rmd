@@ -2,15 +2,23 @@
 
 ## Definition
 
-As defined by the FDA, **RWD** refers to data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources. **Real World Evidence (RWE)** is the clinical evidence generated from RWD to inform decision-makers about the use of medical products [@commissioner_real-world_2024].
+According to the main regulatory agencies, these are the definition of **RWD** and **RWE** [@baumfeld_andre_trial_2020]:
+
+| Regulatory agency | Real-World Data | Real-World Evidence |
+|:----------------------:|:----------------------:|:----------------------:|
+| FDA (USA) | Data relating to patient health status and/or the delivery of health care routinely collected from a variety of sources | Clinical evidence about the usage and potential benefits or risks of a medical product derived from analysis of RWD |
+| EMA (Europe) | Health care related data that is collected outside of randomized clinical trials | Evidence coming from registries, electronic health records, and insurance data |
+| PMDA (Japan) | Utilization of patient registry data and medical information database | No definition was found |
+
+As presented, definitions are fairly consistent with each other.
 
 ## Use of RWD in drug development
 
-In drug development, RWD has traditionally been used in phase IV trials for post-market safety assessments. However, its potential applications extend throughout the entire drug lifecycle [@khosla_real_2018]. This includes:
+In drug development, RWD has traditionally been used in post-market safety surveillance. However, its potential applications extend throughout the entire drug lifecycle [@khosla_real_2018]. This includes:
 
 1.  **Discovery and Early Development:**
 
-    *Purpose*: Identify diseases with a high burden on populations and unmet needs.
+    *Purpose*: Characterize disease epidemiology and unmet needs.
 
     *RWE Use*: Helps define the target product profile by analyzing disease burden and patient characteristics, guiding the selection of indications and prioritizing development.
 
@@ -20,7 +28,7 @@ In drug development, RWD has traditionally been used in phase IV trials for post
 
     *RWE Use*: Provides insights into real-world patient populations and treatment patterns, helping to refine inclusion/exclusion criteria and improve the external validity of trials.
 
-3.  **Regulatory Approval (Phase 3):**
+3.  **Regulatory Approval:**
 
     *Purpose:* Obtain marketing authorization for new drugs.
 
@@ -38,14 +46,22 @@ In drug development, RWD has traditionally been used in phase IV trials for post
 
     *RWE Use:* Continuously tracks patient outcomes, adherence, and safety data in real-world settings, supporting the long-term value demonstration and label expansion into new populations or indications.
 
-## Addressing Challenges with RWD: External Control Arms and Emulation of Trials
+## Regulators acceptance of RWD
 
-While **RCTs** remain the **gold standard** for generating unbiased evidence due to their controlled and randomized nature, there are situations where a traditional control group is not available or feasible. In such cases, researchers can resort to two alternative approaches: **External Control Arm (ECA)** or the **Target Trial Emulation (TTE)** [@baumfeld_andre_trial_2020; @hernan_using_2016]. These two methods are illustrated below:
+RWD is gaining increasing interest and acceptance from regulators as a **complement to clinical trial** findings. For example, various frameworks have been established, such as the "**Real-World Evidence Framework to Support EU Regulatory Decision-Making**" by the EMA and the "**Real-World Evidence Program**" by the FDA [@ema_2024; @fda_real-world_2024]. Additionally, the FDA has issued guidance for industry titled "**Considerations for the Use of Real-World Data and Real-World Evidence to Support Regulatory Decision-Making for Drug and Biological Products**" [@fda_considerations].
+
+Moreover, FDA-funded initiative like the **DUPLICATE** program have been undertaken. This program focuses on replicating large-scale Randomized Controlled Trials (RCTs) using RWD to evaluate the reliability and confidence in analyses based on RWE [@franklin_emulating_2021].
+
+## Use of External Control Arm and Target Trial Emulation
+
+While RCTs remain the gold standard for generating unbiased evidence due to their controlled and randomized nature, there are situations where a traditional control group is not available or feasible. In such cases, researchers can resort to two alternative approaches: **External Control Arm (ECA)** or the **Target Trial Emulation (TTE)** [@baumfeld_andre_trial_2020; @hernan_using_2016]. These two methods are illustrated below:
 
 ```{r, echo=FALSE, fig.align='center', out.width='80%', fig.cap="Main study designs using RWD"}
 knitr::include_graphics("images/Présentation3.jpg")
 ```
 
-The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a control group. Alternatively, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD. Both methods present viable alternatives, but they come with inherent risks of bias due to the lack of randomization.
+The ECA method involves using historical or real-world data as a comparative baseline, offering a way to evaluate the effectiveness of a treatment in the absence of a control group. Alternatively, the TTE seeks to replicate the design of an RCT as closely as possible, but within the context of RWD.
 
-Common biases include: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups.
+## Main biases in RWD
+
+Although ECA and TTE are viable alternatives to RCT, they come with inherent risks of bias due to the lack of randomization. This includes: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups.

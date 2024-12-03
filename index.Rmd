@@ -39,16 +39,16 @@ This book provides a hands-on guide to analyzing Real World Data (RWD) using a m
 knitr::include_graphics("images/cloudword.jpeg")
 ```
 
-This book begins with **Chapter** \@ref(introduction), which offers an overview of Real World Data (RWD), highlighting key concepts and the challenges commonly encountered in this field.
+This book begins with **Chapter** \@ref(introduction), which offers an overview of RWD, highlighting key concepts and the challenges commonly encountered in this field.
 
-Following this, a motivating example is introduced in **Chapter** \@ref(motivating-example), which will be used throughout the book to illustrate each subsequent chapter with practical R code for reproducibility.
+Following this, a motivating example is introduced in **Chapter** \@ref(motivating-example), which will be used throughout the book to illustrate each subsequent chapter with practical R code for reproducibility (used packages are listed in Appendix \@ref(r-packages)).
 
 The next chapters focus on approaches to limit these inherent biases:
 
--   **Chapter** \@ref(target-trial-emulation) presents the Hernán et al. framework, a key approach to TTE that strengthens the reliability of RWE to address inherent biases.
+-   **Chapter** \@ref(target-trial-emulation) presents the Hernán et al. framework, a key approach to Target Trial Emulation (TTE) that strengthens the reliability of Real World Evidence (RWE) to address inherent biases.
 
--   **Chapter** \@ref(iptw-application) focuses on propensity score techniques aiming to reduce confounding bias at baseline.
+-   **Chapter** \@ref(iptw-application) focuses on Propensity Score (PS) techniques aiming to reduce confounding bias at baseline.
 
--   **Chapter** \@ref(clone-censor-weight) examines the clone-censor-weight approach, a method to limit both confounding and immortal bias in the context of time-varying treatments.
+-   **Chapter** \@ref(clone-censor-weight) examines the Clone-Censor-Weight (CCW) approach, a method to limit both confounding and immortal bias in the context of time-varying treatments.
 
 

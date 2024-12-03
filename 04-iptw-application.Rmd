@@ -61,7 +61,8 @@ t1 <- data %>%
               label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
                            SOCIO_ECO ~ "SES level (1-5)",
-                           BECK ~ "Beck score (0-63)")) %>%
+                           BECK ~ "Beck score (0-63)"),
+              digits = all_continuous() ~ 1) %>%
   add_difference(test = everything() ~ "smd") %>%
   modify_header(label ~ "**Variable**", 
                 estimate ~ "**SMD**", 
@@ -78,7 +79,8 @@ t2 <- data_svy %>%
                  label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
                            SOCIO_ECO ~ "SES level (1-5)",
-                           BECK ~ "Beck score (0-63)")) %>%
+                           BECK ~ "Beck score (0-63)"),
+                 digits = all_continuous() ~ 1) %>%
   add_difference(test = everything() ~ "smd") %>%
   modify_header(label ~ "**Variable**", 
                 estimate ~ "**SMD**", 
