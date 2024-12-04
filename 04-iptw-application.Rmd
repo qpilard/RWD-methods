@@ -4,7 +4,7 @@
 
 The **Propensity Score (PS)** is utilized to emulate the randomization process, with the goal of balancing the population's characteristics across the groups of interest. Unlike multivariable regression, which focuses on estimating the effect at the individual level (*subject-specific effect*), the PS method estimates the effect at the population level (*population-average effect*). In the context of models with a non-linear link (typically when Odds Ratio [OR] or Hazard Ratio [HR] are reported), these two effects differ [@austin_conditioning_2007].
 
-Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, **Inverse Probability of Treatment Weighting** (IPTW), and covariate adjustment [@austin_introduction_2011].
+Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, Inverse Probability of Treatment Weighting (IPTW), and covariate adjustment [@austin_introduction_2011].
 
 The scenario 1 discussed in Chapter \@ref(motivating-example) will be applied to illustrate the application of IPTW.
 
@@ -24,7 +24,7 @@ $$
 IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e} 
 $$
 
-Here, the PS is defined as $e = \Pr ({X}=1|{Z}={z})$ and $X$ and $Z$ are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES level, and Beck score), respectively.
+Here, the PS is defined as $e = \Pr ({X}=1|{Z}={z})$ and $X$ and $Z$ are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES status, and Beck score), respectively.
 
 This models the treatment effect across the entire population likely to receive either Sertralex or Duloxyn. Additional details on causal estimands (ATE/ATT) are provided in Appendix \@ref(causal).
 
@@ -60,7 +60,7 @@ t1 <- data %>%
               statistic = list(all_continuous() ~ "{mean} ({sd})"),
               label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
-                           SOCIO_ECO ~ "SES level (1-5)",
+                           SOCIO_ECO ~ "SES status (1-5)",
                            BECK ~ "Beck score (0-63)"),
               digits = all_continuous() ~ 1) %>%
   add_difference(test = everything() ~ "smd") %>%
@@ -78,7 +78,7 @@ t2 <- data_svy %>%
                  statistic = list(all_continuous() ~ "{mean} ({sd})"),
                  label = list(AGE ~ "Age (at diagnosis)",
                            GENDER ~ "Gender",
-                           SOCIO_ECO ~ "SES level (1-5)",
+                           SOCIO_ECO ~ "SES status (1-5)",
                            BECK ~ "Beck score (0-63)"),
                  digits = all_continuous() ~ 1) %>%
   add_difference(test = everything() ~ "smd") %>%

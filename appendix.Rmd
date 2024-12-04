@@ -211,34 +211,56 @@ In our example, we reformulate the ITT and PP questions as suggested in the fram
 
 This is the DAG associated with the simulation process:
 
-```{r dag, echo=FALSE, message=FALSE}
+```{r dag, echo=FALSE, message=FALSE, warning=FALSE}
 # Define the DAG structure in Dagitty
 dag_data <- dagitty("dag {
-  RELAPSE [outcome]
+  AGE
+  BECK
+  GENDER
+  SOCIO_ECONOMIC
+  TIME_TO_RELAPSE [outcome]
   TREAT [exposure]
-  Z
-  TREAT -> RELAPSE
-  Z -> RELAPSE
-  Z -> TREAT
+  AGE -> TIME_TO_RELAPSE
+  AGE -> TREAT
+  BECK -> TIME_TO_RELAPSE
+  BECK -> TREAT
+  GENDER -> TIME_TO_RELAPSE
+  GENDER -> TREAT
+  SOCIO_ECONOMIC -> TIME_TO_RELAPSE
+  SOCIO_ECONOMIC -> TREAT
+  TREAT -> TIME_TO_RELAPSE
 }")
 
 # Define coordinates for the DAG layout
 coords <- list(
-  x = c(RELAPSE = 5.507, TREAT = -3.720, Z = -3.720),
-  y = c(RELAPSE = 0.377, TREAT = 2.933, Z = -2.734)
+  x = c(
+    AGE = -1.157,
+    BECK = -1.146,
+    GENDER = -1.605,
+    SOCIO_ECONOMIC = -0.732,
+    TIME_TO_RELAPSE = -0.772, 
+    TREAT = -1.506),
+  y = c(
+    AGE = -0.090,
+    BECK = -0.687,
+    GENDER = -0.334,
+    SOCIO_ECONOMIC = -0.354,
+    TIME_TO_RELAPSE = 0.589, 
+    TREAT = 0.593)
 )
 
 coord_df <- coords2df(coords)
 coordinates(dag_data) <- coords2list(coord_df)
 
 # Plot the DAG using ggdag
-ggdag_status(dag_data, 
-             text_size = 2.5)+
+ggdag_status(dag_data,
+             text = FALSE, 
+             use_labels = "name",
+             text_size = 3) +
+  guides(color = FALSE)+
   theme_dag()
 
 ```
-
-For simplicity, Z represents the confounders measured at baseline, which include age, gender, socioeconomic status, and the Beck score.
 
 # Causal inference estimand {#causal}
 

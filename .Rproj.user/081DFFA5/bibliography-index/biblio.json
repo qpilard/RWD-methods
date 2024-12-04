@@ -1418,6 +1418,26 @@
             "publisher": "FDA",
             "title": "Considerations for the use of real-world data and real-world evidence to support regulatory decision-making for drug and biological products",
             "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "literal": "ENCePP"
+                }
+            ],
+            "container-title": "Guidance Document",
+            "id": "encepp_2010",
+            "issued": {
+                "date-parts": [
+                    [
+                        2010
+                    ]
+                ]
+            },
+            "language": "en-US",
+            "publisher": "EMA",
+            "title": "The european network of centres for pharmacoepidemiology and pharmacovigilance (ENCePP) guide on methodological standards in pharmacoepidemiology - revision 11",
+            "type": "article-journal"
         }
     ],
     "project_biblios": [

@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Quentin Pilard" />
 
 
-<meta name="date" content="2024-12-03" />
+<meta name="date" content="2024-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -248,7 +248,7 @@ div.csl-indent {
 <div id="background-1" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Background<a href="iptw-application.html#background-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <strong>Propensity Score (PS)</strong> is utilized to emulate the randomization process, with the goal of balancing the population’s characteristics across the groups of interest. Unlike multivariable regression, which focuses on estimating the effect at the individual level (<em>subject-specific effect</em>), the PS method estimates the effect at the population level (<em>population-average effect</em>). In the context of models with a non-linear link (typically when Odds Ratio [OR] or Hazard Ratio [HR] are reported), these two effects differ <span class="citation">(<a href="references.html#ref-austin_conditioning_2007">Austin et al. 2007</a>)</span>.</p>
-<p>Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, <strong>Inverse Probability of Treatment Weighting</strong> (IPTW), and covariate adjustment <span class="citation">(<a href="references.html#ref-austin_introduction_2011">Austin 2011</a>)</span>.</p>
+<p>Statistically, the PS is defined as the conditional probability of receiving the exposure of interest based on observed baseline characteristics. It is typically estimated using multivariable logistic regression, where the exposure of interest serves as the dependent variable and the baseline characteristics act as independent variables. Once calculated, it can be employed in various approaches, including matching, stratification, Inverse Probability of Treatment Weighting (IPTW), and covariate adjustment <span class="citation">(<a href="references.html#ref-austin_introduction_2011">Austin 2011</a>)</span>.</p>
 <p>The scenario 1 discussed in Chapter <a href="motivating-example.html#motivating-example">2</a> will be applied to illustrate the application of IPTW.</p>
 </div>
 <div id="identify-confounders" class="section level2 hasAnchor" number="4.2">
@@ -263,7 +263,7 @@ div.csl-indent {
 <p><span class="math display">\[
 IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 \]</span></p>
-<p>Here, the PS is defined as <span class="math inline">\(e = \Pr ({X}=1|{Z}={z})\)</span> and <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES level, and Beck score), respectively.</p>
+<p>Here, the PS is defined as <span class="math inline">\(e = \Pr ({X}=1|{Z}={z})\)</span> and <span class="math inline">\(X\)</span> and <span class="math inline">\(Z\)</span> are the treatment status (0 = Sertralex and 1 = Duloxyn) and observed confunders (gender, age, SES status, and Beck score), respectively.</p>
 <p>This models the treatment effect across the entire population likely to receive either Sertralex or Duloxyn. Additional details on causal estimands (ATE/ATT) are provided in Appendix <a href="causal.html#causal">E</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="iptw-application.html#cb1-1" tabindex="-1"></a><span class="co">#Perform weighting</span></span>
 <span id="cb1-2"><a href="iptw-application.html#cb1-2" tabindex="-1"></a>W <span class="ot">&lt;-</span> WeightIt<span class="sc">::</span><span class="fu">weightit</span>(TREAT <span class="sc">~</span> AGE <span class="sc">+</span> GENDER <span class="sc">+</span> SOCIO_ECO <span class="sc">+</span> BECK,</span>
@@ -290,7 +290,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb3-5"><a href="iptw-application.html#cb3-5" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>),</span>
 <span id="cb3-6"><a href="iptw-application.html#cb3-6" tabindex="-1"></a>              <span class="at">label =</span> <span class="fu">list</span>(AGE <span class="sc">~</span> <span class="st">&quot;Age (at diagnosis)&quot;</span>,</span>
 <span id="cb3-7"><a href="iptw-application.html#cb3-7" tabindex="-1"></a>                           GENDER <span class="sc">~</span> <span class="st">&quot;Gender&quot;</span>,</span>
-<span id="cb3-8"><a href="iptw-application.html#cb3-8" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES level (1-5)&quot;</span>,</span>
+<span id="cb3-8"><a href="iptw-application.html#cb3-8" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES status (1-5)&quot;</span>,</span>
 <span id="cb3-9"><a href="iptw-application.html#cb3-9" tabindex="-1"></a>                           BECK <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>),</span>
 <span id="cb3-10"><a href="iptw-application.html#cb3-10" tabindex="-1"></a>              <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-11"><a href="iptw-application.html#cb3-11" tabindex="-1"></a>  <span class="fu">add_difference</span>(<span class="at">test =</span> <span class="fu">everything</span>() <span class="sc">~</span> <span class="st">&quot;smd&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -308,7 +308,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <span id="cb3-23"><a href="iptw-application.html#cb3-23" tabindex="-1"></a>                 <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>),</span>
 <span id="cb3-24"><a href="iptw-application.html#cb3-24" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(AGE <span class="sc">~</span> <span class="st">&quot;Age (at diagnosis)&quot;</span>,</span>
 <span id="cb3-25"><a href="iptw-application.html#cb3-25" tabindex="-1"></a>                           GENDER <span class="sc">~</span> <span class="st">&quot;Gender&quot;</span>,</span>
-<span id="cb3-26"><a href="iptw-application.html#cb3-26" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES level (1-5)&quot;</span>,</span>
+<span id="cb3-26"><a href="iptw-application.html#cb3-26" tabindex="-1"></a>                           SOCIO_ECO <span class="sc">~</span> <span class="st">&quot;SES status (1-5)&quot;</span>,</span>
 <span id="cb3-27"><a href="iptw-application.html#cb3-27" tabindex="-1"></a>                           BECK <span class="sc">~</span> <span class="st">&quot;Beck score (0-63)&quot;</span>),</span>
 <span id="cb3-28"><a href="iptw-application.html#cb3-28" tabindex="-1"></a>                 <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-29"><a href="iptw-application.html#cb3-29" tabindex="-1"></a>  <span class="fu">add_difference</span>(<span class="at">test =</span> <span class="fu">everything</span>() <span class="sc">~</span> <span class="st">&quot;smd&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -827,7 +827,7 @@ IPTW_{Stabilized, ATE} = \frac{X*Pr(X=1)}{e}+\frac{(1-X)*Pr(X=0)}{1-e}
 <td headers="stat_2_2" class="gt_row gt_center">137 (46%)</td>
 <td headers="stat_1_2" class="gt_row gt_center">94 (45%)</td>
 <td headers="estimate_2" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">SES level (1-5)</td>
+    <tr><td headers="label" class="gt_row gt_left">SES status (1-5)</td>
 <td headers="stat_1_1" class="gt_row gt_center"><br /></td>
 <td headers="stat_2_1" class="gt_row gt_center"><br /></td>
 <td headers="estimate_1" class="gt_row gt_center">0.24</td>
@@ -1558,7 +1558,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

@@ -2,7 +2,7 @@
 
 ## Background
 
-In 2016, Hernán and Rubins presented a framework to emulate a clinical trial using observational data when no clinical trial exists [@hernan_using_2016].The latter is a 2-step process: (1) **Specifying the target trial** (i.e., which is the hypothetical trial that could have been performed to answer the research question). This includes these elements eligibility criteria, treatment strategies, assignment procedures, follow-up period, outcome, causal contrast of interest and analysis plan, and (2) **Emulating each element** from the target trial.
+In 2016, Hernán and Rubins presented a TTE framework to emulate a clinical trial using observational data when no clinical trial exists [@hernan_using_2016].The latter is a 2-step process: (1) **Specifying the target trial** (i.e., which is the hypothetical trial that could have been performed to answer the research question). This includes these elements eligibility criteria, treatment strategies, assignment procedures, follow-up period, outcome, causal contrast of interest and analysis plan, and (2) **Emulating each element** from the target trial.
 
 Let us illustrate the TTE framework using our motivating example.
 

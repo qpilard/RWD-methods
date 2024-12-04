@@ -2,7 +2,7 @@
 
 **Quentin Pilard (pilard.quentin@gmail.com)**
 
-This tutorial is based on my four years of experience at Quinten Health (Paris) working with RWD in collaboration with pharmaceutical industries and academia
+This tutorial is based on my professional experience working with RWD in collaboration with pharmaceutical industries and academia
 
 ```{r, echo=FALSE, fig.align='center', out.width='30%'}
 knitr::include_graphics("images/moi.jpg")

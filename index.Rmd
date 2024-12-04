@@ -5,7 +5,8 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook: 
-    config: 
+    config:
+      download: no 
       sharing:
         facebook: no
         twitter: no
@@ -41,7 +42,7 @@ knitr::include_graphics("images/cloudword.jpeg")
 
 This book begins with **Chapter** \@ref(introduction), which offers an overview of RWD, highlighting key concepts and the challenges commonly encountered in this field.
 
-Following this, a motivating example is introduced in **Chapter** \@ref(motivating-example), which will be used throughout the book to illustrate each subsequent chapter with practical R code for reproducibility (used packages are listed in Appendix \@ref(r-packages)).
+Following this, a motivating example is introduced in **Chapter** \@ref(motivating-example), which will be used throughout this book to illustrate each subsequent chapter with practical R code for reproducibility (used packages are listed in Appendix \@ref(r-packages)).
 
 The next chapters focus on approaches to limit these inherent biases:
 
@@ -49,6 +50,6 @@ The next chapters focus on approaches to limit these inherent biases:
 
 -   **Chapter** \@ref(iptw-application) focuses on Propensity Score (PS) techniques aiming to reduce confounding bias at baseline.
 
--   **Chapter** \@ref(clone-censor-weight) examines the Clone-Censor-Weight (CCW) approach, a method to limit both confounding and immortal bias in the context of time-varying treatments.
+-   **Chapter** \@ref(clone-censor-weight) examines the Clone-Censor-Weight (CCW) approach, a method to limit both confounding and immortal time bias in the context of time-varying treatments.
 
 

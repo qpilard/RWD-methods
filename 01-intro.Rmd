@@ -50,7 +50,7 @@ In drug development, RWD has traditionally been used in post-market safety surve
 
 RWD is gaining increasing interest and acceptance from regulators as a **complement to clinical trial** findings. For example, various frameworks have been established, such as the "**Real-World Evidence Framework to Support EU Regulatory Decision-Making**" by the EMA and the "**Real-World Evidence Program**" by the FDA [@ema_2024; @fda_real-world_2024]. Additionally, the FDA has issued guidance for industry titled "**Considerations for the Use of Real-World Data and Real-World Evidence to Support Regulatory Decision-Making for Drug and Biological Products**" [@fda_considerations].
 
-Moreover, FDA-funded initiative like the **DUPLICATE** program have been undertaken. This program focuses on replicating large-scale Randomized Controlled Trials (RCTs) using RWD to evaluate the reliability and confidence in analyses based on RWE [@franklin_emulating_2021].
+Moreover, FDA-funded initiative like the **DUPLICATE** program have been undertaken. This program focuses on replicating large-scale Randomized Controlled Trials (RCTs) using RWD to evaluate the reliability and confidence in analyses based on RWD [@franklin_emulating_2021].
 
 ## Use of External Control Arm and Target Trial Emulation
 
@@ -64,4 +64,12 @@ The ECA method involves using historical or real-world data as a comparative bas
 
 ## Main biases in RWD
 
-Although ECA and TTE are viable alternatives to RCT, they come with inherent risks of bias due to the lack of randomization. This includes: selection bias, which arises from non-random selection of treatment groups; measurement bias, resulting from inaccuracies in data collection; confounding bias, where external factors influence both treatment and outcome; information bias, stemming from differences in data quality between groups; and immortal time bias, which occurs when there are differences in observation periods for the treatment groups.
+Although RWD is a viable alternative to RCT, it comes, as any observational studies, with inherent biases due to the lack of randomization [@encepp_2010]. These are the most common:
+
+-   **Selection bias**: Arises from the non-random selection of treatment groups.
+
+-   **Information bias**: Results from inaccuracies in data collection.
+
+-   **Confounding bias**: Occurs when external factors distort the association between the treatment and the outcome.
+
+-   **Immortal time bias**: Happens during a follow-up period when the event of interest, often death, cannot occur.

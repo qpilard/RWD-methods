@@ -6,9 +6,9 @@ Persistent Depressive Disorder (PDD) is a chronic mood disorder characterized by
 knitr::include_graphics("images/PDD.jpg")
 ```
 
-Antidepressants serve as the primary treatment for PDD, aiding in symptom management and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.
+Antidepressants serve as the primary treatment for PDD, helping in managing symptoms and reducing the risk of relapse. Among these medications, Sertralex and Duloxyn are frequently prescribed, each operating through distinct mechanisms.
 
-This study aims to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, representing the typical treatment duration for patients newly diagnosed with PDD.
+This hypothetical study aims to compare the effectiveness of Sertralex and Duloxyn in prolonging the time to relapse over a maximum follow-up period of one year, representing the typical treatment duration for patients newly diagnosed with PDD.
 
 To capture different clinical settings, we consider two scenarios:
 
@@ -26,7 +26,7 @@ Here is the list of variables included in the dataset:
 
 -   **BECK**: Beck Depression Inventory score at diagnosis [0 (best prognosis) - 63 (worst prognosis)]
 
--   **SOCIO_ECO**: Socioeconomic status [1=Very low; 2=Low; 3=Moderate; 4=High; 5=Very high]
+-   **SOCIO_ECO**: Socioeconomic status (SES status) [1=Very low; 2=Low; 3=Moderate; 4=High; 5=Very high]
 
 -   **EVENT**: Relapse indicator [0=No relapse; 1=Relapse]
 
